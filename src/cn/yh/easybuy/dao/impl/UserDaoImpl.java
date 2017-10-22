@@ -1,4 +1,4 @@
-package cn.yh.easybuy.dao.daoimpl;
+package cn.yh.easybuy.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
