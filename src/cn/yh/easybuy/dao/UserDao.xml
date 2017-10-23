@@ -18,7 +18,7 @@
 	    <result column="eu_status" property="status"/>
 	</resultMap>
 	
-	<select id="getUser" parameterType="map" resultMap="UserMap">
+	<select id="findUser" resultMap="UserMap">
 		select * from easybuy_user where 1 = 1
 		<if test="userName!=null and password!=null">
 			and eu_user_name = #{userName} and eu_password = #{password}
@@ -29,14 +29,14 @@
 	</select>
 	
 	<update id="updateUser" parameterType="User">
-		update easybuy_user set eu_user_id = #{userId},en_user_name = #{userName},
+		update easybuy_user set eu_user_id = #{userId},eu_user_name = #{userName},
 			eu_password = #{password}, eu_sex = #{sex}, eu_birthday = #{birthday},
 		    eu_identity_code = #{identityCode},eu_email = #{email},eu_mobile = #{mobile},
 			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
 	</update>
 	
 	<insert id="saveUser" parameterType="User">
-		insert into easybuy_user(eu_user_id,en_user_name,eu_password,eu_sex,eu_birthday,
+		insert into easybuy_user(eu_user_id,eu_user_name,eu_password,eu_sex,eu_birthday,
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
 			 values(#{userId},#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
 	</insert>
