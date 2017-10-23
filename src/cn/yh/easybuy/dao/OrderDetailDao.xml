@@ -20,10 +20,4 @@
 	<select id="findDetailByid" resultMap="DetailMap">
 		select * from easybuy_order_detail where did = #{d_id}
 	</select>
-
-
-
-
-
-
 </mapper>
