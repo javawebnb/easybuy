@@ -15,6 +15,8 @@ public class UserBizImpl implements UserBiz{
 	public User login(User user) {
 		// TODO Auto-generated method stub
 		Map<String,Object> condition = new HashMap<String,Object>();
+		condition.put("userName", user.getUserName());
+		condition.put("password", user.getPassword());
 		List<User> list = userDao.findUser(condition);
 		if(list.size()>0){
 			return list.get(0);
