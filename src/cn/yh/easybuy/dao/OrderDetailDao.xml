@@ -18,7 +18,7 @@
 	
 	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
-		select * from easybuy_order_detail where did = #{d_id}
+		select * from easybuy_order_detail where eod_id = #{d_id}
 	</select>
 
 
