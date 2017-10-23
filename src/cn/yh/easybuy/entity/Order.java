@@ -3,13 +3,13 @@ package cn.yh.easybuy.entity;
 import java.sql.Date;
 
 public class Order {
-	private Integer id;
-	private String userId;
-	private String userName;
-	private String userAddress;
-	private Date createTime;
-	private Float cost;
-	private Integer status;
+	private Integer id;             //订单号
+	private String userId;			//用户ID
+	private String userName;		//用户名
+	private String userAddress;     //收货地址
+	private Date createTime;		//下单时间
+	private Float cost;				//消费金额
+	private Integer status;			//订单状态
 	
 	
 	public Integer getId() {

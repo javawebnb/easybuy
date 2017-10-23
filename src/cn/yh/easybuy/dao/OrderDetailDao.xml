@@ -9,12 +9,11 @@
 		<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
 		<result property="cost" column="eod_cost" javaType="java.lang.Float"/>
 	</resultMap>
+	
 	<!--查询所有订单详细信息  -->
 	<select id="findOrderDetail" resultType="OrderDetail">
 		select * from easybuy_order_detail
 	</select>
-	
-	
 	
 	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
