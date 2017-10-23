@@ -37,6 +37,7 @@
 	
 	<insert id="saveUser" parameterType="User">
 		insert into easybuy_user(eu_user_id,eu_user_name,eu_password,eu_sex,eu_birthday,
+
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
 			 values(#{userId},#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
 	</insert>

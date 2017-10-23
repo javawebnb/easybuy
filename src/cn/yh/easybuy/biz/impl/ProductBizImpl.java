@@ -15,6 +15,7 @@ public class ProductBizImpl implements ProductBiz {
 	public List<Product> selAllProductByPage(Page<Product> product) {
 		// TODO Auto-generated method stub
 		return productDao.selAllProductByPage(product);
+
 	}
 
 	@Override
