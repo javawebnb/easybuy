@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yh.easybuy.dao.ProductDao">
+	<resultMap type="Product" id="productMap">
+		<id column="ep_id" property="id"/>
+		<result column="ep_name" property="name"/>
+		<result column="ep_description" property="description"/>
+		<result column="ep_price" property="price"/>
+		<result column="ep_stock" property="stock"/>
+		<result column="epc_id" property="cid"/>
+		<result column="epc_child_id" property="childId"/>
+		<result column="ep_file_name" property="fileName"/>
+	</resultMap>
+	 <select id="selAllProduct" resultMap="productMap">
+	 	select * from easybuy_product
+	 </select>
+	 
+	 <select id="selProductById" resultMap="productMap">
+	 	select * from easybuy_product where ep_id = #{id}
+	 </select>
+	 
+	 <select id="selProductByCid" resultMap="productMap">
+	 	select * from easybuy_product where epc_id = #{cid}
+	 </select>
+	 
+	 <select id="selProductByChildId" resultMap="productMap">
+		select * from easybuy_product where epc_child_id = #{childId}
+	 </select>
+	 
+	 <insert id="saveProduct">
+	 	insert into easybuy_product values(#{id},#{name},#{description},#{price},#{stock},#{cid},#{childId},#{fileName})
+	 </insert>
+	 
+	 <delete id="delProduct">
+	 	delete from easybuy_product where ep_id = #{id}
+	 </delete>
+	 
+	 <update id="updateProduct">
+	 	update easybuy_product set ep_id=#{id},ep_name=#{name},ep_description=#{description},ep_price=#{price},ep_stock=#{stock},epc_id=#{cid},epc_child_id=#{childId},ep_file_name=#{fileName} where ep_id=#{id}
+	 </update>
+	 
+	 
+	 
+</mapper>
