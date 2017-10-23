@@ -23,7 +23,7 @@
 			</dataSource>
 		</environment>
 	</environments>
-	
+
 	<mappers>
 		<package name="cn.yh.easybuy.dao"/>
 	</mappers>
