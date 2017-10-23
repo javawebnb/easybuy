@@ -12,8 +12,8 @@
 		<result column="epc_child_id" property="childId"/>
 		<result column="ep_file_name" property="fileName"/>
 	</resultMap>
-	 <select id="selAllProduct" resultMap="productMap">
-	 	select * from easybuy_product
+	 <select id="selAllProductByPage" parameterType="Product" resultMap="productMap">
+	 	select * from easybuy_product limit ${(pageIndex-1)*pageSize},${pageSize}
 	 </select>
 	 
 	 <select id="selProductById" resultMap="productMap">

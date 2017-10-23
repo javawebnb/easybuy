@@ -1,17 +1,11 @@
 package cn.yh.easybuy.dao.impl;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-
 
 import cn.yh.easybuy.dao.ProductDao;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
@@ -23,13 +17,12 @@ public class ProductDaoImpl implements ProductDao {
 	Integer num = 0;
 
 	@Override
-	public List<Product> selAllProduct() {
+	public List<Product> selAllProductByPage(Page<Product> product) {
 		// TODO Auto-generated method stub
-		
 		
 		session = SqlSessionFactoryUtil.getSqlSession();
 		ProductDao productDao = session.getMapper(ProductDao.class);
-		list = productDao.selAllProduct();
+		list = productDao.selAllProductByPage(product);
 		if(session!=null){
 			session.close();
 		}

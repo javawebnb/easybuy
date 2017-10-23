@@ -5,15 +5,16 @@ import java.util.List;
 import cn.yh.easybuy.biz.ProductBiz;
 import cn.yh.easybuy.dao.ProductDao;
 import cn.yh.easybuy.dao.impl.ProductDaoImpl;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;
 
 public class ProductBizImpl implements ProductBiz {
 
 	ProductDao productDao = new ProductDaoImpl();
 	@Override
-	public List<Product> selAllProduct() {
+	public List<Product> selAllProductByPage(Page<Product> product) {
 		// TODO Auto-generated method stub
-		return productDao.selAllProduct();
+		return productDao.selAllProductByPage(product);
 	}
 
 	@Override

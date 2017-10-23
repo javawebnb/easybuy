@@ -2,14 +2,15 @@ package cn.yh.easybuy.dao;
 
 import java.util.List;
 
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;
 
 public interface ProductDao {
 
 	/**
-	 * 查询所有商品
+	 * 查询所有商品(分页)
 	 */
-	public List<Product> selAllProduct();
+	public List<Product> selAllProductByPage(Page<Product> product);
 	
 	/**
 	 * 添加商品

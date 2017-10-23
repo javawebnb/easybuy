@@ -2,6 +2,7 @@ package cn.yh.easybuy.biz;
 
 import java.util.List;
 
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;
 
 public interface ProductBiz {
@@ -10,7 +11,7 @@ public interface ProductBiz {
 	/**
 	 * 查询所有商品
 	 */
-	public List<Product> selAllProduct();
+	public List<Product> selAllProductByPage(Page<Product> product);
 	
 	/**
 	 * 添加商品
