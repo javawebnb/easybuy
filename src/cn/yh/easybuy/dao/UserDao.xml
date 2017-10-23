@@ -17,7 +17,6 @@
 	    <result column="eu_login" property="login"/>
 	    <result column="eu_status" property="status"/>
 	</resultMap>
-	
 	<select id="findUser" resultMap="UserMap">
 		select * from easybuy_user where 1 = 1
 		<if test="userName!=null and password!=null">
