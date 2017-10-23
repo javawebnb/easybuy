@@ -67,7 +67,8 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<User> findUser(Map<String, String> condition) {
+
+	public List<User> findUser(Map<String,Object> condition) {
 		// TODO Auto-generated method stub
 		SqlSession session = null;
 		List<User> list = new ArrayList<User>();
