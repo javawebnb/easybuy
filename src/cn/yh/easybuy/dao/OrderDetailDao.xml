@@ -3,11 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.OrderDetailDao">
 	<resultMap type="OrderDetail" id="DetailMap">
-		<id property="d_id" column="did" javaType="java.lang.Integer"/>
-		<result property="id" column="id" javaType="java.lang.Integer"/>
-		<result property="p_id" column="pid" javaType="java.lang.Integer"/>
-		<result property="quantity" column="quantity" javaType="java.lang.Integer"/>
-		<result property="cost" column="cost" javaType="java.lang.Float"/>
+		<id property="d_id" column="eod_id" javaType="java.lang.Integer"/>
+		<result property="id" column="eo_id" javaType="java.lang.Integer"/>
+		<result property="p_id" column="ep_id" javaType="java.lang.Integer"/>
+		<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
+		<result property="cost" column="eod_cost" javaType="java.lang.Float"/>
 	</resultMap>
 	<!--查询所有订单详细信息  -->
 	<select id="findOrderDetail" resultType="OrderDetail">
@@ -15,15 +15,9 @@
 	</select>
 	
 	
-	
 	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
-		select * from easybuy_order_detail where did = #{d_id}
+		select * from easybuy_order_detail where eod_id = #{d_id}
 	</select>
-
-
-
-
-
 
 </mapper>

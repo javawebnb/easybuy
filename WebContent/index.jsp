@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -142,27 +143,25 @@
 				</li>
 			</ul>
 		</div>
+	<c:if test="${empty pageObj}">
+		<jsp:forward page="NewsServlet">
+			<jsp:param value="page" name="opr"/>
+		</jsp:forward>
+	</c:if>	
 		<div class="side">			
 			<div class="spacer"></div>
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
+				<c:forEach items="${pageObj.pageList}" var="news">
+				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
 		</div>
 		<div class="spacer clear"></div>
     </div>
 </div>
+<c:remove var="pageObj"/>
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

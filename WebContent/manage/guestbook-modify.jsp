@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -50,22 +51,23 @@
 			</dl>
 		</div>
 	</div>
+	
 	<div class="main">
 		<h2>回复留言</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="../CommentServlet?opr=reply&id=${comment.id }" method="post">
 				<table class="form">
 					<tr>
 						<td class="field">留言编号：</td>
-						<td>12</td>
+						<td>${comment.id }</td>
 					</tr>
 					<tr>
 						<td class="field">留言姓名：</td>
-						<td>张三</td>
+						<td>${comment.nickName }</td>
 					</tr>
 					<tr>
 						<td class="field">留言内容：</td>
-						<td>高老庄的货发了没？</td>
+						<td>${comment.content }</td>
 					</tr>
 					<tr>
 						<td class="field">回复内容：</td>

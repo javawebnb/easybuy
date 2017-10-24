@@ -64,9 +64,9 @@
 	</div>
 </div>
 	<div id="news" class="right-main">
-		<h1>铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</h1>
+		<h1>${readNew.title}</h1>
 		<div class="content">
-			f
+			${readNew.content}
 		</div>
 	</div>
 	<div class="clear"></div>

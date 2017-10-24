@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,6 +9,12 @@
 <link type="text/css" rel="stylesheet" href="../css/style.css" />
 <script type="text/javascript" src="../scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="../scripts/function.js"></script>
+<script type="text/javascript">
+$(".manageDel").click(function(){
+	confirm("确定要删除吗？");
+	return true;
+})
+</script>
 </head>
 <body>
 <div id="header" class="wrap">
@@ -32,6 +39,12 @@
 <div id="position" class="wrap">
 	您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 </div>
+<c:if test="${empty pageObj}">
+	<jsp:forward page="../NewsServlet">
+	<jsp:param value="page" name="opr"/>
+	<jsp:param value="manager" name="role"/>
+	</jsp:forward>	
+</c:if>
 <div id="main" class="wrap">
 	<div id="menu-mng" class="lefter">
 		<div class="box">
@@ -59,32 +72,35 @@
 					<th>新闻标题</th>
 					<th>操作</th>
 				</tr>
+				<c:forEach    var="news" items="${pageObj.pageList}">
 				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
+					<td class="first w4 c">${news.id}</td>
+					<td>${news.title}</td>
+					<td class="w1 c"><a href="../NewsServlet?opr=toupdate&&id=${news.id}">修改</a> <a class="manageDel" href="../NewsServlet?opr=delNews&&id=${news.id}">删除</a></td>
 				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>
 	<div class="clear"></div>
     <div class="pager">
 				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
+				<c:if test="${pageObj.pageIndex >1}">
+					<li><a href="../NewsServlet?opr=page&role=manager&i=1">首页</a></li>
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+				</c:if>
+					
+					<li class="current">${pageObj.pageIndex }</li>
+					
+				<c:if test="${pageObj.pageIndex < pageObj.pageTotal}">
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageIndex + 1 }">下一页</a></li>
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageTotal}">尾页</a></li>
+				</c:if>	
+                    
 				</ul>
   </div>
 </div>
+<c:remove var="pageObj"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

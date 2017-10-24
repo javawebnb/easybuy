@@ -5,7 +5,6 @@
 <mapper namespace="cn.yh.easybuy.dao.UserDao">
 	<resultMap type="User" id="UserMap">
 		<id column="eu_id" property="id"></id>
-		<result column="eu_user_id" property="userId"/>
 		<result column="eu_user_name" property="userName"/>
 	    <result column="eu_password" property="password"/>
 	    <result column="eu_sex" property="sex"/>
@@ -17,7 +16,8 @@
 	    <result column="eu_login" property="login"/>
 	    <result column="eu_status" property="status"/>
 	</resultMap>
-	
+
+
 	<select id="findUser" resultMap="UserMap">
 		select * from easybuy_user where 1 = 1
 		<if test="userName!=null and password!=null">
@@ -35,6 +35,7 @@
 			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
 	</update>
 	
+
 	<insert id="saveUser" parameterType="User">
 		insert into easybuy_user(eu_user_name,eu_password,eu_sex,eu_birthday,
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
