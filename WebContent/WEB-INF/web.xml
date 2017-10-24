@@ -32,4 +32,14 @@
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/CommentServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewsServlet</display-name>
+    <servlet-name>NewsServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.NewsServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>NewsServlet</servlet-name>
+    <url-pattern>/NewsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
