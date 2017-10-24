@@ -11,6 +11,11 @@ function setCookie(name,value){
     exp.setTime(exp.getTime() + Days*24*60*60*1000);
     document.cookie = name + "="+ encodeURIComponent(value) +";expires="+ exp.toUTCString();
 }
+//刷新验证码图片
+function refresh(){
+	var img = document.getElementById("img");
+	img.src = "/easybuy/image.jsp?XX="+Math.random();
+}
 function getCookie(name){
     var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
     if(arr != null) return decodeURIComponent(arr[2]);
@@ -254,10 +259,6 @@ $(function(){
             ,dateFmt:'yyyy-MM-dd'
         });
     });
-    //点击换验证码
-    $("#changeCode").click(function(){
-        $("#safeCode").attr("src","Number.jsp?id="+Math.random());
-    });
     //注册页面验证
     $("#regForm").find("input[class='text']").bind({
         focus:function(){focusItem(this)},
@@ -379,10 +380,11 @@ $(function(){
     //注销
     $("#logout").click(function(){
         if(confirm("购物车中尚有未结算的商品，是否结账？")) {
-            location.href="shopping.html";
+            location.href="shopping.jsp";
         }else{
-            location.href="index.html";
-            return false;
+        	if(confirm("确定退出？")){
+        		location.href="/easybuy/UserServlet?action=logout";
+        	}
         }
     });
     //轮换广告
