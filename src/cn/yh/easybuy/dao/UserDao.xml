@@ -35,6 +35,7 @@
 			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
 	</update>
 	
+
 	<insert id="saveUser" parameterType="User">
 		insert into easybuy_user(eu_user_name,eu_password,eu_sex,eu_birthday,
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
