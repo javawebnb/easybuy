@@ -1,16 +1,20 @@
 package cn.yh.easybuy.biz;
 
-import java.util.List;
-
 import cn.yh.easybuy.entity.News;
+import cn.yh.easybuy.entity.Page;
 
 public interface NewsBiz {
+	/**
+	 * 查找所有新闻
+	 * @return
+	 */
+	Page<News> findAllNews(Integer pageIndex,Integer pageSize);
 	/**
 	 * 通过ID查找新闻
 	 * @param id
 	 * @return
 	 */
-	List<News> findNewsById(Integer id);
+	News findNewsById(Integer id);
 	/**
 	 * 添加新闻
 	 * @param news

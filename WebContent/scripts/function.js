@@ -323,7 +323,7 @@ $(function(){
     $(".manageDel").click(function(){
         var $tr = $(this).parent().parent();
         if(confirm("确定要删除吗？")) {
-            if($tr) $tr.remove();
+            
             location.herf="";
         }else{
             return false;
