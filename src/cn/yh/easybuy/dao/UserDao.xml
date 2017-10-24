@@ -5,7 +5,6 @@
 <mapper namespace="cn.yh.easybuy.dao.UserDao">
 	<resultMap type="User" id="UserMap">
 		<id column="eu_id" property="id"></id>
-		<result column="eu_user_id" property="userId"/>
 		<result column="eu_user_name" property="userName"/>
 	    <result column="eu_password" property="password"/>
 	    <result column="eu_sex" property="sex"/>
@@ -29,16 +28,16 @@
 	</select>
 	
 	<update id="updateUser" parameterType="User">
-		update easybuy_user set eu_user_id = #{userId},eu_user_name = #{userName},
+		update easybuy_user set eu_user_name = #{userName},
 			eu_password = #{password}, eu_sex = #{sex}, eu_birthday = #{birthday},
 		    eu_identity_code = #{identityCode},eu_email = #{email},eu_mobile = #{mobile},
 			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
 	</update>
 	
 	<insert id="saveUser" parameterType="User">
-		insert into easybuy_user(eu_user_id,eu_user_name,eu_password,eu_sex,eu_birthday,
+		insert into easybuy_user(eu_user_name,eu_password,eu_sex,eu_birthday,
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
-			 values(#{userId},#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
+			 values(#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
 	</insert>
 	<delete id="delUser">
 		delete from easybuy_user where eu_id = #{id}

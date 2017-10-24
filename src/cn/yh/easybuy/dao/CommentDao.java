@@ -26,5 +26,4 @@ public interface CommentDao {
 	List<Comment> findCommentByPage(Page<Comment> page);
 	
 	
-	
 }

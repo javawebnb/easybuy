@@ -318,6 +318,7 @@ $(function(){
             return false;
         }
     });
+    
     //后台删除
     $(".manageDel").click(function(){
         var $tr = $(this).parent().parent();
@@ -328,11 +329,28 @@ $(function(){
             return false;
         }
     })
+    function changeNum(obj){
+    	var $thumb = $($(obj).parent().parent().children("td")[0]);
+    	var $number = $($(obj).parent().parent().children("td")[2]);
+    	var v = $number.find("input").val();
+        var goodsName = $thumb.find("a").html();
+        $.ajax({
+        	url:"CartServlet",
+        	data:{"quantity":v,"goodsName":goodsName,"opr":"changeNum"},
+        	type:"post",
+        	dataType:"text",
+        	success:function(result){
+        		
+        	}
+        });
+    }
     //修改
     $(".number").find("span").click(function(){
+    	var $thumb = $($(this).parent().parent().children("td")[0]);
         var $tds=$(this).parent().parent().children("td");
         var $price= $($tds[1]);
         var $number=$($tds[2]);
+        var goodsName = $thumb.find("a").html();
         var price = $price.find("input[type='hidden']").val();//存值
         var $priceBox =$price.find("span");//现实价钱
         var $number= $number.find("input");//得到存储input对象
@@ -343,6 +361,11 @@ $(function(){
             if(number<=0){
                 if(confirm("确定要删除吗？")) {
                     $price.parent().remove();
+                    $.ajax({
+                    	url:"CartServlet",
+                    	data:{"opr":"deleteCartItem","goodsName":goodsName},
+                    	type:"post"
+                    })
                 }else{
                     number=1;
                 }
@@ -351,8 +374,9 @@ $(function(){
             number++;
         }
         $number.val(number);
-        $priceBox.text("￥" + price * number);
+        $priceBox.text("￥" + price);
         $("#shopping").find("#total").text("总计：￥"+totalPrice());
+        changeNum(this);
     });
     //计算总价
     function totalPrice(){
@@ -362,8 +386,22 @@ $(function(){
             var n = $(d).parent().parent().find("input[name='number']").val();
             totalPrice=totalPrice+p*n;
         });
-        return totalPrice;
+        return totalPrice.toFixed(1);
     }
+    $(".deleteCart").click(function(){
+		var $thumb = $($(this).parent().children("td")[0]);
+		var goodsName = $thumb.find("a").html();
+		if(confirm("确定删除吗?")){
+			$(".deleteCart").parent().remove();
+			 $.ajax({
+                	url:"CartServlet",
+                	data:{"opr":"deleteCartItem","goodsName":goodsName},
+                	type:"post"
+             })
+		}
+		$("#shopping").find("#total").text("总计：￥"+totalPrice());
+	})
+    //数字改变
     $("#shopping").find("input[name='number']").change(function(){
         var v=$(this).val();
         if(!(/^[0-9]*[1-9][0-9]*$/.test(v))){
@@ -372,10 +410,11 @@ $(function(){
         }
         var $price=$($(this).parent().parent().children("td")[1]);
         var p = $price.find("input").val();
-        $price.find("span").text(p*$(this).val());
+        $price.find("span").text("￥"+p);
         $("#shopping").find("#total").text("总计：￥"+totalPrice());
+        changeNum(this);
     });
-    $("#shopping").find("#total").text("总计：￥"+totalPrice());
+//    $("#shopping").find("#total").text("总计：￥"+totalPrice());
     //注销
     $("#logout").click(function(){
         if(confirm("购物车中尚有未结算的商品，是否结账？")) {
