@@ -8,11 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-<<<<<<< HEAD
   </welcome-file-list>
-=======
-  </welcome-file-list>
->>>>>>> refs/remotes/origin/hzh
   <filter>
     <display-name>EncodeFilter</display-name>
     <filter-name>EncodeFilter</filter-name>
