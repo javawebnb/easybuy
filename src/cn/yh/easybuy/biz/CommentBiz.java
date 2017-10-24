@@ -1,6 +1,5 @@
 package cn.yh.easybuy.biz;
 
-import java.util.List;
 
 import cn.yh.easybuy.entity.Comment;
 import cn.yh.easybuy.entity.Page;
@@ -23,5 +22,9 @@ public interface CommentBiz {
 	 * 
 	 * 查询所有评论(分页) 
 	 */
-	List<Comment> findCommentByPage(Page<Comment> page);
+	Page<Comment> showCommentByPage(Integer pageSize,Integer pageIndex);
+	/**
+	 * 通过显示对应评论
+	 */
+	Comment showCommentById(Integer id);
 }

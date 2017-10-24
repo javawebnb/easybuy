@@ -8,7 +8,11 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+<<<<<<< HEAD
   </welcome-file-list>
+=======
+  </welcome-file-list>
+>>>>>>> refs/remotes/origin/hzh
   <filter>
     <display-name>EncodeFilter</display-name>
     <filter-name>EncodeFilter</filter-name>
@@ -33,6 +37,7 @@
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/CartServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <display-name>NewsServlet</display-name>
     <servlet-name>NewsServlet</servlet-name>
@@ -41,5 +46,15 @@
   <servlet-mapping>
     <servlet-name>NewsServlet</servlet-name>
     <url-pattern>/NewsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>CommentServlet</display-name>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.CommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/CommentServlet</url-pattern>
   </servlet-mapping>
 </web-app>
