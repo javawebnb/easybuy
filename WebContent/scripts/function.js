@@ -389,11 +389,12 @@ $(function(){
         });
         return totalPrice.toFixed(1);
     }
-    $(".deleteCart").click(function(){
+    $(".deleteCart").click(function(event){
 		var $thumb = $($(this).parent().children("td")[0]);
 		var goodsName = $thumb.find("a").html();
+		var target = event.target;
 		if(confirm("确定删除吗?")){
-			$(".deleteCart").parent().remove();
+			$(target).parent().parent().remove();
 			 $.ajax({
                 	url:"CartServlet",
                 	data:{"opr":"deleteCartItem","goodsName":goodsName},

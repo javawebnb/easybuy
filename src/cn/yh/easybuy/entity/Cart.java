@@ -20,7 +20,18 @@ public class Cart {
 		this.totalPrice = totalPrice;
 	}
 	public void addAll(List<CartItem> list){
-		listItems.addAll(list);
+		for(CartItem ci : list){
+			boolean flag = true;
+			for(CartItem ci1 : listItems){
+				if(ci.getGoodsName().equals(ci1.getGoodsName())){
+					ci1.setQuantity(ci.getQuantity()+ci1.getQuantity());
+					flag = false;
+				}    
+			}
+			if(flag){
+				listItems.add(ci);
+			}
+		}
 		getTotalPrice(listItems);
 	}
 	/**

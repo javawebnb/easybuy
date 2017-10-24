@@ -1,6 +1,7 @@
 package cn.yh.easybuy.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.yh.easybuy.entity.CartItem;
 
@@ -19,4 +20,10 @@ public interface CartItemDao {
 	 * 获取购物车
 	 */
 	List<CartItem> getCartItems(Integer userId);
+	
+	/**
+	 * 删除购物车信息
+	 */
+	Integer deleteCartItems(Integer userId);
+	
 }
