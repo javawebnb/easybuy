@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,28 +10,16 @@
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
+<jsp:include page="top.jsp"></jsp:include>
 <body>
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
-</div>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a class="button" id="logout" href="javascript:void(0);">注销</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-    <div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
 			<li class="first"><a href="#">音乐</a></li>
-			<li><a href="#">影视</a></li>
+			<li><a href="#">影视1</a></li>
 			<li><a href="#">少儿</a></li>
 			<li><a href="#">动漫</a></li>
 			<li><a href="#">小说</a></li>
@@ -154,27 +143,25 @@
 				</li>
 			</ul>
 		</div>
+	<c:if test="${empty pageObj}">
+		<jsp:forward page="NewsServlet">
+			<jsp:param value="page" name="opr"/>
+		</jsp:forward>
+	</c:if>	
 		<div class="side">			
 			<div class="spacer"></div>
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
+				<c:forEach items="${pageObj.pageList}" var="news">
+				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
 		</div>
 		<div class="spacer clear"></div>
     </div>
 </div>
+<c:remove var="pageObj"/>
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

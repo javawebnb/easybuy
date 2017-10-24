@@ -10,19 +10,7 @@
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -81,7 +69,7 @@
 			<div class="buy">
 				商城价：<span class="price">￥99.00</span><br />
 				库　存：有货
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="shopping.jsp">放入购物车</a></div>
+			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -98,4 +86,17 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<script type="text/javascript">
+	function addCart(){
+		$.ajax({
+			url:"CartServlet",
+			type:"post",
+			data:{"opr":"addCart","pid":"1"},
+			dataType:"text",
+			success:function(result){
+				alert(result);
+			}
+		})
+	}
+</script>
 </html>

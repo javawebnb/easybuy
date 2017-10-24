@@ -21,9 +21,11 @@
 		select eod_id,eo_create_time,eo_status,ep_name,ep_price,eod_quantity,eod_cost from easybuy_order,easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id
 	</select>
 	
-	<!--通过订单Id查询订单详细信息  -->
+	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
+
 		select ep_name,ep_price,eod_quantity,eod_cost  from easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id and eo_id = #{id}
+
 	</select>
 
 
