@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -74,50 +75,54 @@
 			</dl>
 		</div>
 	</div>
+	
+	<c:if test="${empty pageObj }">
+		<jsp:forward page="CommentServlet">
+			<jsp:param value="page" name="opr"/>
+		</jsp:forward>
+	</c:if>
+	
 	<div class="main">
 		<div class="guestbook">
 			<h2>全部留言</h2>
 			<ul>
+				
+			<c:forEach items="${pageObj.pageList }" var="comment" varStatus="s">
 				<li>
 					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer"><a href="file:///G|/accp/进阶项目训练/进阶项目训练/Chapter04/提供给学员的资料/html/address.jsp">address</a>2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
+						<dt>${comment.content}</dt>
+						<dd class="author">网友：${comment.nickName }<span class="timer">${comment.createTime }</span></dd>
+						<dd>${comment.reply }</dd>
 					</dl>
 				</li>
-				<li>
-					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer">2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer">2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
-					</dl>
-				</li>
+			</c:forEach>
+				
 			</ul>
 			<div class="clear"></div>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
+				<c:if test="${pageObj.pageIndex > 1 }">
+					<li><a href="CommentServlet?opr=page&i=1">首页</a></li>
+					<li><a href="CommentServlet?opr=page&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+				</c:if>
+					
+					
+					<li class="current">${pageObj.pageIndex}</li>
+                    
+                    
+                 <c:if test="${pageObj.pageIndex < pageObj.pageTotal }">
+                 	<li><a href="CommentServlet?opr=page&i=${pageObj.pageIndex + 1 }">下一页</a></li>
+					<li><a href="CommentServlet?opr=page&i=${pageObj.pageTotal }">尾页</a></li>
+                 </c:if>   
+                    
 				</ul>
 			</div>
 			<div id="reply-box">
-				<form id="guestBook">
+				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment">
 					<table>
 						<tr>
 							<td class="field">昵称：</td>
-							<td><input class="text" type="text" name="guestName" disabled="disabled" value="当前用户名"/></td>
+							<td><input class="text" type="text" name="guestName" value="当前用户名"/></td>
 						</tr>						
 						<tr>
 							<td class="field">留言内容：</td>
@@ -132,6 +137,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:remove var="pageObj"/>
+	
 	<div class="clear"></div>
 </div>
 <div id="footer">
