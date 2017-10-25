@@ -17,7 +17,7 @@
 
 <c:set var="isempty" value="${empty sessionScope.listbg }"/>
 <c:if test="${isempty }">
-<jsp:forward page="ProductCategoryServlet?">
+<jsp:forward page="ProductCategoryServlet">
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
 </c:if>
