@@ -147,4 +147,29 @@ public class ProductDaoImpl implements ProductDao {
 		return list;
 	}
 
+	@Override
+	public Integer delProductByCid(Integer cid) {
+		session = SqlSessionFactoryUtil.getSqlSession();
+		ProductDao productDao = session.getMapper(ProductDao.class);
+		num = productDao.delProductByCid(cid);
+		session.commit();
+		if(session!=null){
+			session.close();
+		}
+		return num;
+	}
+
+	@Override
+	public Integer delProductByChildId(Integer childId) {
+		// TODO Auto-generated method stub
+		session = SqlSessionFactoryUtil.getSqlSession();
+		ProductDao productDao = session.getMapper(ProductDao.class);
+		num = productDao.delProductByChildId(childId);
+		session.commit();
+		if(session!=null){
+			session.close();
+		}
+		return num;
+	}
+
 }

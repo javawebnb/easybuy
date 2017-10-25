@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -40,7 +41,7 @@
 				<dd><a href="user.jsp">用户管理</a></dd>
 			  <dt>商品信息</dt>
 				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
-				<dd><em><a href="../ProductServlet?ps=addProduct">新增</a></em><a href="product.jsp">商品管理</a></dd>
+				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
 
 				<dt>订单管理</dt>
 				<dd><a href="order.jsp">订单管理</a></dd>
@@ -60,29 +61,30 @@
 					<th>商品名称</th>
 					<th>操作</th>
 				</tr>
+			<c:forEach items="${pages.pageList }" var="product">
 				<tr>
-					<td class="first w4 c">1</td>
-					<td class="thumb"><img src="../images/product/0_tiny.gif" /><a href="../product-view.jsp" target="_self">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
-					<td class="w1 c"><a href="product-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
+					<td class="first w4 c">${product.id }</td>
+					<td class="thumb"><img src="../images/product/0_tiny.gif" /><a href="../product-view.jsp" target="_self">${product.name}</a></td>
+					<td class="w1 c"><a href="../ProductServlet?ps=updateProduct&id=${product.id }">修改</a> <a class="manageDel" href="../ProductServlet?ps=delProduct&id=${product.id }">删除</a></td>
 				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="thumb"><img src="../images/product/0_tiny.gif" /><a href="../product-view.jsp" target="_self">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
-				</tr>
+				
+			</c:forEach>
+				
 			</table>
 		</div>
 	</div>
 	<div class="clear"></div>
     <div class="pager">
-				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
-				</ul>
+				当前页数:[${pages.pageIndex}/${pages.pageTotal}]&nbsp;
+
+					<c:if test="${pages.pageIndex>1 }">
+						<a href="../ProductServlet?index=1&ps=showAllProduct">首页</a>
+						<a href="../ProductServlet?index=${pages.pageIndex-1}&ps=showAllProduct">上一页</a>
+					</c:if>
+					<c:if test="${pages.pageIndex<pages.pageTotal }">
+						<a href="../ProductServlet?index=${pages.pageIndex+1}&ps=showAllProduct">下一页</a>
+						<a href="../ProductServlet?index=${pages.pageTotal}&ps=showAllProduct">末页</a>
+					</c:if>
   </div>
 </div>
 <div id="footer">

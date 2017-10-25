@@ -95,18 +95,57 @@ public class ProductServlet extends HttpServlet {
 			product.setPrice(Float.valueOf(productPrice));
 			product.setCid(Integer.valueOf(cid));
 			product.setFileName(photo);
-			
 			Integer num = pb.saveProduct(product);
 			if(num>0){
-				request.getRequestDispatcher("manage/product.jsp").forward(request, response);
+				response.sendRedirect("manage/index.jsp");
+			}	
+		}else if("showAllProduct".equals(ps)){
+			String index = request.getParameter("index");
+			Integer pageIndex = 1;
+			if(index != null){
+				pageIndex = Integer.valueOf(index);
+			}
+			Integer pageSize = 8;
+			Page<Product> page = pb.selAllProduct(pageIndex, pageSize);
+			session.setAttribute("pages", page);
+			response.sendRedirect("manage/product.jsp");	
+		}else if("updateProduct".equals(ps)){
+			
+			String id = request.getParameter("id");
+			Product product = pb.selProductById(Integer.valueOf(id));
+			session.setAttribute("product",product);
+			response.sendRedirect("manage/product-modify.jsp");
+		}else if("updateProductTwo".equals(ps)){
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String description = request.getParameter("description");
+			String cid = request.getParameter("cid");
+			String price = request.getParameter("price");
+			String stock = request.getParameter("stock");
+			String fileName = request.getParameter("photo");
+			
+			Product product = new Product();
+			product.setId(Integer.valueOf(id));
+			product.setName(name);
+			product.setDescription(description);
+			product.setCid(Integer.valueOf(cid));
+			product.setPrice(Float.valueOf(price));
+			product.setStock(Integer.valueOf(stock));
+			product.setFileName(fileName);
+			
+			if(pb.updateProduct(product)>0){
+				response.sendRedirect("manage/index.jsp");
+			}
+		}else if("delProduct".equals(ps)){
+			
+			String id = request.getParameter("id");
+			if(pb.delProduct(Integer.valueOf(id))>0){
+				response.sendRedirect("manage/index.jsp");
 			}
 			
 			
 			
 		}
-	
-	
-	
 	}
 
 	/**

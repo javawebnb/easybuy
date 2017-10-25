@@ -104,7 +104,7 @@
 					<dl>
 						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="images/product/1.jpg" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
-						<dd class="price">￥108.0</dd>
+						<dd class="price">${product.price}</dd>
 					</dl>
 				</li>
 				</c:forEach>
