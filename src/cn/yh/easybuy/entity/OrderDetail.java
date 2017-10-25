@@ -1,3 +1,4 @@
+
 package cn.yh.easybuy.entity;
 
 

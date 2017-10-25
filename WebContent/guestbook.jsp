@@ -128,6 +128,7 @@
 	
 	<c:remove var="pageObj"/>
 	
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

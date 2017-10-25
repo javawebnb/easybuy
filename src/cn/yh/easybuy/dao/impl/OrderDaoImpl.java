@@ -78,6 +78,7 @@ public class OrderDaoImpl implements OrderDao{
 		
 		return list;
 	}
+<<<<<<< HEAD
 
 	public static void main(String[] args) {
 		OrderDaoImpl odi = new OrderDaoImpl();
@@ -86,5 +87,8 @@ public class OrderDaoImpl implements OrderDao{
 			System.out.println(o);
 		}
 	}
+=======
+
+>>>>>>> branch 'lijian1' of https://github.com/javawebnb/easybuy.git
 	
 }

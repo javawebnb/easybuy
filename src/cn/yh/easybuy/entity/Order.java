@@ -67,5 +67,5 @@ public class Order {
 				+ ", createTime=" + createTime + ", status=" + status + ", cost=" + cost + ", listDetail=" + listDetail
 				+ "]";
 	}
-	
+
 }

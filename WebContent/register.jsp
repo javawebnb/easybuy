@@ -67,7 +67,7 @@
 						<td>
 						  <input class="radio" type="radio" name="sex" value="1" checked="checked">
 						  男性</input>
-						  <input class="radio" type="radio" name="sex" value="0"						  
+						  <input class="radio" type="radio" name="sex" value="0"
 						  >女性</input>
 						  <span></span></td>
 					</tr>

@@ -10,13 +10,14 @@ import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	
-	SqlSession session = SqlSessionFactoryUtil.getSqlSession();
-	ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+	
 	
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
-	int i = pc.saveProductCategory(productcategory);
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		int i = pc.saveProductCategory(productcategory);
 		session.commit();
 		if(session != null){
 			session.close();
@@ -28,7 +29,8 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public int delProductCategory(Integer id) {
 		// TODO Auto-generated method stub
-		
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		int i=pc.delProductCategory(id);
 		session.commit();
 		if(session != null){
@@ -40,6 +42,8 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public int updateProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		int i = pc.updateProductCategory(productcategory);
 		session.commit();
 		if(session != null){
@@ -52,6 +56,8 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public List<ProductCategory> findProductCategoryByid(Integer id) {
 		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.findProductCategoryByid(id);
 		session.commit();
 		if(session != null){
@@ -64,7 +70,24 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public List<ProductCategory> getAllProductCategory() {
 		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getAllProductCategory();
+		session.commit();
+		if(session != null){
+			session.close();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		List<ProductCategory> list= pc.getProductCategoryByParentId(parentId);
+
 		session.commit();
 		if(session != null){
 			session.close();
