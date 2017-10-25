@@ -1,13 +1,34 @@
+
 package cn.yh.easybuy.entity;
+
+import java.sql.Date;
 
 public class OrderDetail {
 	
-	private Integer d_id;		//编号
-	private Integer id;			//订单号
-	private Integer p_id;		//商品编号
-	private Integer quantity;	//商品数量
-	private float cost;			//商品金额
 	
+	private Integer d_id;			//订单编号
+	private String name;			//商品名称
+	private Float price;			//商品单价
+	private Integer status;			//订单状态
+	private Date createTime;		//下单时间
+	private Integer id;             //订单号
+	private Integer p_id;			//商品编号
+	private Integer quantity;		//商品数量
+	private float cost;				//商品总价
+	
+	
+	/**
+	 * @return the createTime
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * @param createTime the createTime to set
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 	/**
 	 * @return the d_id
 	 */
@@ -68,15 +89,53 @@ public class OrderDetail {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @return the price
+	 */
+	public Float getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+	/**
+	 * @return the status
+	 */
+	public Integer getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "OrderDetail [d_id=" + d_id + ", id=" + id + ", p_id=" + p_id + ", quantity=" + quantity + ", cost="
+		return "OrderDetail [d_id=" + d_id + ", name=" + name + ", price=" + price + ", status=" + status
+				+ ", createTime=" + createTime + ", id=" + id + ", p_id=" + p_id + ", quantity=" + quantity + ", cost="
 				+ cost + "]";
 	}
-	
-	
 
+	
+	
+	
 }

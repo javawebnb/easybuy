@@ -87,6 +87,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getProductCategoryByParentId(parentId);
+
 		session.commit();
 		if(session != null){
 			session.close();

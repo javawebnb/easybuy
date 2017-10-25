@@ -14,7 +14,6 @@
 	select * from easybuy_product_category where epc_id=#{id}
 </select>
 
-
 <select id="getProductCategoryByParentId" resultMap="ProductCategoryMap">
 	select * from easybuy_product_category where epc_parent_id=#{parent_id}
 </select>

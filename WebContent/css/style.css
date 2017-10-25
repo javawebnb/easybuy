@@ -50,7 +50,9 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #childNav .welcome { line-height:30px; text-align:right; color:#FFC; }
 #position { clear:both; margin-top:5px; color:#666; }
 
+
 .pager { margin-top:15px;text-align:center; }
+
 .pager ul { float:right; }
 .pager ul li { float:left; border:1px solid #eee; line-height:18px; padding:0 3px; margin:0 1px; display:inline; }
 .pager ul li.current { font-weight:bold; color:#630; }

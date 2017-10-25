@@ -27,6 +27,7 @@ public interface ProductCategoryDao {
 	 * 查找得到全部分类
 	 */
 	public List<ProductCategory> getAllProductCategory();
+
 	/**
 	 * 按照父分类查询
 	 */

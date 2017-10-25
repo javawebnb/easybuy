@@ -28,7 +28,6 @@
 	 	select count(1) from easybuy_product
 	 </select>
 	 
-	 
 	 <select id="selProductById" resultMap="productMap">
 	 	select * from easybuy_product where ep_id = #{id}
 	 </select>

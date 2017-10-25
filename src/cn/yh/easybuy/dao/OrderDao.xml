@@ -10,9 +10,8 @@
 		<result property="userName" column="eo_user_name" javaType="java.lang.String"/>
 		<result property="userAddress" column="eo_user_address" javaType="java.lang.String"/>
 		<result property="createTime" column="eo_creat_Time" javaType="java.sql.Date"/>
-		<result property="cost" column="eo_cost" javaType="java.lang.Float"/>
+		<result property="cost" column="eo_cost" />
 		<result property="status" column="eo_status" javaType="java.lang.Integer"/>
-
 		
 	</resultMap>
 	
@@ -31,7 +30,9 @@
 	<update id="updateOrders" parameterType="Order">
 		update easybuy_order set en_status=#{status} where en_id=#{id}
 	</update>
+	
 	<delete id="delOrders" parameterType="int">
 		delete from easybuy_order where en_id=#{id}
 	</delete>
+	
 </mapper>

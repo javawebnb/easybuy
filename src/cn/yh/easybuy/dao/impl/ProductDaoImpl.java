@@ -1,6 +1,7 @@
 package cn.yh.easybuy.dao.impl;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -145,13 +146,5 @@ public class ProductDaoImpl implements ProductDao {
 				
 		return list;
 	}
-
-	
-
-	
-
-	
-
-	
 
 }

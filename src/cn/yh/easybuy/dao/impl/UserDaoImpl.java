@@ -23,6 +23,7 @@ public class UserDaoImpl implements UserDao{
 		res = userDao.saveUser(user);
 		}catch(Exception e){
 			session.rollback();
+			e.printStackTrace();
 		}finally{
 			session.commit();
 			session.close();
@@ -41,6 +42,7 @@ public class UserDaoImpl implements UserDao{
 		res = userDao.updateUser(user);
 		}catch(Exception e){
 			session.rollback();
+			e.printStackTrace();
 		}finally{
 			session.commit();
 			session.close();
@@ -59,12 +61,14 @@ public class UserDaoImpl implements UserDao{
 		res = userDao.delUser(id);
 		}catch(Exception e){
 			session.rollback();
+			e.printStackTrace();
 		}finally{
 			session.commit();
 			session.close();
 		}
 		return res;
 	}
+
 
 	@Override
 	public List<User> findUser(Map<String,Object> condition) {
@@ -77,6 +81,7 @@ public class UserDaoImpl implements UserDao{
 		list = userDao.findUser(condition);
 		}catch(Exception e){
 			session.rollback();
+			e.printStackTrace();
 		}finally{
 			session.commit();
 			session.close();

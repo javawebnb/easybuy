@@ -1,5 +1,6 @@
 package cn.yh.easybuy.biz.impl;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +83,5 @@ public class ProductBizImpl implements ProductBiz {
 		// TODO Auto-generated method stub
 		return productDao.selProductByChildId(childId);
 	}
-
-	
 
 }

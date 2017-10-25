@@ -27,8 +27,10 @@ public interface ProductCategoryBiz {
 	 * 查找得到全部分类
 	 */
 	public List<ProductCategory> getAllProductCategory();
+
 	/**
 	 * 按照父分类查询
 	 */
 	public List<ProductCategory> getProductCategoryByParentId(Integer parentId);
+
 }

@@ -53,15 +53,15 @@
 	<div class="main">
 		<h2>修改新闻</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form  method="post" action="../NewsServlet?opr=updateNews&&id=${news.id}">
 				<table class="form">
 					<tr>
 						<td class="field">新闻标题：</td>
-						<td><input type="text" class="text" name="title" value="" /></td>
+						<td><input type="text" class="text" name="title" value="${news.title}" /></td>
 					</tr>
 					<tr>
 						<td class="field">新闻内容：</td>
-						<td><textarea name="content"></textarea></td>
+						<td><textarea name="content">${news.content}</textarea></td>
 					</tr>
 					<tr>
 						<td></td>

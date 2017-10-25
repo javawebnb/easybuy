@@ -1,6 +1,7 @@
 package cn.yh.easybuy.dao;
 
 import java.util.List;
+
 import java.util.Map;
 
 import cn.yh.easybuy.entity.Page;
@@ -27,7 +28,7 @@ public interface ProductDao {
 	 * 返回所有商品的记录数
 	 */
 	public Integer getAllCount();
-	
+
 	/**
 	 * 添加商品
 	 */
