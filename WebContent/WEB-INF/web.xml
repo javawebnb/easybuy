@@ -84,4 +84,13 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>ProductCategoryServlet</display-name>
+    <servlet-name>ProductCategoryServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.ProductCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductCategoryServlet</servlet-name>
+    <url-pattern>/ProductCategoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

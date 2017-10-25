@@ -34,6 +34,7 @@ public interface UserDao {
 	 * @return 查询结果集
 	 */
 
+
 	List<User> findUser(Map<String,Object> condition);
 
 }
