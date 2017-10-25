@@ -48,7 +48,5 @@ public class NewsBizImpl implements NewsBiz{
 		return page;
 	}
 
-	
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 
 }

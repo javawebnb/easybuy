@@ -45,7 +45,5 @@ public class OrderBizImpl implements OrderBiz{
 		// TODO Auto-generated method stub
 		return od.findOrder();
 	}
-	
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 
 }
