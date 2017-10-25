@@ -53,11 +53,11 @@
 	<div class="main">
 		<h2>添加商品</h2>
 		<div class="manage">
-			<form id="productAdd" action="manage-result.jsp">
+			<form id="productAdd" action="../ProductServlet?ps=addProduct" method="post">
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>
-						<td><input type="text" class="text" name="productName" value="铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机" /><span></span></td>
+						<td><input type="text" class="text" name="productName"/><span></span></td>
 					</tr>
                     <tr>
 						<td class="field">描述：</td>
@@ -66,14 +66,15 @@
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-							<select name="parentId">
+						 <input type="text" name="cid">
+							<!-- <select name="parentId">
 								<option value="1">电器</option>
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
 								<option value="2">衣服</option>
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
-							</select>
+							</select> -->
 						</td>
 					</tr>					
 					<tr>

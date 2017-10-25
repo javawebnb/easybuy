@@ -10,10 +10,15 @@ public interface ProductBiz {
 
 	
 	/**
+	 * 查询指定分类下的所有商品
+	 */
+	public Page<Product> selAllProductByPage(Integer pageIndex,Integer pageSize,Integer cid);
+	
+	/**
 	 * 查询所有商品
 	 */
-	public List<Product> selAllProductByPage(Page<Product> product);
-
+	public Page<Product> selAllProduct(Integer pageIndex,Integer pageSize);
+	
 	/**
 	 * 添加商品
 	 */
