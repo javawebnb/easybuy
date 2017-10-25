@@ -67,7 +67,6 @@
 		<h1>${readNew.title}</h1>
 		<div class="content">
 			${readNew.content}
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 		</div>
 	</div>
 	<div class="clear"></div>

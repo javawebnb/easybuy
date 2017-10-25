@@ -58,6 +58,11 @@ public class Product {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", stock="
+				+ stock + ", cid=" + cid + ", childId=" + childId + ", fileName=" + fileName + "]";
+	}
 	
 	
 	

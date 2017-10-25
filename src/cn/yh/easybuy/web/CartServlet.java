@@ -61,6 +61,9 @@ public class CartServlet extends HttpServlet {
 		if("deleteCartItem".equals(opr)){
 			deleteCartItem(request,response);
 		}
+		if("getGoodsNum".equals(opr)){
+			getGoodsNum(response,request,session);
+		}
 	}
 
 	/**
@@ -80,7 +83,7 @@ public class CartServlet extends HttpServlet {
 		//判断是否登录
 		if(user!=null){
 			//登录
-			loginCart = cib.getCartItems(2);
+			loginCart = cib.getCartItems(user.getId());
 		}
 		cart.addAll(loginCart);
 		response.sendRedirect("/easybuy/shopping.jsp");
@@ -142,6 +145,37 @@ public class CartServlet extends HttpServlet {
 		//返回数据到页面
 				PrintWriter out = null;
 				try {
+					out = response.getWriter();
+					out.write(cart.getListItems().size()+"");
+					out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					if(out!=null){
+						out.close();
+					}
+				}
+	}
+	/**
+	 * 返回购物车商品数量
+	 * @param request
+	 * @param response
+	 */
+	private void getGoodsNum(HttpServletResponse response,HttpServletRequest request,HttpSession session){
+			
+		
+			  PrintWriter out = null;
+			 try {
+				 User user = (User)session.getAttribute("login");
+					List<CartItem> loginCart = new LinkedList<CartItem>();
+					//判断是否登录
+					if(user!=null){
+						//登录
+						loginCart = cib.getCartItems(user.getId());
+					}
+				  cart.addAll(loginCart);
+				//返回数据到页面
 					out = response.getWriter();
 					out.write(cart.getListItems().size()+"");
 					out.flush();

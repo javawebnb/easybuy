@@ -8,15 +8,7 @@
 		<result property="id" column="eo_id" javaType="java.lang.Integer"/>
 		<result property="p_id" column="ep_id" javaType="java.lang.Integer"/>
 		<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
-		<association property="product" column="ep_id" select="findProduct">
-			<id column="ep_id" property="id"/>
-			<result column="ep_name" property="name"/>
-			<result column="ep_description" property="description"/>
-			<result column="ep_price" property="price"/>
-			<result column="ep_stock" property="stock"/>
-			<result column="epc_id" property="cid"/>
-			<result column="epc_child_id" property="childId"/>
-			<result column="ep_file_name" property="fileName"/>
+		<association property="product" javaType="Product" column="ep_id" select="cn.yh.easybuy.dao.ProductDao.selProductById">
 		</association>
 	</resultMap>
 	<!-- 通过商品id查询商品信息 -->

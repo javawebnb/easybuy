@@ -100,6 +100,7 @@ public class UserServlet extends HttpServlet {
 			List<CartItem> listItems = ((Cart)session.getAttribute("cart")).getListItems();
 			cib.saveCartItems(listItems,user.getId());
 			response.sendRedirect("/easybuy/index.jsp");
+			listItems.clear();
 			return;
 		}
 	}

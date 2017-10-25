@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cn.yh.easybuy.biz.OrderDetailBiz;
-import cn.yh.easybuy.biz.impl.OrderDetailBizImpl;
-import cn.yh.easybuy.entity.OrderDetail;
+import cn.yh.easybuy.biz.OrderBiz;
+import cn.yh.easybuy.biz.impl.OrderBizImpl;
+import cn.yh.easybuy.entity.Order;
 
 
 /**
@@ -41,12 +41,13 @@ public class OrderServlet extends HttpServlet {
 		//获取input输入对象
 		String opr = request.getParameter("opr");
 		
-		OrderDetailBiz biz = new OrderDetailBizImpl();	
+//		OrderDetailBiz biz = new OrderDetailBizImpl();	
+		OrderBiz biz = new OrderBizImpl();
 		
 		//对获取到的订单号和用户名进行判断获取数据
 		if("showAll".equals(opr)){
-				List<OrderDetail> list = biz.findOrderDetail();
-				session.setAttribute("orderdetail", list);
+				List<Order> list = biz.findOrder();
+				session.setAttribute("order", list);
 				response.sendRedirect("/easybuy/manage/order.jsp");
 		}
 	}

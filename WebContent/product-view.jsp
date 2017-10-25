@@ -11,19 +11,7 @@
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -68,11 +56,12 @@
 	<div id="product" class="main">
 		<h1>${product.name}</h1>
 		<div class="infos">
+			<div class="pid" style="display:none">${product.id}</div>
 			<div class="thumb"><img src="images/product/10.jpg" width="110" height="106" /></div>
 			<div class="buy">
 				商城价：<span class="price">${product.price}</span><br />
-				库　存：有货
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="shopping.jsp">放入购物车</a></div>
+				库　存：${product.stock}
+			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -88,10 +77,11 @@
 </body>
 <script type="text/javascript">
 	function addCart(){
+		var pid = $(".pid").html();
 		$.ajax({
 			url:"CartServlet",
 			type:"post",
-			data:{"opr":"addCart","pid":"1"},
+			data:{"opr":"addCart","pid":pid},
 			dataType:"text",
 			success:function(result){
 				$("#shoppingBag").html("购物车"+result+"件");

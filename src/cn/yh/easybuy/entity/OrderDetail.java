@@ -11,13 +11,15 @@ public class OrderDetail {
 	private Integer quantity;		//商品数量
 	private Double cost;            //价格
 	private Product product = new Product();        //商品
+	
+	
 	@Override
 	public String toString() {
 		return "OrderDetail [d_id=" + d_id + ", id=" + id + ", p_id=" + p_id + ", quantity=" + quantity + ", cost="
-				+ cost + ", price=" + price + "]";
+				+ cost + ", product=" + product + ", price=" + price + "]";
 	}
-	
-	
+
+
 	public Product getProduct() {
 		return product;
 	}

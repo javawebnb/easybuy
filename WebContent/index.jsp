@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,19 +14,7 @@
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a class="button" id="logout" href="javascript:void(0);">注销</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-    <div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -53,14 +39,11 @@
 </div>
 
 
-	<c:set var="come" value="${empty sessionScope.list }"/>
-	<c:if test="${come }">
-	<jsp:forward page="ProductServlet">
-		<jsp:param value="showKind" name="ps"/>
-	</jsp:forward>
+	<c:if test="${empty page}">
+		<jsp:forward page="ProductServlet">
+			<jsp:param value="showKind" name="ps"/>
+		</jsp:forward>
 	</c:if>
- 
-
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
@@ -100,11 +83,11 @@
 			<h2>商品列表</h2>
 			<ul class="product clearfix">
 				<c:forEach items="${page.pageList }" var="product">
-					<li>
+				<li>
 					<dl>
-						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="images/product/1.jpg" /></a></dt>
+						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
-						<dd class="price">￥108.0</dd>
+						<dd class="price">￥${product.price }</dd>
 					</dl>
 				</li>
 				</c:forEach>
@@ -153,4 +136,5 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>

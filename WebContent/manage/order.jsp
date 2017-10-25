@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -59,7 +60,7 @@
 			</div>
 			<div class="spacer"></div>
 			
-			<c:if test="${empty orderdetail}">
+			<c:if test="${order== null}">
 				<jsp:forward page="../OrderServlet">
 					<jsp:param value="showAll" name="opr"/>
 				</jsp:forward>
@@ -71,12 +72,13 @@
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
             
-            <c:forEach var="detail" items="${sessionScope.orderdetail}">
+            
 				<table class="list">
+				<c:forEach var="order" items="${sessionScope.order}">
 					<tr>
-						<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${detail.createTime}</th>					
-						<span class="hiddenSta">${detail.status}</span>
-						<th colspan="2">状态:待审核
+						<th colspan="2">单号：${order.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${order.createTime}</th>					
+						<th class="hiddenSta">${order.status}</th>
+						<th colspan="2">状态:
 							<select class="status" name="status">						    
 									<option value="1"  >待审核</option>
 									<option value="2"  >审核通过</option>
@@ -86,14 +88,19 @@
 							</select>
 						</th>								
 					</tr>
-					<tr>
-						<td class="first w4 c"><img src="../images/product/1.jpg" />${detail.name}</td>
-						<td></td>
-						<td>${detail.quantity}</td>
-						<td class="w1 c" rowspan="2">总计：${detail.cost}</td>					
-					</tr>				
+					<c:forEach var="orderDetail" items="${order.listDetail}" varStatus="varS">
+					    <tr>
+							<td class="first w4 c"><img src="../images/product/1.jpg" />${orderDetail.product.name}</td>
+							<td></td>
+							<td>${orderDetail.quantity}</td>
+							<c:if test="${varS.count==1}">
+								<td class="w1 c" rowspan="${fn:length(order.listDetail)}">总计：${order.cost}</td>
+					        </c:if>	
+					    </tr>
+					</c:forEach>
+					
+			</c:forEach>			
 			</table>
-			</c:forEach>
 			<div class="pager">
 				<ul class="clearfix">
 					<li><a >首页</a></li>
@@ -114,14 +121,29 @@
 </body>
 
 <script>
-	$(function(){
-		
-		var status = $(".hiddenSta").html();
-		$(".status").children().each(function(){
-			if($(this).val()==status){
-				$(this).attr("selected","selected");
-			}
-		})
+/* function a(obj,status){
+	$(obj).parent().find("select").children().each(function(){
+		var value = $(this).val();
+		if(value==status){
+			$(this).attr("selected","selected");
+		}
 	})
+}
+$(".hiddenSta").each(function(){
+	var status = $(this).html();
+	a(this,status);
+}) */
+var $tr = $(".list").find("tr");
+$tr.children(".hiddenSta").css("display","none");
+$tr.each(function(i,e){
+	var status = $($tr[i]).children(".hiddenSta").html();
+	var $children = $($tr[i]).find(".status").children();
+	$children.each(function(j,c){
+		var value = $($children[j]).val();
+		if(value==status){
+			$($children[j]).attr("selected","selected");
+		}
+	})
+})
 </script>
 </html>

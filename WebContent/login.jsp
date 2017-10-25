@@ -62,7 +62,6 @@
 					<td class="field">验证码：</td>
 						<td>
                             <img src="/easybuy/image.jsp" id="img"/><a id="changeCode" href="javascript:void(0)" onclick="refresh()">看不清，换一张</a><br>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	                        <input type="text" name="code"><div class="mess"></div>
 							<span></span>
 						</td>

@@ -12,21 +12,6 @@
 		<result property="cost" column="eo_cost" />
 		<result property="status" column="eo_status" javaType="java.lang.Integer"/>
 		<collection property="listDetail" javaType="list" ofType="OrderDetail" column="eo_id" select="cn.yh.easybuy.dao.OrderDetailDao.findOrderDetail">
-				<!-- <id property="d_id" column="eod_id" javaType="java.lang.Integer"/>
-				<result property="id" column="eo_id" javaType="java.lang.Integer"/>
-				<result property="p_id" column="ep_id" javaType="java.lang.Integer"/>
-				<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
-				<result property="cost" column="eod_cost"/> -->
-				<!-- <association property="product" column="ep_id" select="findProduct">
-					<id column="ep_id" property="id"/>
-					<result column="ep_name" property="name"/>
-					<result column="ep_description" property="description"/>
-					<result column="ep_price" property="price"/>
-					<result column="ep_stock" property="stock"/>
-					<result column="epc_id" property="cid"/>
-					<result column="epc_child_id" property="childId"/>
-					<result column="ep_file_name" property="fileName"/>
-				</association> -->
 		</collection>
 	</resultMap>
 	<select id="findOrdersByuserId" resultMap="ordermap">
