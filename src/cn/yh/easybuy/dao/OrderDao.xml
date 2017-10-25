@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yh.easybuy.dao.OrderDao">
+
+	<resultMap type="Order" id="ordermap">
+		<id property="id" column="en_id" javaType="java.lang.Integer"/>
+		<result property="userId" column="eo_user_id" javaType="java.lang.String"/>
+		<result property="userName" column="eo_user_name" javaType="java.lang.String"/>
+		<result property="userAddress" column="eo_user_address" javaType="java.lang.String"/>
+		<result property="createTime" column="eo_creat_Time" javaType="java.sql.Date"/>
+		<result property="cost" column="eo_cost" javaType="java.lang.Float"/>
+		<result property="status" column="eo_status" javaType="java.lang.Integer"/>
+
+		
+	</resultMap>
+	
+	<select id="findOrdersByuserId" resultMap="ordermap">
+		select * from easybuy_order where en_id = #{id}
+	</select>
+	
+	<select id="findOrdersByuserName" resultMap="ordermap">
+		select * from easybuy_order where en_user_id = #{userId}
+	</select>
+	
+	<insert id="savenewOrders" parameterType="Order">
+		insert into easybuy_order(userName,userAddress,createTime,cost,status) values(#{userName},#{userAddress},#{createTime},#{cost},#{status})
+	</insert>
+	
+	<update id="updateOrders" parameterType="Order">
+		update easybuy_order set en_status=#{status} where en_id=#{id}
+	</update>
+	<delete id="delOrders" parameterType="int">
+		delete from easybuy_order where en_id=#{id}
+	</delete>
+</mapper>

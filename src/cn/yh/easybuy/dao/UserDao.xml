@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yh.easybuy.dao.UserDao">
+	<resultMap type="User" id="UserMap">
+		<id column="eu_id" property="id"></id>
+		<result column="eu_user_id" property="userId"/>
+		<result column="eu_user_name" property="userName"/>
+	    <result column="eu_password" property="password"/>
+	    <result column="eu_sex" property="sex"/>
+	    <result column="eu_birthday" property="birthday"/>
+	    <result column="eu_identity_code" property="identityCode"/>
+	    <result column="eu_email" property="email"/>
+	    <result column="eu_mobile" property="mobile"/>
+	    <result column="eu_address" property="address"/>
+	    <result column="eu_login" property="login"/>
+	    <result column="eu_status" property="status"/>
+	</resultMap>
+	
+	<select id="findUser" resultMap="UserMap">
+		select * from easybuy_user where 1 = 1
+		<if test="userName!=null and password!=null">
+			and eu_user_name = #{userName} and eu_password = #{password}
+		</if>
+		<if test="id!=null">
+			and eu_id = #{id}
+		</if>
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+		update easybuy_user set eu_user_id = #{userId},eu_user_name = #{userName},
+			eu_password = #{password}, eu_sex = #{sex}, eu_birthday = #{birthday},
+		    eu_identity_code = #{identityCode},eu_email = #{email},eu_mobile = #{mobile},
+			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
+	</update>
+	
+	<insert id="saveUser" parameterType="User">
+		insert into easybuy_user(eu_user_id,eu_user_name,eu_password,eu_sex,eu_birthday,
+
+					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
+			 values(#{userId},#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
+	</insert>
+	<delete id="delUser">
+		delete from easybuy_user where eu_id = #{id}
+	</delete>
+</mapper>
