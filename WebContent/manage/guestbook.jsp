@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	
-	<c:if test="${empty pageObj }">
+	<c:if test="${empty pageObj}">
 		<jsp:forward page="../CommentServlet">
 			<jsp:param value="page" name="opr"/>
 			<jsp:param value="manage" name="role"/>

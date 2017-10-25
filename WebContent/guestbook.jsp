@@ -109,8 +109,8 @@
 				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment">
 					<table>
 						<tr>
-							<td class="field">昵称：</td>
-							<td><input class="text" type="text" name="guestName" value="当前用户名"/></td>
+							<td class="field">昵称:</td>
+							<td><input readonly="readonly" class="text" type="text" name="guestName" value="${login.userName}"/></td>
 						</tr>						
 						<tr>
 							<td class="field">留言内容：</td>

@@ -59,7 +59,7 @@ public class CartServlet extends HttpServlet {
 			changeNum(request);
 		}
 		if("deleteCartItem".equals(opr)){
-			deleteCartItem(request);
+			deleteCartItem(request,response);
 		}
 	}
 
@@ -105,7 +105,7 @@ public class CartServlet extends HttpServlet {
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();
-			out.write("添加成功!");
+			out.write(cart.getListItems().size()+"");
 			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -135,9 +135,23 @@ public class CartServlet extends HttpServlet {
 	/**
 	 * 删除购物车项
 	 */
-	private void deleteCartItem(HttpServletRequest request){
+	private void deleteCartItem(HttpServletRequest request,HttpServletResponse response){
 		//获取商品名
 		String goodsName = request.getParameter("goodsName");
 		cart.delFromItem(goodsName);
+		//返回数据到页面
+				PrintWriter out = null;
+				try {
+					out = response.getWriter();
+					out.write(cart.getListItems().size()+"");
+					out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					if(out!=null){
+						out.close();
+					}
+				}
 	}
 }

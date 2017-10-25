@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -94,9 +95,11 @@
 			data:{"opr":"addCart","pid":"1"},
 			dataType:"text",
 			success:function(result){
-				alert(result);
+				$("#shoppingBag").html("购物车"+result+"件");
+				alert("添加成功!");
 			}
 		})
+		
 	}
 </script>
 </html>

@@ -3,29 +3,38 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.OrderDetailDao">
 	<resultMap type="OrderDetail" id="DetailMap">
-	
 		<id property="d_id" column="eod_id" javaType="java.lang.Integer"/>
-		<result property="createTime" column="eo_create_time"/>
-		<result property="status" column="eo_status"/>
-		<result property="name" column="ep_name"/>
 		<result property="price" column="ep_price"/>
 		<result property="id" column="eo_id" javaType="java.lang.Integer"/>
 		<result property="p_id" column="ep_id" javaType="java.lang.Integer"/>
 		<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
-		<result property="cost" column="eod_cost" />
-		
+		<association property="product" column="ep_id" select="findProduct">
+			<id column="ep_id" property="id"/>
+			<result column="ep_name" property="name"/>
+			<result column="ep_description" property="description"/>
+			<result column="ep_price" property="price"/>
+			<result column="ep_stock" property="stock"/>
+			<result column="epc_id" property="cid"/>
+			<result column="epc_child_id" property="childId"/>
+			<result column="ep_file_name" property="fileName"/>
+		</association>
 	</resultMap>
-	
+	<!-- 通过商品id查询商品信息 -->
+	<select id="findProduct" parameterType="int" resultType="Product">
+		select * from easybuy_product where ep_id = #{id}
+	</select>
 	<!--查询所有订单详细信息  -->
-	<select id="findOrderDetail" resultMap="DetailMap">
+	<!-- <select id="findOrderDetail" resultMap="DetailMap">
 		select eod_id,eo_create_time,eo_status,ep_name,ep_price,eod_quantity,eod_cost from easybuy_order,easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id
+	</select> -->
+	<select id="findOrderDetail" parameterType="int" resultMap="DetailMap">
+		select * from easybuy_order_detail where eo_id = #{id}
 	</select>
 	
 	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
 
 		select ep_name,ep_price,eod_quantity,eod_cost  from easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id and eo_id = #{id}
-
 	</select>
 
 

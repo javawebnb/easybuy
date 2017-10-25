@@ -47,7 +47,7 @@ public class OrderServlet extends HttpServlet {
 		if("showAll".equals(opr)){
 				List<OrderDetail> list = biz.findOrderDetail();
 				session.setAttribute("orderdetail", list);
-				response.sendRedirect("order.jsp");
+				response.sendRedirect("/easybuy/manage/order.jsp");
 		}
 	}
 

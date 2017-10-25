@@ -398,7 +398,10 @@ $(function(){
 			 $.ajax({
                 	url:"CartServlet",
                 	data:{"opr":"deleteCartItem","goodsName":goodsName},
-                	type:"post"
+                	type:"post",
+                	success:function(result){
+                		$("#shoppingBag").html("购物车"+result+"件");
+                	}
              })
 		}
 		$("#shopping").find("#total").text("总计：￥"+totalPrice());
@@ -487,4 +490,13 @@ $(function(){
         $(this).find("span").addClass("error").html("留言不得多于100字");
         return false;
     });
+
+	var $hiddenSta = $(".hiddenSta");
+	$hiddenSta.css({"display":"none"});
+	var status = $(".hiddenSta").html();
+	$(".status").children().each(function(){
+		if($(this).val()==status){
+			$(this).attr("selected","selected");
+		}
+	})
 })

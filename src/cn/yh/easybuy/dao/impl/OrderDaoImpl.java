@@ -79,6 +79,12 @@ public class OrderDaoImpl implements OrderDao{
 		return list;
 	}
 
-
+	public static void main(String[] args) {
+		OrderDaoImpl odi = new OrderDaoImpl();
+		List<Order> list = odi.findOrder();
+		for(Order o : list){
+			System.out.println(o);
+		}
+	}
 	
 }
