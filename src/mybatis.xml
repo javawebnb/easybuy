@@ -22,9 +22,8 @@
 				<property name="password" value="${password}"/>
 			</dataSource>
 		</environment>
-		</environments>
-		
-		
+	</environments>
+	
 	<mappers>
 		<package name="cn.yh.easybuy.dao"/>
 	</mappers>

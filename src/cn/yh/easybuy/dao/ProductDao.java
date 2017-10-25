@@ -2,15 +2,33 @@ package cn.yh.easybuy.dao;
 
 import java.util.List;
 
+import java.util.Map;
+
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;
 
 public interface ProductDao {
 
 	/**
-	 * 查询所有商品
+	 * 查询指定分类的商品(分页)
 	 */
-	public List<Product> selAllProduct();
+	public List<Product> selAllProductByPage(Map<String,Integer> map);
+
+	/**
+	 * 返回指定分类下的记录数
+	 */
+	public Integer getCount(Integer cid);
 	
+	/**
+	 * 查询所有商品（分页）
+	 */
+	public List<Product> selAllProduct(Page<Product> page);
+	
+	/**
+	 * 返回所有商品的记录数
+	 */
+	public Integer getAllCount();
+
 	/**
 	 * 添加商品
 	 */

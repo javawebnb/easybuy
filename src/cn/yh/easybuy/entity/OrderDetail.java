@@ -1,82 +1,72 @@
+
 package cn.yh.easybuy.entity;
+
 
 public class OrderDetail {
 	
-	private Integer d_id;		//编号
-	private Integer id;			//订单号
-	private Integer p_id;		//商品编号
-	private Integer quantity;	//商品数量
-	private float cost;			//商品金额
 	
-	/**
-	 * @return the d_id
-	 */
-	public Integer getD_id() {
-		return d_id;
-	}
-	/**
-	 * @param d_id the d_id to set
-	 */
-	public void setD_id(Integer d_id) {
-		this.d_id = d_id;
-	}
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * @return the p_id
-	 */
-	public Integer getP_id() {
-		return p_id;
-	}
-	/**
-	 * @param p_id the p_id to set
-	 */
-	public void setP_id(Integer p_id) {
-		this.p_id = p_id;
-	}
-	/**
-	 * @return the quantity
-	 */
-	public Integer getQuantity() {
-		return quantity;
-	}
-	/**
-	 * @param quantity the quantity to set
-	 */
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-	/**
-	 * @return the cost
-	 */
-	public float getCost() {
-		return cost;
-	}
-	/**
-	 * @param cost the cost to set
-	 */
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	private Integer d_id;			//订单编号
+	private Integer id;             //订单号
+	private Integer p_id;			//商品编号
+	private Integer quantity;		//商品数量
+	private Double cost;            //价格
+	private Product product = new Product();        //商品
+	
+	
 	@Override
 	public String toString() {
 		return "OrderDetail [d_id=" + d_id + ", id=" + id + ", p_id=" + p_id + ", quantity=" + quantity + ", cost="
-				+ cost + "]";
+				+ cost + ", product=" + product + ", price=" + price + "]";
+	}
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+	public Double getCost() {
+		return cost;
+	}
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+	private Double price;//商品金额
+	public Integer getD_id() {
+		return d_id;
+	}
+	public void setD_id(Integer d_id) {
+		this.d_id = d_id;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getP_id() {
+		return p_id;
+	}
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 	
-
 }

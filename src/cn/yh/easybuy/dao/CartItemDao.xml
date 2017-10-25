@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yh.easybuy.dao.CartItemDao">
+	<resultMap type="CartItem" id="cartMap">
+		<id property="id" column="ec_id"/>
+		<result property="goodsName" column="ec_goodsname"/>
+		<result property="price" column="ec_price"/>
+		<result property="quantity" column="ec_quantity"/>
+		<result property="userId" column="ec_userid"/>
+	</resultMap>
+	<select id="getCartItems" resultMap="cartMap">
+		select * from easybuy_cartitem where ec_userid = #{userId}
+	</select>
+	
+	<insert id="saveCartItems" parameterType="CartItem">
+		insert into easybuy_cartitem(ec_goodsname,ec_price,ec_userid,ec_quantity)
+		 values (#{goodsName},#{price},#{userId},#{quantity})
+	</insert>
+	
+	<delete id="deleteCartItems">
+		delete from easybuy_cartitem where ec_userid = #{userId}
+	</delete>
+</mapper>

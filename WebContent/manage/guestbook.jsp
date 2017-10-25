@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -50,6 +51,14 @@
 			</dl>
 		</div>
 	</div>
+	
+	<c:if test="${empty pageObj}">
+		<jsp:forward page="../CommentServlet">
+			<jsp:param value="page" name="opr"/>
+			<jsp:param value="manage" name="role"/>
+		</jsp:forward>
+	</c:if>
+	
 	<div class="main">
 		<h2>留言管理</h2>
 		<div class="manage">
@@ -61,36 +70,56 @@
 					<th>状态</th>
 					<th>操作</th>
 				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td>高老庄的货发了没？</td>
-					<td class="w1 c">已回复</td>
-					<td class="w1 c"><a href="guestbook-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td>北京的货发了没？</td>
-					<td class="w1 c"></td>
-					<td class="w1 c"><a href="guestbook-modify.jsp">回复</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
+
+				<c:forEach items="${pageObj.pageList }" var="comment" varStatus="s">
+					<tr>
+						<td class="first w4 c" id="cid">${comment.id }</td>
+						<td class="w1 c">${comment.nickName }</td>
+						<td>${comment.content }</td>
+						<c:choose>
+							<c:when test="${empty comment.reply }">
+								<td class="w1 c"></td>
+							</c:when>
+							<c:otherwise>
+								<td class="w1 c">已回复</td>
+							</c:otherwise>
+						</c:choose>
+						<td class="w1 c"><a href="../CommentServlet?opr=replyPage&id=${comment.id }">回复</a> <a href="javascript:void(0)" onclick="delComment(${comment.id})">删除</a></td>
+					</tr>
+				</c:forEach>
+				
 			</table>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
+					<c:if test="${pageObj.pageIndex > 1 }">
+						<li><a href="../CommentServlet?opr=page&role=manager&i=1">首页</a></li>
+						<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+					</c:if>
+					
+					<li class="current">${pageObj.pageIndex }</li>
+                    
+                    <c:if test="${pageObj.pageIndex < pageObj.pageTotal }">
+                    	<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageIndex + 1 }">下一页</a></li>
+						<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageTotal }">尾页</a></li>
+                    </c:if>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<c:remove var="pageObj"/>
 	<div class="clear"></div>
 </div>
+<script type="text/javascript">
+	function delComment(id){
+		if(confirm("确定删除么你？")){
+			location.href= "../CommentServlet?id="+id+"&opr=delComment";
+		}else{
+			return false;
+		}
+	}
+</script>
+
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

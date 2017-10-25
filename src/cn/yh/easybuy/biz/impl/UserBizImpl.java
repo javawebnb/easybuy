@@ -14,6 +14,7 @@ public class UserBizImpl implements UserBiz{
 	@Override
 	public User login(User user) {
 		// TODO Auto-generated method stub
+
 		Map<String,Object> condition = new HashMap<String,Object>();
 		condition.put("userName", user.getUserName());
 		condition.put("password", user.getPassword());

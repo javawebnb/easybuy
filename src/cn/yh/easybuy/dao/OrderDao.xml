@@ -5,22 +5,23 @@
 <mapper namespace="cn.yh.easybuy.dao.OrderDao">
 
 	<resultMap type="Order" id="ordermap">
-		<id property="id" column="en_id" javaType="java.lang.Integer"/>
-		<result property="userId" column="eo_user_id" javaType="java.lang.String"/>
+		<id property="id" column="eo_id" javaType="java.lang.Integer"/>
 		<result property="userName" column="eo_user_name" javaType="java.lang.String"/>
 		<result property="userAddress" column="eo_user_address" javaType="java.lang.String"/>
-		<result property="createTime" column="eo_creat_Time" javaType="java.sql.Date"/>
-		<result property="cost" column="eo_cost" javaType="java.lang.Float"/>
+		<result property="createTime" column="eo_create_time" javaType="java.sql.Date"/>
+		<result property="cost" column="eo_cost" />
 		<result property="status" column="eo_status" javaType="java.lang.Integer"/>
-		
+		<collection property="listDetail" javaType="list" ofType="OrderDetail" column="eo_id" select="cn.yh.easybuy.dao.OrderDetailDao.findOrderDetail">
+		</collection>
 	</resultMap>
-	
 	<select id="findOrdersByuserId" resultMap="ordermap">
-		select * from easybuy_order where en_id = #{id}
+		select * from easybuy_order where eu_id = #{id}
 	</select>
-	
+	<select id="findOrder" resultMap="ordermap">
+		select * from easybuy_order
+	</select>
 	<select id="findOrdersByuserName" resultMap="ordermap">
-		select * from easybuy_order where en_user_id = #{userId}
+		select * from easybuy_order where eu_user_name = #{userName}
 	</select>
 	
 	<insert id="savenewOrders" parameterType="Order">
@@ -30,7 +31,9 @@
 	<update id="updateOrders" parameterType="Order">
 		update easybuy_order set en_status=#{status} where en_id=#{id}
 	</update>
+	
 	<delete id="delOrders" parameterType="int">
 		delete from easybuy_order where en_id=#{id}
 	</delete>
+	
 </mapper>

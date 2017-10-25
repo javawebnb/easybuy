@@ -11,8 +11,7 @@ import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	
-	
-	
+
 	
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
@@ -89,6 +88,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getAllProductCategorybig();
+
 		session.commit();
 		if(session != null){
 			session.close();

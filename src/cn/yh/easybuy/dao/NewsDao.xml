@@ -2,21 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.NewsDao">
-	<resultMap type="News" id="newsmap">
+
+	<resultMap type="News" id="newsMap">
 		<id property="id" column="en_id" javaType="java.lang.Integer"/>
 		<result property="title" column="en_title" javaType="java.lang.String"/>
 		<result property="content" column="en_content" javaType="java.lang.String"/>
 		<result property="createTime" column="en_create_time" javaType="java.sql.Date"/>
 	</resultMap>
-	<select id="findNewsById" resultMap="newsmap">
+	<!-- 通过page得到news集合(分页查询) -->
+	<select id="findAllNews" resultMap="newsMap" parameterType="Page">
+	select * from easybuy_news  order by en_create_time desc limit ${(pageIndex-1)*pageSize},#{pageSize}
+	</select>
+	<!-- 查询新闻的总记录数 -->
+	<select id="getCount" resultType="int">
+		select count(1) from easybuy_news
+	</select>
+	<!-- 通过id获得对应新闻 -->
+	<select id="findNewsById" resultMap="newsMap">
 		select * from easybuy_news where en_id=#{id} order by en_create_time desc
 	</select>
+	<!-- 添加新闻 -->
 	<insert id="saveNews" parameterType="News">
 		insert into easybuy_news(en_title,en_content,en_create_time) values(#{title},#{content},#{createTime})
 	</insert>
+	<!-- 修改新闻 针对后台管理员的操作 -->
 	<update id="updateNews" parameterType="News">
 		update easybuy_news set en_title=#{title},en_content=#{content} where en_id=#{id}
 	</update>
+	<!-- 删除新闻 -->
 	<delete id="delNews">
 		delete from easybuy_news where en_id=#{id}
 	</delete>

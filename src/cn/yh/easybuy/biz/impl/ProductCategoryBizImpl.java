@@ -52,4 +52,5 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 		return pc.getProductCategoryBypage(page);
 	}
 
+
 }

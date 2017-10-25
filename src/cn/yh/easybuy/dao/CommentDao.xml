@@ -14,20 +14,25 @@
 	
 	<!-- 查询所有评论(分页) -->
 	<select id="findCommentByPage" resultMap="commentMap" parameterType="Page">
-		select * from easybuy_comment limit ${pageIndex*pageSize},#{pageSize}
+		select * from easybuy_comment limit ${(pageIndex-1)*pageSize},#{pageSize}
 	</select>
-	
+	<!-- 查询得到评论的总记录数 -->
+	<select id="getCount" resultType="int">
+		select count(1) from easybuy_comment
+	</select>
+	<!-- 通过id查询评论 -->
+	<select id="findCommentById" resultMap="commentMap" parameterType="int">
+		select * from easybuy_comment where ec_id=#{id}
+	</select>
 	<!-- 添加评论 -->
 	<insert id="saveComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
 		insert into easybuy_comment(ec_content,ec_create_time,ec_reply,ec_reply_time,ec_nick_name) 
 		values(#{content},#{createTime},#{reply},#{replyTime},#{nickName})
 	</insert>
-	
 	<!-- 删除评论 -->
 	<delete id="delComment">
 		delete from easybuy_comment where ec_id=#{id}
 	</delete>
-	
 	<!-- 修改评论(主要针对管理员的回复) -->
 	<update id="updateCommentById" parameterType="Comment">
 		update easybuy_comment set ec_reply=#{reply},ec_reply_time=#{replyTime}

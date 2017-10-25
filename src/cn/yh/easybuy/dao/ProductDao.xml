@@ -12,8 +12,20 @@
 		<result column="epc_child_id" property="childId"/>
 		<result column="ep_file_name" property="fileName"/>
 	</resultMap>
-	 <select id="selAllProduct" resultMap="productMap">
-	 	select * from easybuy_product
+	<!--分页查询指定分类下的所有商品  -->
+	 <select id="selAllProductByPage" parameterType="map" resultMap="productMap">
+	 	select * from easybuy_product where epc_id = #{cid} limit ${(pageIndex-1)*pageSize},${pageSize}
+	 </select>
+	 
+	 <select id="getCount" parameterType="int" resultType="int">
+	 	select count(1) from easybuy_product where epc_id = #{cid}
+	 </select>
+	 <!--分页查询所有商品  -->
+	 <select id="selAllProduct" parameterType="page" resultMap="productMap">
+	 	select * from easybuy_product limit ${(pageIndex-1)*pageSize},${pageSize}
+	 </select>
+	 <select id="getAllCount" resultType="int">
+	 	select count(1) from easybuy_product
 	 </select>
 	 
 	 <select id="selProductById" resultMap="productMap">

@@ -3,27 +3,31 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.OrderDetailDao">
 	<resultMap type="OrderDetail" id="DetailMap">
-		<id property="d_id" column="did" javaType="java.lang.Integer"/>
-		<result property="id" column="id" javaType="java.lang.Integer"/>
-		<result property="p_id" column="pid" javaType="java.lang.Integer"/>
-		<result property="quantity" column="quantity" javaType="java.lang.Integer"/>
-		<result property="cost" column="cost" javaType="java.lang.Float"/>
+		<id property="d_id" column="eod_id" javaType="java.lang.Integer"/>
+		<result property="price" column="ep_price"/>
+		<result property="id" column="eo_id" javaType="java.lang.Integer"/>
+		<result property="p_id" column="ep_id" javaType="java.lang.Integer"/>
+		<result property="quantity" column="eod_quantity" javaType="java.lang.Integer"/>
+		<association property="product" javaType="Product" column="ep_id" select="cn.yh.easybuy.dao.ProductDao.selProductById">
+		</association>
 	</resultMap>
-	<!--查询所有订单详细信息  -->
-	<select id="findOrderDetail" resultType="OrderDetail">
-		select * from easybuy_order_detail
+	<!-- 通过商品id查询商品信息 -->
+	<select id="findProduct" parameterType="int" resultType="Product">
+		select * from easybuy_product where ep_id = #{id}
 	</select>
-	
-	
+	<!--查询所有订单详细信息  -->
+	<!-- <select id="findOrderDetail" resultMap="DetailMap">
+		select eod_id,eo_create_time,eo_status,ep_name,ep_price,eod_quantity,eod_cost from easybuy_order,easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id
+	</select> -->
+	<select id="findOrderDetail" parameterType="int" resultMap="DetailMap">
+		select * from easybuy_order_detail where eo_id = #{id}
+	</select>
 	
 	<!--通过订单编号查询订单详细信息  -->
 	<select id="findDetailByid" resultMap="DetailMap">
-		select * from easybuy_order_detail where did = #{d_id}
+
+		select ep_name,ep_price,eod_quantity,eod_cost  from easybuy_order_detail o,easybuy_product p where o.ep_id = p.ep_id and eo_id = #{id}
 	</select>
-
-
-
-
 
 
 </mapper>

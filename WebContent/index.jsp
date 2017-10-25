@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,19 +21,7 @@
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a class="button" id="logout" href="javascript:void(0);">注销</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-    <div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -59,11 +44,19 @@
 		</ul>
 	</div>
 </div>
+
+
+	<c:if test="${empty page}">
+		<jsp:forward page="ProductServlet">
+			<jsp:param value="showKind" name="ps"/>
+		</jsp:forward>
+	</c:if>
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
+<<<<<<< HEAD
 			<c:forEach items="${sessionScope.listbg }" var="item">
 				<dt>${item.name }</dt>
 				<c:forEach items="${sessionScope.listsn }" var="itemson">
@@ -75,6 +68,16 @@
 				</c:forEach>
 				</c:forEach>
 				
+=======
+				<dt>图书音像</dt>
+				<c:forEach items="${list }" var="list">
+					<dd><a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a></dd>
+				</c:forEach>
+				<dt>百货</dt>
+				<c:forEach items="${lists }" var="lists">
+					<dd><a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a></dd>
+				</c:forEach>
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 			</dl>
 		</div>
 		<div class="spacer"></div>
@@ -100,63 +103,34 @@
             </div>
 			<h2>商品列表</h2>
 			<ul class="product clearfix">
+				<c:forEach items="${page.pageList }" var="product">
 				<li>
 					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/1.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">法国德菲丝松露精品巧克力500g/盒</a></dd>
-						<dd class="price">￥108.0</dd>
+						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
+						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
+						<dd class="price">￥${product.price }</dd>
 					</dl>
 				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/2.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">乐扣普通型保鲜盒圣诞7件套</a></dd>
-						<dd class="price">￥69.90</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/3.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">欧珀莱均衡保湿四件套</a></dd>
-						<dd class="price">￥279.0</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/4.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">联想笔记本电脑 高速独立显存</a></dd>
-						<dd class="price">￥4199</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/5.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">法姿韩版显瘦彩边时尚牛仔铅笔裤</a></dd>
-						<dd class="price">￥49.00</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/6.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">Genius925纯银施华洛世奇水晶吊坠</a></dd>
-						<dd class="price">￥69.90</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/10.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">利仁2018M福满堂电饼铛 好用实惠</a></dd>
-						<dd class="price">￥268.0</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp"  target="_self"><img src="images/product/8.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp"  target="_self">达派高档拉杆箱20寸 经典款式</a></dd>
-						<dd class="price">￥198.0</dd>
-					</dl>
-				</li>
+				</c:forEach>
+				
 			</ul>
+			<div class="pager" >
+
+
+					当前页数:[${page.pageIndex}/${page.pageTotal}]&nbsp;
+
+					<c:if test="${page.pageIndex>1 }">
+						<a href="ProductServlet?index=1&ps=showKind">首页</a>
+						<a href="ProductServlet?index=${page.pageIndex-1}&ps=showKind">上一页</a>
+					</c:if>
+					<c:if test="${page.pageIndex<page.pageTotal }">
+						<a href="ProductServlet?index=${page.pageIndex+1}&ps=showKind">下一页</a>
+						<a href="ProductServlet?index=${page.pageTotal}&ps=showKind">末页</a>
+					</c:if>
+				
+				
+				
+				</div>
 		</div>
 		<div class="side">			
 			<div class="spacer"></div>
@@ -179,9 +153,11 @@
 		<div class="spacer clear"></div>
     </div>
 </div>
+
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>
 <c:remove var="listbg"/>
 <c:remove var="listsn"/>
