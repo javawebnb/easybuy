@@ -69,7 +69,6 @@
 			<jsp:param value="page" name="opr"/>
 		</jsp:forward>
 	</c:if>
-	
 	<div class="main">
 		<div class="guestbook">
 			<h2>全部留言</h2>

@@ -20,6 +20,18 @@
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
 </c:if>
+
+<c:if test="${empty page}">
+	<jsp:forward page="ProductServlet">
+			<jsp:param value="showKind" name="ps"/>
+	</jsp:forward>
+</c:if>
+
+<c:if test="${empty pageObj}">
+			<jsp:forward page="NewsServlet">
+				<jsp:param value="page" name="opr"/>
+			</jsp:forward>
+		</c:if>	
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -46,30 +58,9 @@
 		</ul>
 	</div>
 </div>
-
-
-	<c:if test="${empty page}">
-		<jsp:forward page="ProductServlet">
-			<jsp:param value="showKind" name="ps"/>
-		</jsp:forward>
-	</c:if>
 <div id="main" class="wrap">
 	<div class="lefter">
-		<div class="box">
-			<h2>商品分类</h2>
-			<dl>
-			<c:forEach items="${sessionScope.listbg }" var="item">
-				<dt>${item.name }</dt>
-				<c:forEach items="${sessionScope.listsn }" var="itemson">
-				<c:choose>
-				<c:when test="${item.id eq itemson.parentId}">
-				<dd><a href="product-list.jsp">${itemson.name}</a></dd>
-				</c:when>
-				</c:choose>
-				</c:forEach>
-				</c:forEach>
-			</dl>
-		</div>
+		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
 		<div class="last-view">
 			<h2>最近浏览</h2>
@@ -102,7 +93,6 @@
 					</dl>
 				</li>
 				</c:forEach>
-				
 			</ul>
 			<div class="pager" >
 					当前页数:[${page.pageIndex}/${page.pageTotal}]&nbsp;
@@ -117,11 +107,6 @@
 					</c:if>
 				</div>
 		</div>
-		<c:if test="${empty pageObj}">
-			<jsp:forward page="NewsServlet">
-				<jsp:param value="page" name="opr"/>
-			</jsp:forward>
-		</c:if>	
 		<div class="side">			
 			<div class="spacer"></div>
 			<div class="news-list">
@@ -135,7 +120,6 @@
 		<div class="spacer clear"></div>
     </div>
 </div>
-
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

@@ -12,12 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet Filter implementation class EncodeFilter
  */
 public class EncodeFilter implements Filter {
-	private String encode=null;
     /**
      * Default constructor. 
      */
@@ -29,65 +29,54 @@ public class EncodeFilter implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
-		encode=null;
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-//		if(null==request.getCharacterEncoding()){
-//			request.setCharacterEncoding(encode);
-//			response.setCharacterEncoding(encode);
-//		}
-//		// pass the request along the filter chain
-//		chain.doFilter(request, response);
-		request.setCharacterEncoding("UTF-8");
+	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest)arg0;
+		HttpServletResponse response = (HttpServletResponse)arg1;
 		response.setContentType("text/html;charset=UTF-8");
-		HttpServletRequest req = (HttpServletRequest)request;
+		request.setCharacterEncoding("UTF-8");
 		HttpServletRequest proxy = (HttpServletRequest)Proxy.newProxyInstance(
-				req.getClass().getClassLoader(), 
+				request.getClass().getClassLoader(), 
 				new Class[]{HttpServletRequest.class}, 
 				new InvocationHandler() {
-					
 					@Override
 					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 						// TODO Auto-generated method stub
+						//定义返回值
+						Object obj = null;
 						//获取方法名
 						String methodName = method.getName();
-						//设置返回值
-						Object obj = null;
 						if("getParameter".equals(methodName)){
 							//获取请求方式
-							String reqMethod = req.getMethod();
+							String reqmethod = request.getMethod();
 							//获取请求值
-							String value = req.getParameter((String)args[0]);
-							//对不同请求方式做处理
-							if("Get".equals(reqMethod)){
-								value = new String(value.getBytes("ISO8859-1"),"UTF-8");
+							String value = request.getParameter(args[0].toString());
+							if("GET".equals(reqmethod)){
+								//编码
+								if (value != null && !"".equals(value.trim())){
+									// 处理GET中文
+									value = new String(value.getBytes("ISO8859-1"),"UTF-8");
+								}
+
 							}
 							return value;
 						}else{
-							obj = method.invoke(req, args);
+							obj = method.invoke(request, args);
 						}
 						return obj;
 					}
 				});
-		chain.doFilter(proxy, response);
+		arg2.doFilter(proxy, response);
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-//		String encode =fConfig.getInitParameter("EncodeFilter");
-//		if(this.encode==null){
-//			this.encode=encode;
-//		}
 	}
 
 }

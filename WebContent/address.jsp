@@ -39,29 +39,7 @@
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
-		<div class="box">
-			<h2>商品分类</h2>
-			<dl>
-				<dt>图书音像</dt>
-				<dd><a href="product-list.jsp">图书</a></dd>
-				<dd><a href="product-list.jsp">音乐</a></dd>
-				<dt>百货</dt>
-				<dd><a href="product-list.jsp">运动健康</a></dd>
-				<dd><a href="product-list.jsp">服装</a></dd>
-				<dd><a href="product-list.jsp">家居</a></dd>
-				<dd><a href="product-list.jsp">美妆</a></dd>
-				<dd><a href="product-list.jsp">母婴</a></dd>
-				<dd><a href="product-list.jsp">食品</a></dd>
-				<dd><a href="product-list.jsp">手机数码</a></dd>
-				<dd><a href="product-list.jsp">家具首饰</a></dd>
-				<dd><a href="product-list.jsp">手表饰品</a></dd>
-				<dd><a href="product-list.jsp">鞋包</a></dd>
-				<dd><a href="product-list.jsp">家电</a></dd>
-				<dd><a href="product-list.jsp">电脑办公</a></dd>
-				<dd><a href="product-list.jsp">玩具文具</a></dd>
-				<dd><a href="product-list.jsp">汽车用品</a></dd>
-			</dl>
-		</div>
+		<jsp:include page="left.jsp"></jsp:include>
 	</div>
 </div>
 <c:if test="${addrList==null}">
