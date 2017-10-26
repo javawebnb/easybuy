@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,7 +11,15 @@
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
+ 
 <body>
+
+<c:set var="isempty" value="${empty sessionScope.listbg }"/>
+<c:if test="${isempty }">
+<jsp:forward page="ProductCategoryServlet">
+<jsp:param value="pclist" name="opr"/>
+</jsp:forward> 
+</c:if>
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -49,13 +58,15 @@
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
-				<dt>图书音像</dt>
-				<c:forEach items="${list }" var="list">
-					<dd><a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a></dd>
+			<c:forEach items="${sessionScope.listbg }" var="item">
+				<dt>${item.name }</dt>
+				<c:forEach items="${sessionScope.listsn }" var="itemson">
+				<c:choose>
+				<c:when test="${item.id eq itemson.parentId}">
+				<dd><a href="product-list.jsp">${itemson.name}</a></dd>
+				</c:when>
+				</c:choose>
 				</c:forEach>
-				<dt>百货</dt>
-				<c:forEach items="${lists }" var="lists">
-					<dd><a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a></dd>
 				</c:forEach>
 			</dl>
 		</div>
@@ -128,5 +139,5 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-<c:remove var="page"/>
+</html>
 </html>

@@ -42,12 +42,6 @@ public class ProductServlet extends HttpServlet {
 		String ps = request.getParameter("ps");
 		ProductBiz pb = new ProductBizImpl();
 		if("showKind".equals(ps)){
-			ProductCategoryBiz pcb = new ProductCategoryBizImpl();
-			List<ProductCategory> list =pcb.getProductCategoryByParentId(1); 
-			List<ProductCategory> lists =pcb.getProductCategoryByParentId(2);
-			session.setAttribute("list", list);
-			session.setAttribute("lists", lists);
-			
 			String index = request.getParameter("index");
 			/*ProductBiz pb = new ProductBizImpl();*/
 			Integer pageIndex = 1;

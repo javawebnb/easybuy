@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.ProductCategoryDao">
+<!-- <<<<<<< HEAD
 <resultMap type="ProductCategory" id="ProductCategoryMap">
 <id property="id" column="epc_id"/>
 <result property="parentId" column="epc_parent_id"/>
@@ -31,4 +32,38 @@
     or parentId=#{id}
     </if>
 </delete>
+======= -->
+	<resultMap type="ProductCategory" id="ProductCategoryMap">
+		<id property="id" column="epc_id" />
+		<result property="parentId" column="epc_parent_id" />
+		<result property="name" column="epc_name" />
+	</resultMap>
+	<select id="getCount" resultType="Integer">
+		select count(*) from easybuy_product_category
+	</select>
+	<select id="getProductCategoryBypage" resultMap="ProductCategoryMap">
+		select * from easybuy_product_category limit
+		${pageSize*(pageIndex-1)},#{pageSize}
+	</select>
+	<select id="getAllProductCategorybig" resultMap="ProductCategoryMap">
+		select * from easybuy_product_category where epc_parent_id = 0
+	</select>
+	<select id="findProductCategoryson" resultMap="ProductCategoryMap">
+		select * from easybuy_product_category where epc_parent_id!=0
+	</select>
+	<select id="findProductCategoryByid" resultMap="ProductCategoryMap"
+		parameterType="int">
+		select * from easybuy_product_category where epc_id=#{id}
+	</select>
+	<insert id="saveProductCategory" parameterType="ProductCategory">
+		insert into easybuy_product_category(epc_name,epc_parent_id)
+		values(#{name},#{parentId})
+	</insert>
+	<update id="updateProductCategory" parameterType="ProductCategory">
+		update easybuy_product_category set
+		epc_name=#{name},epc_parent_id=#{parentId} where epc_id=#{id}
+	</update>
+	<delete id="delProductCategory" parameterType="int">
+		delete from easybuy_product_category where epc_id=#{id}
+	</delete>
 </mapper>

@@ -3,7 +3,7 @@ package cn.yh.easybuy.entity;
 public class ProductCategory {
 	private Integer id;
 	private String 	name;
-	private String  parentId;
+	private Integer  parentId;
 	public Integer getId() {
 		return id;
 	}
@@ -16,10 +16,10 @@ public class ProductCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
-	public void setParentId(String parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 	

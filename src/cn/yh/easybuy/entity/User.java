@@ -18,6 +18,8 @@ public class User {
 	private Double login;
 	private Integer status;
 
+
+
 	public Integer getId() {
 		return id;
 	}

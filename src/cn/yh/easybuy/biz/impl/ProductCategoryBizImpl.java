@@ -5,6 +5,7 @@ import java.util.List;
 import cn.yh.easybuy.biz.ProductCategoryBiz;
 import cn.yh.easybuy.dao.ProductCategoryDao;
 import cn.yh.easybuy.dao.impl.ProductCategoryDaoImpl;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.ProductCategory;
 
 public class ProductCategoryBizImpl implements ProductCategoryBiz {
@@ -28,21 +29,28 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 	}
 
 	@Override
-	public List<ProductCategory> findProductCategoryByid(Integer id) {
+	public ProductCategory findProductCategoryByid(Integer id) {
 		// TODO Auto-generated method stub
 		return pc.findProductCategoryByid(id);
 	}
 
 	@Override
-	public List<ProductCategory> getAllProductCategory() {
+	public List<ProductCategory> findProductCategoryson() {
 		// TODO Auto-generated method stub
-		return pc.getAllProductCategory();
+		return pc.findProductCategoryson();
 	}
 
 	@Override
-	public List<ProductCategory> getProductCategoryByParentId(Integer parentId) {
+	public List<ProductCategory> getAllProductCategorybig() {
 		// TODO Auto-generated method stub
-		return pc.getProductCategoryByParentId(parentId);
+		return pc.getAllProductCategorybig();
 	}
+
+	@Override
+	public List<ProductCategory> getProductCategoryBypage(Page<ProductCategory> page) {
+		// TODO Auto-generated method stub
+		return pc.getProductCategoryBypage(page);
+	}
+
 
 }
