@@ -9,6 +9,23 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<script type="text/javascript">
+	function check(){
+		var guestContent = document.getElementById("guestContent");
+		var guestName = document.getElementById("guestName");
+		if(guestContent.value == ""){
+			alert("留言内容不能为空！");
+			guestContent.focus();
+			return false;
+		}
+		if(guestName.value == ""){
+			alert("请先登录！");
+			guestName.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <jsp:include page="top.jsp"></jsp:include>
@@ -106,15 +123,15 @@
 				</ul>
 			</div>
 			<div id="reply-box">
-				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment">
+				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment" onsubmit="return check()">
 					<table>
 						<tr>
 							<td class="field">昵称:</td>
-							<td><input readonly="readonly" class="text" type="text" name="guestName" value="${login.userName}"/></td>
+							<td><input readonly="readonly" class="text" type="text" name="guestName" id="guestName" value="${login.userName}"/></td>
 						</tr>						
 						<tr>
 							<td class="field">留言内容：</td>
-							<td><textarea name="guestContent"></textarea><span></span></td>
+							<td><textarea name="guestContent" id="guestContent"></textarea><span></span></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -127,8 +144,6 @@
 	</div>
 	
 	<c:remove var="pageObj"/>
-	
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">
