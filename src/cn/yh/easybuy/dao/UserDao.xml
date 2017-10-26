@@ -28,11 +28,13 @@
 		</if>
 	</select>
 	
+	
+	
 	<update id="updateUser" parameterType="User">
-		update easybuy_user set eu_user_name = #{userName},
+		update easybuy_user set 
 			eu_password = #{password}, eu_sex = #{sex}, eu_birthday = #{birthday},
-		    eu_identity_code = #{identityCode},eu_email = #{email},eu_mobile = #{mobile},
-			eu_address = #{address},eu_login = #{login},eu_status = #{status} where eu_id = #{id}
+			eu_email = #{email},eu_mobile = #{mobile},
+			eu_address = #{address} where eu_id = #{id}
 	</update>
 	
 
@@ -44,4 +46,20 @@
 	<delete id="delUser">
 		delete from easybuy_user where eu_id = #{id}
 	</delete>
+	
+	<!-- 分页查询 -->
+	<select id="findAllUser" resultMap="UserMap" parameterType="Page">
+		select * from easybuy_user order by eu_id desc limit ${(pageIndex-1)*pageSize},#{pageSize}
+	</select>
+	
+	<!-- 统计个数 -->
+	<select id = "getCount" resultType="int">
+		select count(1) from easybuy_user
+	</select>
+	
+	<!-- 通过id查找对象 -->
+	<select id="checkUser" resultMap="UserMap" parameterType="int">
+		select * from easybuy_user where eu_id = #{id}
+	</select>
+	
 </mapper>

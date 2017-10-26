@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import cn.yh.easybuy.dao.UserDao;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.User;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
@@ -87,6 +88,39 @@ public class UserDaoImpl implements UserDao{
 			session.close();
 		}
 		return list;
+	}
+
+	/**
+	 * ∑÷“≥≤È—Ø
+	 */
+	@Override
+	public List<User> findAllUser(Page<User> page) {
+		// TODO Auto-generated method stub
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
+		UserDao ud = session.getMapper(UserDao.class);
+		List<User> list = ud.findAllUser(page);
+		session.close();
+		return list;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		UserDao ud = session.getMapper(UserDao.class);
+		int count = ud.getCount();
+		session.close();
+		return count;
+	}
+
+	@Override
+	public User checkUser(int id) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		UserDao ud = session.getMapper(UserDao.class);
+		User user = ud.checkUser(id);
+		session.close();
+		return user;
 	}
 	
 }

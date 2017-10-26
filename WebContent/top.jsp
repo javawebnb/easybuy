@@ -15,13 +15,13 @@
 			<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="javascript:void()"><c:out value="${login.userName}"></c:out></a><a class="button" id="logout" href="javascript:void()">注销</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 		</c:when>
 		<c:otherwise>
-			<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a class="button" id="logout" href="javascript:void()">注销</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
+			<div class="help"><a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 		</c:otherwise>
 	</c:choose>
     <div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
+			<li><a href="#">图书</a></li> 
 			<li><a href="#">百货</a></li>
 			<li><a href="#">品牌</a></li>
 			<li><a href="#">促销</a></li>

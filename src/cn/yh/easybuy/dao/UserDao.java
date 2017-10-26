@@ -3,6 +3,7 @@ package cn.yh.easybuy.dao;
 import java.util.List;
 import java.util.Map;
 
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.User;
 /**
  * @author tigerJay
@@ -35,5 +36,20 @@ public interface UserDao {
 	 */
 
 	List<User> findUser(Map<String,Object> condition);
+	
+	/**
+	 * page查找user
+	 */
+	List<User> findAllUser(Page<User> page);
+	
+	/**
+	 * 统计总行数
+	 */
+	int getCount();
+	
+	/**
+	 * 通过id查找对象
+	 */
+	User checkUser(int id);
 
 }
