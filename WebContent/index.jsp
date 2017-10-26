@@ -56,7 +56,7 @@
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
-<<<<<<< HEAD
+
 			<c:forEach items="${sessionScope.listbg }" var="item">
 				<dt>${item.name }</dt>
 				<c:forEach items="${sessionScope.listsn }" var="itemson">
@@ -68,16 +68,6 @@
 				</c:forEach>
 				</c:forEach>
 				
-=======
-				<dt>图书音像</dt>
-				<c:forEach items="${list }" var="list">
-					<dd><a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a></dd>
-				</c:forEach>
-				<dt>百货</dt>
-				<c:forEach items="${lists }" var="lists">
-					<dd><a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a></dd>
-				</c:forEach>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 			</dl>
 		</div>
 		<div class="spacer"></div>

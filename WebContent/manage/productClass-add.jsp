@@ -16,7 +16,8 @@
 		<div id="logo">
 			<img src="/easybuy/images/logo.gif" />
 		</div>
-		<div class="help">
+		<div 
+		class="help">
 			<a href="/easybuy/index.jsp">返回前台页面</a>
 		</div>
 		<div class="navbar">
