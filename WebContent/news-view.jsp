@@ -70,7 +70,6 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-</div>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
