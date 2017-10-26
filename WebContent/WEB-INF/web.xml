@@ -27,13 +27,7 @@
   <servlet-mapping>
     <servlet-name>ProductServlet</servlet-name>
     <url-pattern>/ProductServlet</url-pattern>
-<<<<<<< HEAD
   </servlet-mapping>
-=======
-  </servlet-mapping>
- 
- 
->>>>>>> branch 'hzh' of https://github.com/javawebnb/easybuy.git
   <servlet>
     <display-name>OrderServlet</display-name>
     <servlet-name>OrderServlet</servlet-name>
@@ -41,16 +35,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>OrderServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/OrderServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-=======
-    <url-pattern>/OrderServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
->>>>>>> branch 'hzh' of https://github.com/javawebnb/easybuy.git
     <display-name>CartServlet</display-name>
     <servlet-name>CartServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.CartServlet</servlet-class>
