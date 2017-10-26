@@ -88,7 +88,6 @@ public class ProductCategoryServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int i = 0;
 		String name = request.getParameter("className");
-		name = new String(name.getBytes("ISO8859-1"), "UTF-8");
 		String optionId = request.getParameter("parentId");
 		ProductCategory pcy = new ProductCategory();
 		pcy.setName(name);
@@ -154,7 +153,6 @@ public class ProductCategoryServlet extends HttpServlet {
 		int i = 0;
 		String epcid = request.getParameter("epcid");
 		String name = request.getParameter("className");
-		name = new String(name.getBytes("ISO8859-1"), "UTF-8");
 
 		String parentId = request.getParameter("parentid");
 		String optionId = request.getParameter("parentId");

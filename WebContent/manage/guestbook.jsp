@@ -34,6 +34,7 @@
 	您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 </div>
 <div id="main" class="wrap">
+<<<<<<< HEAD
 	<div id="menu-mng" class="lefter">
 		<div class="box">
 			<dl>
@@ -52,6 +53,8 @@
 		</div>
 	</div>
 	
+
+	<jsp:include page="left.jsp"></jsp:include>
 	<c:if test="${empty commentPage}">
 		<jsp:forward page="../CommentServlet">
 			<jsp:param value="page" name="opr"/>
@@ -122,4 +125,5 @@ function delComment(id){
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="pageObj"/>
 </html>

@@ -1,5 +1,13 @@
+<<<<<<< HEAD
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,12 +20,24 @@
  
 <body>
 
-<c:set var="isempty" value="${empty sessionScope.listbg }"/>
-<c:if test="${isempty }">
+<c:set var="isempty" value="${sessionScope.listbg == null}"/>
+<c:if test="${isempty}">
 <jsp:forward page="ProductCategoryServlet">
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
 </c:if>
+
+<c:if test="${page == null }">
+<jsp:forward page="ProductServlet">
+	<jsp:param value="showKind" name="ps"/>
+</jsp:forward>
+</c:if>
+
+<c:if test="${empty pageObj}">
+			<jsp:forward page="NewsServlet">
+				<jsp:param value="page" name="opr"/>
+			</jsp:forward>
+		</c:if>	
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -46,30 +66,10 @@
 </div>
 
 
-	<c:if test="${empty page}">
-		<jsp:forward page="ProductServlet">
-			<jsp:param value="showKind" name="ps"/>
-		</jsp:forward>
-	</c:if>
 <div id="main" class="wrap">
+<<<<<<< HEAD
 	<div class="lefter">
-		<div class="box">
-			<h2>商品分类</h2>
-			<dl>
-
-			<c:forEach items="${sessionScope.listbg }" var="item">
-				<dt>${item.name }</dt>
-				<c:forEach items="${sessionScope.listsn }" var="itemson">
-				<c:choose>
-				<c:when test="${item.id eq itemson.parentId}">
-				<dd><a href="product-list.jsp">${itemson.name}</a></dd>
-				</c:when>
-				</c:choose>
-				</c:forEach>
-				</c:forEach>
-				
-			</dl>
-		</div>
+		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
 		<div class="last-view">
 			<h2>最近浏览</h2>
@@ -98,15 +98,12 @@
 					<dl>
 						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
-						<dd class="price">￥${product.price }</dd>
+						<dd class="price">${product.price}</dd>
 					</dl>
 				</li>
 				</c:forEach>
-				
 			</ul>
 			<div class="pager" >
-
-
 					当前页数:[${page.pageIndex}/${page.pageTotal}]&nbsp;
 
 					<c:if test="${page.pageIndex>1 }">
@@ -117,9 +114,6 @@
 						<a href="ProductServlet?index=${page.pageIndex+1}&ps=showKind">下一页</a>
 						<a href="ProductServlet?index=${page.pageTotal}&ps=showKind">末页</a>
 					</c:if>
-				
-				
-				
 				</div>
 		</div>
 		<div class="side">			
@@ -127,27 +121,16 @@
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
+				<c:forEach items="${pageObj.pageList}" var="news">
+				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
 		</div>
 		<div class="spacer clear"></div>
     </div>
 </div>
-
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-<c:remove var="page"/>
+
 </html>
-<c:remove var="listbg"/>
-<c:remove var="listsn"/>

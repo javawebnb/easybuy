@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,23 +34,7 @@
 	您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 </div>
 <div id="main" class="wrap">
-	<div id="menu-mng" class="lefter">
-		<div class="box">
-			<dl>
-				<dt>用户管理</dt>
-				<dd><a href="user.jsp">用户管理</a></dd>
-			  <dt>商品信息</dt>
-				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
-				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
-				<dt>订单管理</dt>
-				<dd><a href="order.jsp">订单管理</a></dd>
-				<dt>留言管理</dt>
-				<dd><a href="guestbook.jsp">留言管理</a></dd>
-				<dt>新闻管理</dt>
-				<dd><em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a></dd>
-			</dl>
-		</div>
-	</div>
+	<jsp:include page="left.jsp"></jsp:include>
 	<div class="main">
 		<h2>添加商品</h2>
 		<div class="manage">
@@ -66,7 +51,7 @@
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-						 <input type="text" name="cid">
+						 <!-- <input type="text" name="cid"> -->
 							<!-- <select name="parentId">
 								<option value="1">电器</option>
 								<option value="3">├ 电器</option>
@@ -75,6 +60,18 @@
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
 							</select> -->
+							<select name="parentId">
+								<c:forEach items="${sessionScope.listbg}" var="item">
+									<option value="${item.id}">${item.name}</option>
+									<c:forEach items="${sessionScope.listsn}" var="itemson">
+										<c:choose>
+										<c:when test="${item.id eq itemson.parentId}">
+										      <option value="${itemson.id}">├${itemson.name}</option>
+										</c:when>
+										</c:choose>
+									</c:forEach>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>					
 					<tr>

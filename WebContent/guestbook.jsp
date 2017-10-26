@@ -86,7 +86,6 @@
 			<jsp:param value="page" name="opr"/>
 		</jsp:forward>
 	</c:if>
-	
 	<div class="main">
 		<div class="guestbook">
 			<h2>全部留言</h2>
@@ -144,6 +143,10 @@
 	</div>
 	
 	<c:remove var="pageObj"/>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

@@ -46,23 +46,7 @@ $(".manageDel").click(function(){
 	</jsp:forward>	
 </c:if>
 <div id="main" class="wrap">
-	<div id="menu-mng" class="lefter">
-		<div class="box">
-			<dl>
-				<dt>用户管理</dt>
-				<dd><a href="user.jsp">用户管理</a></dd>
-			  <dt>商品信息</dt>
-				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
-				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
-				<dt>订单管理</dt>
-				<dd><a href="order.jsp">订单管理</a></dd>
-				<dt>留言管理</dt>
-				<dd><a href="guestbook.jsp">留言管理</a></dd>
-				<dt>新闻管理</dt>
-				<dd><em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a></dd>
-			</dl>
-		</div>
-	</div>
+	<jsp:include page="left.jsp"></jsp:include>
 	<div class="main">
 		<h2>新闻管理</h2>
 		<div class="manage">
@@ -101,8 +85,8 @@ $(".manageDel").click(function(){
   </div>
 </div>
 <c:remove var="pageObj"/>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="pageObj"/>
 </html>

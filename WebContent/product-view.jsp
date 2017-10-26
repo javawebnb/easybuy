@@ -39,19 +39,7 @@
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
-		<div class="box">
-			<h2>商品分类</h2>
-			<dl>
-				<dt>图书音像</dt>
-				<c:forEach items="${list }" var="list">
-					<dd><a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a></dd>				
-				</c:forEach>
-				<dt>百货</dt>
-				<c:forEach items="${lists }" var="lists">
-					<dd><a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a></dd>
-				</c:forEach>
-			</dl>
-		</div>
+		<jsp:include page="left.jsp"></jsp:include>
 	</div>
 	<div id="product" class="main">
 		<h1>${product.name}</h1>
@@ -61,7 +49,7 @@
 			<div class="buy">
 				商城价：<span class="price">${product.price}</span><br />
 				库　存：${product.stock}
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
+			  <div class="button"><input type="button" name="button" value="" onclick="location.href = '/easybuy/address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>

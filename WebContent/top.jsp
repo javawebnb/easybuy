@@ -21,7 +21,7 @@
 	</c:choose>
     <div class="navbar">
 		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
+			<li class="current"><a href="/easybuy/index.jsp">首页</a></li>
 			<li><a href="#">图书</a></li>
 			<li><a href="#">百货</a></li>
 			<li><a href="#">品牌</a></li>

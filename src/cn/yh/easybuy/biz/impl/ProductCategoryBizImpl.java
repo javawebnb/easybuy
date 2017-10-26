@@ -52,5 +52,11 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 		return pc.getProductCategoryBypage(page);
 	}
 
+	@Override
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -10,15 +10,12 @@ import cn.yh.easybuy.entity.ProductCategory;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
-	
-
-	
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
-	int i = pc.saveProductCategory(productcategory);
+	    int i = pc.saveProductCategory(productcategory);
 		session.commit();
 		if(session != null){
 			session.close();
@@ -88,7 +85,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getAllProductCategorybig();
-
 		session.commit();
 		if(session != null){
 			session.close();
@@ -120,6 +116,21 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		if(session != null){
 			session.close();
 		}
+		return list;
+	}
+
+	@Override
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		List<ProductCategory> list= pc.getProductCategoryByParentId(parentId);
+
+		session.commit();
+		if(session != null){
+			session.close();
+		}
+		
 		return list;
 	}
 

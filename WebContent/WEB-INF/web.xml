@@ -5,7 +5,7 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-      <welcome-file>default.html</welcome-file>
+    <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
@@ -13,27 +13,13 @@
     <display-name>EncodeFilter</display-name>
     <filter-name>EncodeFilter</filter-name>
     <filter-class>cn.yh.easybuy.filter.EncodeFilter</filter-class>
-    <init-param>
-      <param-name>EncodeFilter</param-name>
-      <param-value>utf-8</param-value>
-    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>EncodeFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-
   <servlet>
-    <display-name>ProductCategoryServlet</display-name>
-    <servlet-name>ProductCategoryServlet</servlet-name>
-    <servlet-class>cn.yh.easybuy.web.ProductCategoryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductCategoryServlet</servlet-name>
-    <url-pattern>/ProductCategoryServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
+    <description></description>
     <display-name>ProductServlet</display-name>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.ProductServlet</servlet-class>
@@ -42,8 +28,6 @@
     <servlet-name>ProductServlet</servlet-name>
     <url-pattern>/ProductServlet</url-pattern>
   </servlet-mapping>
- 
- 
   <servlet>
     <display-name>OrderServlet</display-name>
     <servlet-name>OrderServlet</servlet-name>
@@ -53,18 +37,16 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/OrderServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>CartServlet</display-name>
     <servlet-name>CartServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.CartServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/CartServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>NewsServlet</display-name>
     <servlet-name>NewsServlet</servlet-name>
@@ -74,7 +56,6 @@
     <servlet-name>NewsServlet</servlet-name>
     <url-pattern>/NewsServlet</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>CommentServlet</display-name>
     <servlet-name>CommentServlet</servlet-name>
@@ -84,8 +65,6 @@
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/CommentServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
@@ -94,5 +73,26 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddressServlet</display-name>
+    <servlet-name>AddressServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.AddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddressServlet</servlet-name>
+    <url-pattern>/AddressServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+   <servlet>
+    <display-name>ProductCategoryServlet</display-name>
+    <servlet-name>ProductCategoryServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.ProductCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductCategoryServlet</servlet-name>
+    <url-pattern>/ProductCategoryServlet</url-pattern>
   </servlet-mapping>
 </web-app>
