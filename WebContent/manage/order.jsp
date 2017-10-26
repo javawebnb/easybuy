@@ -65,48 +65,49 @@
 				</jsp:forward>
 			</c:if>
 			
-            <form id="orderForm" method="post"  action="../OrderServlet?opr=showAll">
-                 	订单号：<input type="text" class="text" name="entityId" id="entityId" />
+            <form id="orderForm" method="post"  action="/easybuy/OrderServlet?opr=showAll">
+                 	订单编号：<input type="text" class="text" name="entityId" id="entityId" />
                  	订货人：<input type="text" class="text" name="userName" id="userName" />
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
             
-            <c:forEach var="detail" items="${sessionScope.orderdetail}">
 				<table class="list">
-					<tr>
-						<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${detail.createTime}</th>					
-						<th colspan="2">状态:${detail.status}</th>					
-					</tr>
-				
-					<tr>
-						<td class="first w4 c"><img src="../images/product/1.jpg" />${detail.name}</td>
-						<td></td>
-						<td>${detail.quantity}</td>
-						<td class="w1 c" rowspan="2">总计：${detail.cost}</td>					
-					</tr>
-				
-				
-	                 <tr>
-						<th colspan="2">单号：2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：2013-5-16</th>
-						<th colspan="2">状态:待审核
-							<select name="status" >						    
-									<option value="1"  >待审核</option>
-									<option value="2"  >审核通过</option>
-									<option value="3"  >配货</option>
-									<option value="4" >发货</option>
-									<option value="5"  >收货确认</option>
-								
-							</select>
-						</th>					
-					</tr>
-					<tr>
-						<td class="first w4 c"><img src="../images/product/3.jpg" />护肤王</td>
-						<td >400</td>
-						<td>1</td>
-						<td class="w1 c">总计：400</td>					
-					</tr> -->				
+					<c:forEach var="detail" items="${sessionScope.orderdetail}">
+						<tr>
+							<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${detail.createTime}</th>					
+							<th colspan="2">状态:${detail.status}</th>					
+						</tr>
+					
+						<tr>
+							<td class="first w4 c"><img src="../images/product/1.jpg" />${detail.name}</td>
+							<td>${detail.price}</td>
+							<td>${detail.quantity}</td>
+							<td class="w1 c" rowspan="2">总计：${detail.cost}</td>					
+						</tr>
+					
+					
+		                 <tr>
+							<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：${detail.createTime}</th>
+							<th colspan="2">状态:${detail.status}
+								<select name="status" >						    
+										<option value="1"  >待审核</option>
+										<option value="2"  >审核通过</option>
+										<option value="3"  >配货</option>
+										<option value="4" >发货</option>
+										<option value="5"  >收货确认</option>
+									
+								</select>
+							</th>					
+						</tr>
+						<tr>
+							<td class="first w4 c"><img src="../images/product/3.jpg" />${detail.name}</td>
+							<td >${detail.price}</td>
+							<td>${detail.quantity}</td>
+							<td class="w1 c">总计：400</td>					
+						</tr>
+				</c:forEach>				
 			</table>
-			</c:forEach>
+			
 			<div class="pager">
 				<ul class="clearfix">
 					<li><a >首页</a></li>

@@ -40,6 +40,8 @@ public class OrderServlet extends HttpServlet {
 		
 		//获取input输入对象
 		String opr = request.getParameter("opr");
+		String id = request.getParameter("entityId");
+		String username = request.getParameter("userName");
 		
 		OrderDetailBiz biz = new OrderDetailBizImpl();	
 		
@@ -47,7 +49,13 @@ public class OrderServlet extends HttpServlet {
 		if("showAll".equals(opr)){
 				List<OrderDetail> list = biz.findOrderDetail();
 				session.setAttribute("orderdetail", list);
-				response.sendRedirect("order.jsp");
+				response.sendRedirect("manage/order.jsp");
+				if(id!=null && username == null){
+					List<OrderDetail> dlist = biz.findDetailByid(Integer.valueOf(id));
+					session.setAttribute("orderdetail", dlist);
+					response.sendRedirect("manage/order.jsp");
+				}
+			
 		}
 	}
 
