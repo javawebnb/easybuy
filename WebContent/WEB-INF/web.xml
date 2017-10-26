@@ -5,7 +5,7 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-      <welcome-file>default.html</welcome-file>
+    <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
@@ -31,9 +31,7 @@
   <servlet-mapping>
     <servlet-name>ProductServlet</servlet-name>
     <url-pattern>/ProductServlet</url-pattern>
-    </servlet-mapping>
- 
- 
+  </servlet-mapping>
   <servlet>
     <display-name>OrderServlet</display-name>
     <servlet-name>OrderServlet</servlet-name>
@@ -47,13 +45,12 @@
     <display-name>CartServlet</display-name>
     <servlet-name>CartServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.CartServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/CartServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>NewsServlet</display-name>
     <servlet-name>NewsServlet</servlet-name>
@@ -63,7 +60,6 @@
     <servlet-name>NewsServlet</servlet-name>
     <url-pattern>/NewsServlet</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>CommentServlet</display-name>
     <servlet-name>CommentServlet</servlet-name>
@@ -73,8 +69,6 @@
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/CommentServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
@@ -83,5 +77,15 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddressServlet</display-name>
+    <servlet-name>AddressServlet</servlet-name>
+    <servlet-class>cn.yh.easybuy.web.AddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddressServlet</servlet-name>
+    <url-pattern>/AddressServlet</url-pattern>
   </servlet-mapping>
 </web-app>
