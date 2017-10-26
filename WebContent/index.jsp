@@ -59,7 +59,6 @@
 
 
 <div id="main" class="wrap">
-<<<<<<< HEAD
 	<div class="lefter">
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
