@@ -10,10 +10,6 @@ import cn.yh.easybuy.entity.ProductCategory;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
-	
-	
-
-
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
@@ -58,7 +54,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public ProductCategory findProductCategoryByid(Integer id) {
 		// TODO Auto-generated method stub
-
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pd=session.getMapper(ProductCategoryDao.class);
 		ProductCategory pc = pd.findProductCategoryByid(id);
@@ -135,6 +130,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		if(session != null){
 			session.close();
 		}
+		
 		return list;
 	}
 
