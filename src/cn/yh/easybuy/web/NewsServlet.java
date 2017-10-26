@@ -3,7 +3,6 @@ package cn.yh.easybuy.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -81,7 +80,7 @@ public class NewsServlet extends HttpServlet {
 		}else if("page".equals(opr)){
 			String role = request.getParameter("role");
 			Integer pageIndex = 1;
-			Integer pageSize = 3;
+			Integer pageSize = 5;
 			String index = request.getParameter("i");
 			if(index != null){
 				pageIndex = Integer.valueOf(index);

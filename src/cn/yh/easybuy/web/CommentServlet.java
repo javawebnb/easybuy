@@ -50,7 +50,7 @@ public class CommentServlet extends HttpServlet {
 		if("page".equals(opr)){//前段留言页面(分页查询)
 			String role = request.getParameter("role");
 			int pageIndex = 1;
-			int pageSize = 3;//页面大小
+			int pageSize = 5;//页面大小
 			String index = request.getParameter("i");
 			if(index != null){//index不为空，也就是点击了页码的时候
 				pageIndex = Integer.valueOf(index);
