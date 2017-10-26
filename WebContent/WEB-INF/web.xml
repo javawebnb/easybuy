@@ -31,8 +31,9 @@
   <servlet-mapping>
     <servlet-name>ProductCategoryServlet</servlet-name>
     <url-pattern>/ProductCategoryServlet</url-pattern>
-</servlet-mapping>
-<servlet>
+  </servlet-mapping>
+  
+  <servlet>
     <display-name>ProductServlet</display-name>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.ProductServlet</servlet-class>
