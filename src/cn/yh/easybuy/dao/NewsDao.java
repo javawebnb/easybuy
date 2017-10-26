@@ -3,6 +3,7 @@ package cn.yh.easybuy.dao;
 import java.util.List;
 
 import cn.yh.easybuy.entity.News;
+
 import cn.yh.easybuy.entity.Page;
 
 public interface NewsDao {

@@ -53,6 +53,7 @@
 	<div class="main">
 		<h2>添加新闻</h2>
 		<div class="manage">
+
 			<form id="newsAdd" method="post" action="../NewsServlet?opr=addNews">
 				<table class="form">
 					<tr>

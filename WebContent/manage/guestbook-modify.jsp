@@ -68,6 +68,7 @@
 					<tr>
 						<td class="field">留言内容：</td>
 						<td>${comment.content }</td>
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 					</tr>
 					<tr>
 						<td class="field">回复内容：</td>

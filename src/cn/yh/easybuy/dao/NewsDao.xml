@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yh.easybuy.dao.NewsDao">
+
 	<resultMap type="News" id="newsMap">
 		<id property="id" column="en_id" javaType="java.lang.Integer"/>
 		<result property="title" column="en_title" javaType="java.lang.String"/>

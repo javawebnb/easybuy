@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import cn.yh.easybuy.dao.NewsDao;
 import cn.yh.easybuy.entity.News;
+
 import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
@@ -75,7 +76,5 @@ public class NewsDaoImpl implements NewsDao{
 		count = nd.getCount();
 		return count;
 	}
-
-	
 
 }

@@ -1,5 +1,6 @@
 package cn.yh.easybuy.biz;
 
+
 import cn.yh.easybuy.entity.News;
 import cn.yh.easybuy.entity.Page;
 

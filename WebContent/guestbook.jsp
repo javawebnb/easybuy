@@ -11,19 +11,7 @@
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -121,8 +109,8 @@
 				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment">
 					<table>
 						<tr>
-							<td class="field">昵称：</td>
-							<td><input class="text" type="text" name="guestName" value="当前用户名"/></td>
+							<td class="field">昵称:</td>
+							<td><input readonly="readonly" class="text" type="text" name="guestName" value="${login.userName}"/></td>
 						</tr>						
 						<tr>
 							<td class="field">留言内容：</td>
@@ -140,6 +128,7 @@
 	
 	<c:remove var="pageObj"/>
 	
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

@@ -33,5 +33,4 @@ public interface CommentDao {
 	 */
 	Comment findCommentById(Integer id);
 	
-	
 }

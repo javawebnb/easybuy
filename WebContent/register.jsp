@@ -11,19 +11,7 @@
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -56,18 +44,15 @@
 				<li class="current"><em></em>填写注册信息</li>
 				<li class="last"><em></em>注册成功</li>
 			</ul>
-			<form id="regForm" method="post" action="reg-result.jsp" >
+			
+			<form id="regForm" method="post" action="/easybuy/UserServlet?action=register" >
 				<table>
 					<tr>
 						<td class="field">用户名(*)：</td>
 						<td>
-							<input class="text" type="text" name="userId"  id="userId" maxlength="10"  />
+							<input class="text" type="text" name="userName"  id="userId" maxlength="10"  />
 							<span></span>
 						</td>
-					</tr>
-					<tr>
-						<td class="field">真实姓名(*)：</td>
-						<td><input class="text" type="text" name="userName" /><span></span></td>
 					</tr>
 					<tr>
 						<td class="field">登录密码(*)：</td>
@@ -80,9 +65,9 @@
 					<tr>
 						<td class="field">性别(*)：</td>
 						<td>
-						  <input class="radio" type="radio" name="sex" value="male" checked="checked">
+						  <input class="radio" type="radio" name="sex" value="1" checked="checked">
 						  男性</input>
-						  <input class="radio" type="radio" name="sex" value="female"						  
+						  <input class="radio" type="radio" name="sex" value="0"
 						  >女性</input>
 						  <span></span></td>
 					</tr>

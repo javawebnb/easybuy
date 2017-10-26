@@ -48,6 +48,5 @@ public class NewsBizImpl implements NewsBiz{
 		return page;
 	}
 
-	
 
 }

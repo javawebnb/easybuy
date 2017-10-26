@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,19 +11,7 @@
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="top.jsp"></jsp:include>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
@@ -51,12 +40,14 @@
 		<em class="corner rt"></em>
 		<div class="box">
 			<h1>欢迎回到易买网</h1>
-			<form id="loginForm" method="post" action="index.jsp" >
+			<form id="loginForm" method="post" action="/easybuy/UserServlet?action=login" >
+				<span><c:out value='${error}'></c:out></span>
+				<c:remove var="error"/>
 				<table>
 					<tr>
 						<td class="field">用户名：</td>
 						<td>
-                            <input class="text" type="text" id="userId" name="userId" />
+                            <input class="text" type="text" id="userId" name="userName" />
 							<span></span>
 						</td>
 					</tr>
@@ -70,7 +61,7 @@
 					<tr>
 					<td class="field">验证码：</td>
 						<td>
-                            <img src="Number.jsp" id="safeCode"/><a id="changeCode" href="#">看不清，换一张</a><br>
+                            <img src="/easybuy/image.jsp" id="img"/><a id="changeCode" href="javascript:void(0)" onclick="refresh()">看不清，换一张</a><br>
 	                        <input type="text" name="code"><div class="mess"></div>
 							<span></span>
 						</td>
