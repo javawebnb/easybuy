@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -63,14 +64,21 @@
 		</div>
 	</div>
 </div>
+<c:if test="${addrList==null}">
+	<c:redirect url="AddressServlet">
+		<c:param name="opr" value="listAddr"></c:param>
+		<c:param name="userId" value="${login.id}"></c:param>
+	</c:redirect>
+</c:if>
 <div id="news" class="right-main">
 		<h1>&nbsp;</h1>
 		<div class="content">
             <form action="shopping-result.jsp" method="post">
                 收货地址:<input name="addr" id="addr" type="button"  value="添加新地址" />
                 <span id="span"></span> <br />
-                <input name="address" type="radio" id="address0" checked="checked" /><span>北京海淀区中关村大厦202</span><br />
-                <input name="address" id="address1" type="radio" /><span>河北省邯郸市建设大街54号</span><br />
+                <c:forEach items="${addrList}" var="address" varStatus="varS">
+                	<input name="address" id="address1" type="radio" ${varS.count==1?"checked":""}/><span>${address.address}</span><br />
+                </c:forEach>
                 <div class="button">  <input type="submit" value="结账" />    </div>
             </form>
 		</div>
@@ -83,5 +91,5 @@
 <div id="footer">
 	Copyright &copy; 2010云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-
+<c:remove var="addrList"/>
 </html>

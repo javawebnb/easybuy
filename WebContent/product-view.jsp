@@ -61,7 +61,7 @@
 			<div class="buy">
 				商城价：<span class="price">${product.price}</span><br />
 				库　存：${product.stock}
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
+			  <div class="button"><input type="button" name="button" value="" onclick="location.href = '/easybuy/address.jsp'" /><a href="javascript:void(0)" onclick="addCart()">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>

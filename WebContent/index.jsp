@@ -104,9 +104,6 @@
 						<a href="ProductServlet?index=${page.pageIndex+1}&ps=showKind">下一页</a>
 						<a href="ProductServlet?index=${page.pageTotal}&ps=showKind">末页</a>
 					</c:if>
-				
-				
-				
 				</div>
 		</div>
 		<c:if test="${empty pageObj}">

@@ -292,7 +292,7 @@ $(function(){
                 alert("地址不能相同");
                 return;
             }
-            $("#span").append('<br/><input name="address" type="radio" id="address0"/><span>'+addr+'</span>');
+            location.href="/easybuy/AddressServlet?opr=saveAddr&address="+addr;
         }else{
             var span=$("#span").html('<input type="text" name="addAddr" id="addAddr"/>');
             $(this).val("添加");
