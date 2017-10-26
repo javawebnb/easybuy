@@ -63,6 +63,5 @@ public class CommentBizImpl implements CommentBiz {
 		// TODO Auto-generated method stub
 		return cdao.findCommentById(id);
 	}
-	
 
 }

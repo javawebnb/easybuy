@@ -17,4 +17,8 @@
 		insert into easybuy_cartitem(ec_goodsname,ec_price,ec_userid,ec_quantity)
 		 values (#{goodsName},#{price},#{userId},#{quantity})
 	</insert>
+	
+	<delete id="deleteCartItems">
+		delete from easybuy_cartitem where ec_userid = #{userId}
+	</delete>
 </mapper>

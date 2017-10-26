@@ -7,7 +7,6 @@ import cn.yh.easybuy.dao.OrderDao;
 import cn.yh.easybuy.dao.impl.OrderDaoImpl;
 import cn.yh.easybuy.entity.Order;
 
-
 public class OrderBizImpl implements OrderBiz{
 	OrderDao od=new OrderDaoImpl();
 	@Override
@@ -46,6 +45,5 @@ public class OrderBizImpl implements OrderBiz{
 		// TODO Auto-generated method stub
 		return od.findOrder();
 	}
-	
 
 }

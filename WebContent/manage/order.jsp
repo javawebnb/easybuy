@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -59,53 +60,46 @@
 			</div>
 			<div class="spacer"></div>
 			
-			<c:if test="${empty orderdetail}">
+			<c:if test="${order== null}">
 				<jsp:forward page="../OrderServlet">
 					<jsp:param value="showAll" name="opr"/>
 				</jsp:forward>
 			</c:if>
 			
             <form id="orderForm" method="post"  action="/easybuy/OrderServlet?opr=showAll">
-                 	订单编号：<input type="text" class="text" name="entityId" id="entityId" />
+                 	订单号：<input type="text" class="text" name="entityId" id="entityId" />
                  	订货人：<input type="text" class="text" name="userName" id="userName" />
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
             
 				<table class="list">
-					<c:forEach var="detail" items="${sessionScope.orderdetail}">
-						<tr>
-							<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${detail.createTime}</th>					
-							<th colspan="2">状态:${detail.status}</th>					
-						</tr>
+
+				<c:forEach var="order" items="${sessionScope.order}">
+					<tr>
+						<th colspan="2">单号：${order.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${order.createTime}</th>					
+						<th class="hiddenSta">${order.status}</th>
+						<th colspan="2">状态:
+							<select class="status" name="status">						    
+									<option value="1"  >待审核</option>
+									<option value="2"  >审核通过</option>
+									<option value="3"  >配货</option>
+									<option value="4" >发货</option>
+									<option value="5"  >收货确认</option>
+							</select>
+						</th>								
+					</tr>
+					<c:forEach var="orderDetail" items="${order.listDetail}" varStatus="varS">
+					    <tr>
+							<td class="first w4 c"><img src="../images/product/1.jpg" />${orderDetail.product.name}</td>
+							<td></td>
+							<td>${orderDetail.quantity}</td>
+							<c:if test="${varS.count==1}">
+								<td class="w1 c" rowspan="${fn:length(order.listDetail)}">总计：${order.cost}</td>
+					        </c:if>	
+					    </tr>
+					</c:forEach>
 					
-						<tr>
-							<td class="first w4 c"><img src="../images/product/1.jpg" />${detail.name}</td>
-							<td>${detail.price}</td>
-							<td>${detail.quantity}</td>
-							<td class="w1 c" rowspan="2">总计：${detail.cost}</td>					
-						</tr>
-					
-					
-		                 <tr>
-							<th colspan="2">单号：${detail.d_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：${detail.createTime}</th>
-							<th colspan="2">状态:${detail.status}
-								<select name="status" >						    
-										<option value="1"  >待审核</option>
-										<option value="2"  >审核通过</option>
-										<option value="3"  >配货</option>
-										<option value="4" >发货</option>
-										<option value="5"  >收货确认</option>
-									
-								</select>
-							</th>					
-						</tr>
-						<tr>
-							<td class="first w4 c"><img src="../images/product/3.jpg" />${detail.name}</td>
-							<td >${detail.price}</td>
-							<td>${detail.quantity}</td>
-							<td class="w1 c">总计：400</td>					
-						</tr>
-				</c:forEach>				
+			</c:forEach>			
 			</table>
 			
 			<div class="pager">
@@ -126,4 +120,31 @@
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+
+<script>
+/* function a(obj,status){
+	$(obj).parent().find("select").children().each(function(){
+		var value = $(this).val();
+		if(value==status){
+			$(this).attr("selected","selected");
+		}
+	})
+}
+$(".hiddenSta").each(function(){
+	var status = $(this).html();
+	a(this,status);
+}) */
+var $tr = $(".list").find("tr");
+$tr.children(".hiddenSta").css("display","none");
+$tr.each(function(i,e){
+	var status = $($tr[i]).children(".hiddenSta").html();
+	var $children = $($tr[i]).find(".status").children();
+	$children.each(function(j,c){
+		var value = $($children[j]).val();
+		if(value==status){
+			$($children[j]).attr("selected","selected");
+		}
+	})
+})
+</script>
 </html>

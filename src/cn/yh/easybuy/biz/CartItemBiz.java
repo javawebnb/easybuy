@@ -19,5 +19,5 @@ public interface CartItemBiz {
 	/**
 	 * 保存购物车信息
 	 */
-	Integer saveCartItems(List<CartItem> listItems);
+	Integer saveCartItems(List<CartItem> listItems,Integer userId);
 }

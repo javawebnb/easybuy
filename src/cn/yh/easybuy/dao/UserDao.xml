@@ -40,6 +40,7 @@
 		insert into easybuy_user(eu_user_name,eu_password,eu_sex,eu_birthday,
 					eu_identity_code,eu_email,eu_mobile,eu_address,eu_login,eu_status)
 			 values(#{userName},#{password},#{sex},#{birthday},#{identityCode},#{email},#{mobile},#{address},#{login},#{status})
+
 	</insert>
 	<delete id="delUser">
 		delete from easybuy_user where eu_id = #{id}

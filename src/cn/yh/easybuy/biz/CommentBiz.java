@@ -1,6 +1,5 @@
 package cn.yh.easybuy.biz;
 
-
 import cn.yh.easybuy.entity.Comment;
 import cn.yh.easybuy.entity.Page;
 

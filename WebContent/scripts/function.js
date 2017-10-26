@@ -389,18 +389,25 @@ $(function(){
         });
         return totalPrice.toFixed(1);
     }
-    $(".deleteCart").click(function(){
+    $(".deleteCart").click(function(event){
 		var $thumb = $($(this).parent().children("td")[0]);
 		var goodsName = $thumb.find("a").html();
-		if(confirm("确定删除吗?")){
-			$(".deleteCart").parent().remove();
-			 $.ajax({
-                	url:"CartServlet",
-                	data:{"opr":"deleteCartItem","goodsName":goodsName},
-                	type:"post"
-             })
+		var target = event.target;
+		if($(target).is("a")){
+			if(confirm("确定删除吗?")){
+				$(target).parent().parent().remove();
+				 $.ajax({
+	                	url:"CartServlet",
+	                	data:{"opr":"deleteCartItem","goodsName":goodsName},
+	                	type:"post",
+	                	success:function(result){
+	                		$("#shoppingBag").html("购物车"+result+"件");
+	                	}
+	             })
+			}
+			$("#shopping").find("#total").text("总计：￥"+totalPrice());
 		}
-		$("#shopping").find("#total").text("总计：￥"+totalPrice());
+		
 	})
     //数字改变
     $("#shopping").find("input[name='number']").change(function(){
@@ -486,4 +493,13 @@ $(function(){
         $(this).find("span").addClass("error").html("留言不得多于100字");
         return false;
     });
+    //获取购物车数量
+    $.ajax({
+    	url:"CartServlet",
+    	data:{"opr":"getGoodsNum"},
+    	type:"post",
+    	success:function(result){
+    		$("#shoppingBag").html("购物车"+result+"件");
+    	}
+ })
 })

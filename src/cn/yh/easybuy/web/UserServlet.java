@@ -1,15 +1,21 @@
 package cn.yh.easybuy.web;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import cn.yh.easybuy.biz.*;
+
+import cn.yh.easybuy.biz.CartItemBiz;
+import cn.yh.easybuy.biz.impl.CartItemBizImpl;
 import cn.yh.easybuy.biz.impl.UserBizImpl;
+import cn.yh.easybuy.entity.Cart;
+import cn.yh.easybuy.entity.CartItem;
 import cn.yh.easybuy.entity.User;
-import cn.yh.easybuy.utils.*;
+import cn.yh.easybuy.utils.DateUtil;
 
 /**
  * Servlet implementation class UserServlet
@@ -44,10 +50,10 @@ public class UserServlet extends HttpServlet {
 			User user = new User();
 			user.setUserName(userName);
 			user.setPassword(password);
-			
+			User loginUser = ub.login(user);
 			if(code.equalsIgnoreCase(safeCode)){
-				if(ub.login(user)!=null){
-					session.setAttribute("login",user);
+				if(loginUser!=null){
+					session.setAttribute("login",loginUser);
 					response.sendRedirect("/easybuy/index.jsp");
 					return;
 				}else{
@@ -88,11 +94,15 @@ public class UserServlet extends HttpServlet {
 			}
 		//×¢Ïú
 		}else if("logout".equals(action)){
+			User user = (User)session.getAttribute("login");
 			session.removeAttribute("login");
+			CartItemBiz cib = new CartItemBizImpl();
+			List<CartItem> listItems = ((Cart)session.getAttribute("cart")).getListItems();
+			cib.saveCartItems(listItems,user.getId());
 			response.sendRedirect("/easybuy/index.jsp");
+			listItems.clear();
 			return;
 		}
-		
 	}
 
 	/**

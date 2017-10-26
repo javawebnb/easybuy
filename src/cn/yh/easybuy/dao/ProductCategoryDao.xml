@@ -13,6 +13,12 @@
 <select id="findProductCategoryByid" resultMap="ProductCategoryMap" parameterType="Integer">
 	select * from easybuy_product_category where epc_id=#{id}
 </select>
+
+<select id="getProductCategoryByParentId" resultMap="ProductCategoryMap">
+	select * from easybuy_product_category where epc_parent_id=#{parent_id}
+</select>
+
+
 <insert id="saveProductCategory" parameterType="ProductCategory">
 	insert into easybuy_product_category(epc_id,epc_name,epc_parent_id) values(#{id},#{name},#{parentId})
 </insert>

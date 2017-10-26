@@ -2,6 +2,7 @@ package cn.yh.easybuy.dao.impl;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import cn.yh.easybuy.dao.CartItemDao;
@@ -50,5 +51,24 @@ public class CartItemDaoImpl implements CartItemDao{
 			session.close();
 		}
 		return listItems;
+	}
+
+	@Override
+	public Integer deleteCartItems(Integer userId) {
+		// TODO Auto-generated method stub
+		SqlSession session = null;
+		Integer res = 0;
+		try{
+			session = SqlSessionFactoryUtil.getSqlSession();
+			CartItemDao cartItemDao = session.getMapper(CartItemDao.class);
+			res = cartItemDao.deleteCartItems(userId);
+		}catch(Exception e){
+			session.rollback();
+			e.printStackTrace();
+		}finally{
+			session.commit();
+			session.close();
+		}
+		return res;
 	}
 }

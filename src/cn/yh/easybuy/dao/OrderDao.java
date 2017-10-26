@@ -5,7 +5,7 @@ import java.util.List;
 import cn.yh.easybuy.entity.Order;
 
 public interface OrderDao {
-	
+
 	//查找所有订单
 	List<Order> findOrder();
 	
@@ -24,7 +24,5 @@ public interface OrderDao {
     //清除商品信息 
 	Integer delOrders(Integer id);
 	
-	
-    
  
 }
