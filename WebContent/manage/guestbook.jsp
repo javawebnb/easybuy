@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	
-	<c:if test="${empty pageObj}">
+	<c:if test="${empty commentPage}">
 		<jsp:forward page="../CommentServlet">
 			<jsp:param value="page" name="opr"/>
 			<jsp:param value="manage" name="role"/>
@@ -71,7 +71,7 @@
 					<th>操作</th>
 				</tr>
 
-				<c:forEach items="${pageObj.pageList }" var="comment" varStatus="s">
+				<c:forEach items="${commentPage.pageList }" var="comment" varStatus="s">
 					<tr>
 						<td class="first w4 c" id="cid">${comment.id }</td>
 						<td class="w1 c">${comment.nickName }</td>
@@ -91,16 +91,16 @@
 			</table>
 			<div class="pager">
 				<ul class="clearfix">
-					<c:if test="${pageObj.pageIndex > 1 }">
+					<c:if test="${commentPage.pageIndex > 1 }">
 						<li><a href="../CommentServlet?opr=page&role=manager&i=1">首页</a></li>
-						<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+						<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex - 1 }">上一页</a></li>
 					</c:if>
 					
-					<li class="current">${pageObj.pageIndex }</li>
+					<li class="current">${commentPage.pageIndex }</li>
                     
-                    <c:if test="${pageObj.pageIndex < pageObj.pageTotal }">
-                    	<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageIndex + 1 }">下一页</a></li>
-						<li><a href="../CommentServlet?opr=page&role=manager&i=${pageObj.pageTotal }">尾页</a></li>
+                    <c:if test="${commentPage.pageIndex < commentPage.pageTotal }">
+                    	<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex + 1 }">下一页</a></li>
+						<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageTotal }">尾页</a></li>
                     </c:if>
 				</ul>
 			</div>
@@ -110,13 +110,13 @@
 	<div class="clear"></div>
 </div>
 <script type="text/javascript">
-	function delComment(id){
-		if(confirm("确定删除么你？")){
-			location.href= "../CommentServlet?id="+id+"&opr=delComment";
-		}else{
-			return false;
-		}
+function delComment(id){
+	if(confirm("确定删除么你？")){
+		location.href= "../CommentServlet?id="+id+"&opr=delComment";
+	}else{
+		return false;
 	}
+}
 </script>
 
 <div id="footer">

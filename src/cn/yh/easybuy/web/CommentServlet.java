@@ -55,8 +55,8 @@ public class CommentServlet extends HttpServlet {
 			if(index != null){//index不为空，也就是点击了页码的时候
 				pageIndex = Integer.valueOf(index);
 			}
-			Page<Comment> pageObj = cbiz.showCommentByPage(pageSize, pageIndex);
-			session.setAttribute("pageObj", pageObj);
+			Page<Comment> commentPage = cbiz.showCommentByPage(pageSize, pageIndex);
+			session.setAttribute("commentPage", commentPage);
 			if("manager".equals(role)){//后台管理角色跳转到对应页面
 				response.sendRedirect(request.getContextPath()+"/manage/guestbook.jsp");
 			}else{
