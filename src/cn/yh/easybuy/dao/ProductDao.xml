@@ -48,6 +48,13 @@
 	 	delete from easybuy_product where ep_id = #{id}
 	 </delete>
 	 
+	 <delete id="delProductByCid">
+	 	delete from easybuy_product where epc_id = #{cid} 
+	 </delete>
+	 <delete id="delProductByChildId">
+	 	delete from easybuy_product where epc_child_id = #{childId} 
+	 </delete>
+	 
 	 <update id="updateProduct">
 	 	update easybuy_product set ep_id=#{id},ep_name=#{name},ep_description=#{description},ep_price=#{price},ep_stock=#{stock},epc_id=#{cid},epc_child_id=#{childId},ep_file_name=#{fileName} where ep_id=#{id}
 	 </update>

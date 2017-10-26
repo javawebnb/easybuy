@@ -12,7 +12,6 @@ import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	
 
-	
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
@@ -122,5 +121,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		}
 		return list;
 	}
+
+	
 
 }

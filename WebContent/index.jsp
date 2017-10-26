@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+>>>>>>> branch 'lijian1' of https://github.com/javawebnb/easybuy.git
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,8 +19,8 @@
  
 <body>
 
-<c:set var="isempty" value="${empty sessionScope.listbg }"/>
-<c:if test="${isempty }">
+<c:set var="isempty" value="${sessionScope.listbg == null}"/>
+<c:if test="${isempty}">
 <jsp:forward page="ProductCategoryServlet">
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
@@ -46,11 +53,14 @@
 </div>
 
 
-	<c:if test="${empty page}">
-		<jsp:forward page="ProductServlet">
-			<jsp:param value="showKind" name="ps"/>
-		</jsp:forward>
+
+	<c:if test="${page == null }">
+	<jsp:forward page="ProductServlet">
+		<jsp:param value="showKind" name="ps"/>
+	</jsp:forward>
 	</c:if>
+
+
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
@@ -62,12 +72,11 @@
 				<c:forEach items="${sessionScope.listsn }" var="itemson">
 				<c:choose>
 				<c:when test="${item.id eq itemson.parentId}">
-				<dd><a href="product-list.jsp">${itemson.name}</a></dd>
+				<dd><a href="ProductServlet?cid=${itemson.id}&ps=showProduct">${itemson.name}</a></dd>
 				</c:when>
 				</c:choose>
 				</c:forEach>
 				</c:forEach>
-				
 			</dl>
 		</div>
 		<div class="spacer"></div>
@@ -98,7 +107,7 @@
 					<dl>
 						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
-						<dd class="price">￥${product.price }</dd>
+						<dd class="price">${product.price}</dd>
 					</dl>
 				</li>
 				</c:forEach>
@@ -148,6 +157,6 @@
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
 <c:remove var="page"/>
-</html>
 <c:remove var="listbg"/>
 <c:remove var="listsn"/>
+</html>

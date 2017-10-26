@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -66,7 +67,7 @@
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-						 <input type="text" name="cid">
+						 <!-- <input type="text" name="cid"> -->
 							<!-- <select name="parentId">
 								<option value="1">电器</option>
 								<option value="3">├ 电器</option>
@@ -75,6 +76,18 @@
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
 							</select> -->
+							<select name="parentId">
+								<c:forEach items="${sessionScope.listbg}" var="item">
+									<option value="${item.id}">${item.name}</option>
+									<c:forEach items="${sessionScope.listsn}" var="itemson">
+										<c:choose>
+										<c:when test="${item.id eq itemson.parentId}">
+										      <option value="${itemson.id}">├${itemson.name}</option>
+										</c:when>
+										</c:choose>
+									</c:forEach>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>					
 					<tr>

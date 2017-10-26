@@ -17,6 +17,7 @@ public class User {
 	private String address;
 	private Double login;
 	private Integer status;
+
 	public Integer getId() {
 		return id;
 	}

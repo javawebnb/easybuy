@@ -35,6 +35,4 @@ public interface UserDao {
 	 */
 
 	List<User> findUser(Map<String,Object> condition);
-
-
 }
