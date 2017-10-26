@@ -44,7 +44,7 @@
 	 	insert into easybuy_product values(#{id},#{name},#{description},#{price},#{stock},#{cid},#{childId},#{fileName})
 	 </insert>
 	 
-	 <delete id="delProduct">
+	 <delete id="delProduct" >
 	 	delete from easybuy_product where ep_id = #{id}
 	 </delete>
 	 

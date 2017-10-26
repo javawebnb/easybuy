@@ -77,7 +77,7 @@
 						<th>类别</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="item" items="${sessionScope.pagelist }">
+					<c:forEach var="item" items="${page.pageList}">
 						<tr>
 							<td class="first w4 c">${item.id }</td>
 							<td>${item.name }</td>
@@ -116,11 +116,9 @@
 		<div class="clear"></div>
 		<div class="pager">
 			<ul class="clearfix">
-				<%
-					Object obj = session.getAttribute("page");
-					Page<ProductCategory> page1 = (Page<ProductCategory>) obj;
-					if (page1.getPageIndex() > 1) {
-				%>
+				<c:if test="${page.pageIndex >1}">
+					
+				
 				<c:url var="url" value="ProductCategoryServlet">
 					<c:param name="opr" value="pagelist"></c:param>
 					<c:param name="i" value="1"></c:param>
@@ -131,25 +129,27 @@
 				<c:param name="i" value="${page.pageIndex }"></c:param>
 				</c:url>  --%>
 				<a
-					href="ProductCategoryServlet?opr=pagelist&i=<%=page1.getPageIndex() - 1%>">上一页</a>
+					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex -1}">上一页</a>
 				<%-- <c:url var="url3" value="ProductCategoryServlet">
 				<c:param name="opr" value="pagelist"></c:param>
 				<c:param name="i" value="${page.pageIndex }"></c:param>
 				</c:url> --%>
-				<%
-					}
-					if (page1.getPageIndex() < page1.getPageTotal()) {
-				%>
+				
+				</c:if>
+				
+				<c:if test="${page.pageIndex < page.pageTotal }">
+					
+			
 				<a
-					href="ProductCategoryServlet?opr=pagelist&i=<%=page1.getPageIndex() + 1%>">下一页</a>
+					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex +1}">下一页</a>
 				<c:url var="url1" value="ProductCategoryServlet">
 					<c:param name="opr" value="pagelist"></c:param>
 					<c:param name="i" value="${page.pageTotal }"></c:param>
 				</c:url>
 				<li><a href="${url1 }">尾页</a></li>
-				<%
-					}
-				%>
+			
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
@@ -157,4 +157,4 @@
 		京ICP证1000001号</div>
 </body>
 </html>
-<c:remove var="pagelist" />
+<c:remove var="page"/>

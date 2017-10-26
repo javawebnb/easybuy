@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import cn.yh.easybuy.dao.ProductCategoryDao;
 import cn.yh.easybuy.dao.impl.ProductCategoryDaoImpl;
+import cn.yh.easybuy.dao.impl.ProductDaoImpl;
 import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.ProductCategory;
 
@@ -22,6 +23,7 @@ import cn.yh.easybuy.entity.ProductCategory;
 public class ProductCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProductCategoryDaoImpl pci = new ProductCategoryDaoImpl();
+	ProductDaoImpl pdi = new ProductDaoImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -124,19 +126,22 @@ public class ProductCategoryServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void del(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		int i = 0;
+		int j = 0;
 		String epcid = request.getParameter("epcid");
 		String parentId = request.getParameter("parentId");
 
 		if (Integer.valueOf(parentId) == 0) {
 			i = pci.delProductCategory(Integer.valueOf(epcid));
+			j = pdi.delProductByChildId(Integer.valueOf(epcid));
 		} else {
 			i = pci.delProductCategory(Integer.valueOf(epcid));
+			j = pdi.delProductByCid(Integer.valueOf(epcid));
 		}
-		if (i > 0) {
+		if (i > 0&j>0) {
 			out.print("<script>alert('É¾³ý³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
 		}
 	}
@@ -233,7 +238,6 @@ public class ProductCategoryServlet extends HttpServlet {
 		List<ProductCategory> list = pci.getProductCategoryBypage(page);
 		page.setPageList(list);
 		HttpSession session = request.getSession();
-		session.setAttribute("pagelist", list);
 		session.setAttribute("page", page);
 		request.getRequestDispatcher("/manage/productClass.jsp").forward(request, response);
 	}
