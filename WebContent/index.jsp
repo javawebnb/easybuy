@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,10 +28,10 @@
 </c:if>
 
 <c:if test="${empty pageObj}">
-			<jsp:forward page="NewsServlet">
-				<jsp:param value="page" name="opr"/>
-			</jsp:forward>
-		</c:if>	
+	<jsp:forward page="NewsServlet">
+		<jsp:param value="page" name="opr"/>
+	</jsp:forward>
+</c:if>	
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -67,7 +61,6 @@
 
 
 <div id="main" class="wrap">
-<<<<<<< HEAD
 	<div class="lefter">
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
@@ -132,5 +125,4 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-
 </html>
