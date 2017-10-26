@@ -9,6 +9,7 @@
 <link type="text/css" rel="stylesheet" href="../css/style.css" />
 <script type="text/javascript" src="../scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="../scripts/function.js"></script>
+
 </head>
 <body>
 <div id="header" class="wrap">
@@ -38,7 +39,7 @@
 	<div class="main">
 		<h2>回复留言</h2>
 		<div class="manage">
-			<form action="../CommentServlet?opr=reply&id=${comment.id }" method="post">
+			<form action="../CommentServlet?opr=reply&id=${comment.id }" method="post" onsubmit="return check()">
 				<table class="form">
 					<tr>
 						<td class="field">留言编号：</td>
@@ -51,11 +52,10 @@
 					<tr>
 						<td class="field">留言内容：</td>
 						<td>${comment.content }</td>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 					</tr>
 					<tr>
 						<td class="field">回复内容：</td>
-						<td><textarea name="replyContent"></textarea></td>
+						<td><textarea name="replyContent" id="replyContent"></textarea></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -70,4 +70,15 @@
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<script type="text/javascript">
+	function check(){
+		var replyContent = document.getElementById("replyContent");
+		if(replyContent.value == ""){
+			alert("回复内容不能为空!");
+			replyContent.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
 </html>

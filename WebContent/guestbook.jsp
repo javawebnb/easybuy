@@ -9,6 +9,23 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<script type="text/javascript">
+	function check(){
+		var guestContent = document.getElementById("guestContent");
+		var guestName = document.getElementById("guestName");
+		if(guestContent.value == ""){
+			alert("留言内容不能为空！");
+			guestContent.focus();
+			return false;
+		}
+		if(guestName.value == ""){
+			alert("请先登录！");
+			guestName.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <jsp:include page="top.jsp"></jsp:include>
@@ -64,7 +81,7 @@
 		</div>
 	</div>
 	
-	<c:if test="${empty pageObj }">
+	<c:if test="${empty commentPage }">
 		<jsp:forward page="CommentServlet">
 			<jsp:param value="page" name="opr"/>
 		</jsp:forward>
@@ -74,7 +91,7 @@
 			<h2>全部留言</h2>
 			<ul>
 				
-			<c:forEach items="${pageObj.pageList }" var="comment" varStatus="s">
+			<c:forEach items="${commentPage.pageList }" var="comment" varStatus="s">
 				<li>
 					<dl>
 						<dt>${comment.content}</dt>
@@ -88,32 +105,32 @@
 			<div class="clear"></div>
 			<div class="pager">
 				<ul class="clearfix">
-				<c:if test="${pageObj.pageIndex > 1 }">
+				<c:if test="${commentPage.pageIndex > 1 }">
 					<li><a href="CommentServlet?opr=page&i=1">首页</a></li>
-					<li><a href="CommentServlet?opr=page&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+					<li><a href="CommentServlet?opr=page&i=${commentPage.pageIndex - 1 }">上一页</a></li>
 				</c:if>
 					
 					
-					<li class="current">${pageObj.pageIndex}</li>
+					<li class="current">${commentPage.pageIndex}</li>
                     
                     
-                 <c:if test="${pageObj.pageIndex < pageObj.pageTotal }">
-                 	<li><a href="CommentServlet?opr=page&i=${pageObj.pageIndex + 1 }">下一页</a></li>
-					<li><a href="CommentServlet?opr=page&i=${pageObj.pageTotal }">尾页</a></li>
+                 <c:if test="${commentPage.pageIndex < commentPage.pageTotal }">
+                 	<li><a href="CommentServlet?opr=page&i=${commentPage.pageIndex + 1 }">下一页</a></li>
+					<li><a href="CommentServlet?opr=page&i=${commentPage.pageTotal }">尾页</a></li>
                  </c:if>   
                     
 				</ul>
 			</div>
 			<div id="reply-box">
-				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment">
+				<form id="guestBook" method="post" action="CommentServlet?opr=saveComment" onsubmit="return check()">
 					<table>
 						<tr>
 							<td class="field">昵称:</td>
-							<td><input readonly="readonly" class="text" type="text" name="guestName" value="${login.userName}"/></td>
+							<td><input readonly="readonly" class="text" type="text" name="guestName" id="guestName" value="${login.userName}"/></td>
 						</tr>						
 						<tr>
 							<td class="field">留言内容：</td>
-							<td><textarea name="guestContent"></textarea><span></span></td>
+							<td><textarea name="guestContent" id="guestContent"></textarea><span></span></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -126,7 +143,10 @@
 	</div>
 	
 	<c:remove var="pageObj"/>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'hzh' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

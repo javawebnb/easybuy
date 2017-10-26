@@ -325,7 +325,7 @@ $(function(){
         var $tr = $(this).parent().parent();
         if(confirm("确定要删除吗？")) {
             
-            location.herf="";
+            location.href="";
         }else{
             return false;
         }
