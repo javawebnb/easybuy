@@ -63,6 +63,7 @@
 	<div id="main" class="wrap">
 		<div class="lefter">
 			<jsp:include page="left.jsp"></jsp:include>
+
 			<div class="spacer"></div>
 			<div class="last-view">
 				<h2>最近浏览</h2>
@@ -130,4 +131,5 @@
 	<div id="footer">Copyright &copy; 2010 云和学院 All Rights Reserved.
 		京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>

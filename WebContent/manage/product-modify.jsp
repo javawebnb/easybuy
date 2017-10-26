@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,41 +55,57 @@
 	<div class="main">
 		<h2>修改商品</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="../ProductServlet?ps=updateProductTwo&id=${product.id}" method="post">
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>
-						<td><input type="text" class="text" name="productName" value="铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机" /></td>
+						<td><input type="text" class="text" name="name" value="${product.name }" /></td>
 					</tr>
                     <tr>
 						<td class="field">描述：</td>
-						<td><input type="text" class="text" name="productName" /></td>
+						<td><input type="text" class="text" name="description" value="${product.description }"/></td>
 					</tr>
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-							<select name="parentId">
+						<%-- <input type="text" name="cid" value="${product.cid }"> --%>
+						
+						<select name="parentId">
+								<c:forEach items="${sessionScope.listbg}" var="item">
+									<option value="${item.id}">${item.name}</option>
+									<c:forEach items="${sessionScope.listsn}" var="itemson">
+										<c:choose>
+										<c:when test="${item.id eq itemson.parentId}">
+										      <option value="${itemson.id}">├${itemson.name}</option>
+										</c:when>
+										</c:choose>
+									</c:forEach>
+								</c:forEach>
+							</select>
+						
+						
+							<!-- <select name="parentId">
 								<option value="1">电器</option>
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
 								<option value="2">衣服</option>
 								<option value="3">├ 电器</option>
 								<option value="3">└ 电器</option>
-							</select>
+							</select> -->
 						</td>
 					</tr>					
 					<tr>
 						<td class="field">商品价格(*)：</td>
-						<td><input type="text" class="text tiny" name="productPrice" /> 元</td>
+						<td><input type="text" class="text tiny" name="price" value="${product.price }" /> 元</td>
 					</tr>
 					
 					<tr>
 						<td class="field">库存(*)：</td>
-						<td><input type="text" class="text tiny" name="productName" /></td>
+						<td><input type="text" class="text tiny" name="stock" value="${product.stock }"/></td>
 					</tr>
 					<tr>
 						<td class="field">商品图片：</td>
-						<td><input type="file" class="text" name="photo" /></td>
+						<td><input type="file" class="text" name="photo" value="${product.fileName }"/></td>
 					</tr>
 					<tr>
 						<td></td>

@@ -34,7 +34,7 @@ public class Test {
 		/**
 		 * 插入数据
 		 */
-		ProductDao pdi = new ProductDaoImpl();
+		/*ProductDao pdi = new ProductDaoImpl();
 		
 		Product product = new Product();
 		product.setId(7);
@@ -46,7 +46,7 @@ public class Test {
 		product.setChildId(2);
 		product.setFileName("/images/product/2.jpg");
 		Integer nums = pdi.saveProduct(product);
-		System.out.println(nums);
+		System.out.println(nums);*/
 	
 		/**
 		 * 删除数据
@@ -55,6 +55,11 @@ public class Test {
 		
 		Integer it = pdi.delProduct(1);
 		System.out.println(it);*/
+		
+		//通过childId删除
+		ProductDao pdi = new ProductDaoImpl();
+		Integer it = pdi.delProductByChildId(12);
+		System.out.println(it);
 		
 		/**
 		 * 修改数据

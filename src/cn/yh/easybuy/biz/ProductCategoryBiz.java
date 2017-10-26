@@ -25,9 +25,11 @@ public interface ProductCategoryBiz {
 	 */
 	public ProductCategory findProductCategoryByid(Integer id);
 	/**
-	 * 查找子分类
-	 * @return
+	 * 按照父分类查询
 	 */
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId);
+
+	
 	public List<ProductCategory> findProductCategoryson();
 	/**
 	 * 查找父分类

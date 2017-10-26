@@ -34,7 +34,13 @@ public interface ProductCategoryDao {
 	 * 
 	 * @return
 	 */
+
 	public List<ProductCategory> findProductCategoryson();
+	/**
+	 * 按照父分类查询
+	 */
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId);
+
 
 	/**
 	 * 查找得到父分类

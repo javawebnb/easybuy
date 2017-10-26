@@ -13,13 +13,13 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	
 	
 
+
 	@Override
 	public int saveProductCategory(ProductCategory productcategory) {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
-
-	int i = pc.saveProductCategory(productcategory);
+	    int i = pc.saveProductCategory(productcategory);
 		session.commit();
 		if(session != null){
 			session.close();
@@ -58,8 +58,8 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	@Override
 	public ProductCategory findProductCategoryByid(Integer id) {
 		// TODO Auto-generated method stub
-		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pd=session.getMapper(ProductCategoryDao.class);
 		ProductCategory pc = pd.findProductCategoryByid(id);
 		session.commit();
@@ -89,7 +89,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
-
 		List<ProductCategory> list= pc.getAllProductCategorybig();
 		session.commit();
 		if(session != null){
@@ -118,6 +117,20 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getProductCategoryBypage(page);
+		session.commit();
+		if(session != null){
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public List<ProductCategory> getProductCategoryByParentId(Integer parentId) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		List<ProductCategory> list= pc.getProductCategoryByParentId(parentId);
+
 		session.commit();
 		if(session != null){
 			session.close();

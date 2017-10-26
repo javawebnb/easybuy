@@ -35,9 +35,18 @@ public interface ProductDao {
 	public Integer saveProduct(Product product);
 	
 	/**
-	 * 删除商品
+	 * 通过id删除商品
 	 */
 	public Integer delProduct(Integer id);
+	/**
+	 * 通过cid删除商品
+	 */
+	public Integer delProductByCid(Integer cid);
+	
+	/**
+	 * 通过childId删除
+	 */
+	public Integer delProductByChildId(Integer childId);
 	
 	/**
 	 * 修改商品属性

@@ -83,4 +83,16 @@ public class ProductBizImpl implements ProductBiz {
 		return productDao.selProductByChildId(childId);
 	}
 
+	@Override
+	public Integer delProductByCid(Integer cid) {
+		// TODO Auto-generated method stub
+		return productDao.delProductByCid(cid);
+	}
+
+	@Override
+	public Integer delProductByChildId(Integer childId) {
+		// TODO Auto-generated method stub
+		return productDao.delProductByChildId(childId);
+	}
+
 }
