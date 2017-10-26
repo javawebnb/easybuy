@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -39,7 +40,16 @@
 				<dt>用户管理</dt>
 				<dd><a href="user.jsp">用户管理</a></dd>
 			  <dt>商品信息</dt>
-				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
+			  
+			   <c:url var="url1" value="ProductCategoryServlet">
+			   <c:param name="opr" value="tosave"></c:param>
+			   </c:url> 
+				<dd><em><a href="/easybuy/${url1 }">新增</a></em>
+				
+				 <c:url var="url" value="ProductCategoryServlet">
+				<c:param name="opr" value="pagelist"></c:param>
+				</c:url> 
+				<a href="/easybuy/${url }">分类管理</a></dd>
 				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
 				<dt>订单管理</dt>
 				<dd><a href="order.jsp">订单管理</a></dd>
