@@ -94,8 +94,6 @@
 				
 			</ul>
 			<div class="pager" >
-
-
 					当前页数:[${page.pageIndex}/${page.pageTotal}]&nbsp;
 
 					<c:if test="${page.pageIndex>1 }">
@@ -111,21 +109,18 @@
 				
 				</div>
 		</div>
+		<c:if test="${empty pageObj}">
+			<jsp:forward page="NewsServlet">
+				<jsp:param value="page" name="opr"/>
+			</jsp:forward>
+		</c:if>	
 		<div class="side">			
 			<div class="spacer"></div>
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp"  target="_self">抢钱啦</a></li>
+				<c:forEach items="${pageObj.pageList}" var="news">
+				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
 		</div>
