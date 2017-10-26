@@ -14,8 +14,8 @@
  
 <body>
 
-<c:set var="isempty" value="${empty sessionScope.listbg }"/>
-<c:if test="${isempty }">
+<c:set var="isempty" value="${sessionScope.listbg == null}"/>
+<c:if test="${isempty}">
 <jsp:forward page="ProductCategoryServlet">
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
@@ -60,29 +60,19 @@
 </div>
 
 
-	<c:set var="come" value="${empty sessionScope.list }"/>
-	<c:if test="${come }">
+	<c:if test="${page == null }">
 	<jsp:forward page="ProductServlet">
 		<jsp:param value="showKind" name="ps"/>
 	</jsp:forward>
 	</c:if>
- 
+
 
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
-<%-- <<<<<<< HEAD
-				<dt>图书音像</dt>
-				<c:forEach items="${list }" var="list">
-					<dd><a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a></dd>
-				</c:forEach>
-				<dt>百货</dt>
-				<c:forEach items="${lists }" var="lists">
-					<dd><a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a></dd>
-				</c:forEach>
-======= --%>
+
 			<c:forEach items="${sessionScope.listbg }" var="item">
 				<dt>${item.name }</dt>
 				<c:forEach items="${sessionScope.listsn }" var="itemson">
@@ -172,6 +162,5 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>
-<c:remove var="listbg"/>
-<c:remove var="listsn"/>

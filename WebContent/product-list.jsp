@@ -65,18 +65,16 @@
 			<div class="box">
 				<h2>商品分类</h2>
 				<dl>
-					<dt>图书音像</dt>
-					<c:forEach items="${list }" var="list">
-						<dd>
-							<a href="ProductServlet?cid=${list.id }&ps=showProduct">${list.name }</a>
-						</dd>
-					</c:forEach>
-					<dt>百货</dt>
-					<c:forEach items="${lists }" var="lists">
-						<dd>
-							<a href="ProductServlet?cid=${lists.id }&ps=showProduct">${lists.name }</a>
-						</dd>
-					</c:forEach>
+				<c:forEach items="${sessionScope.listbg }" var="item">
+				<dt>${item.name }</dt>
+				<c:forEach items="${sessionScope.listsn }" var="itemson">
+				<c:choose>
+				<c:when test="${item.id eq itemson.parentId}">
+				<dd><a href="ProductServlet?cid=${itemson.id}&ps=showProduct">${itemson.name}</a></dd>
+				</c:when>
+				</c:choose>
+				</c:forEach>
+				</c:forEach>
 				</dl>
 			</div>
 			<div class="spacer"></div>
@@ -146,4 +144,5 @@
 	<div id="footer">Copyright &copy; 2010 云和学院 All Rights Reserved.
 		京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>
