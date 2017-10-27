@@ -1,11 +1,11 @@
 package cn.yh.easybuy.entity;
 
 public class CartItem {
-	private int id;
-	private String goodsName;
-	private double price;
-	private int quantity;
-	private int userId;
+	private int id;//商品id
+	private String goodsName;//商品名称
+	private double price;//价格
+	private int quantity;//数量
+	private int userId;//用户id
 	public int getId() {
 		return id;
 	}

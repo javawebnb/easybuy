@@ -71,7 +71,7 @@ public class CommentServlet extends HttpServlet {
 			comment.setCreateTime(new Date(new java.util.Date().getTime()));
 			int n = cbiz.saveComment(comment);
 			if(n > 0){
-				out.print("<script>alert('添加成功！');location.href='guestbook.jsp'</script>");
+				out.print("<script>alert('留言成功！');location.href='guestbook.jsp'</script>");
 			}
 		}else if("replyPage".equals(opr)){//显示回复页面
 			Integer id = Integer.valueOf(request.getParameter("id"));
