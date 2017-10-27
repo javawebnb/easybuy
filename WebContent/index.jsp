@@ -20,19 +20,13 @@
 </jsp:forward> 
 </c:if>
 
-<c:if test="${empty pageObj}">
-	<jsp:forward page="NewsServlet">
-		<jsp:param value="page" name="opr"/>
-	</jsp:forward>
-</c:if>	
-
 <c:if test="${page == null }">
 <jsp:forward page="ProductServlet">
 	<jsp:param value="showKind" name="ps"/>
 </jsp:forward>
 </c:if>
 
-<c:if test="${empty newsPage}">
+<c:if test="${newsPage == null}">
 			<jsp:forward page="NewsServlet">
 				<jsp:param value="page" name="opr"/>
 			</jsp:forward>
@@ -75,7 +69,7 @@
 			
 				<c:forEach items="${plist}" var="p">
 				<dl class="clearfix">
-				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img src="${p.fileName }" /></a></dt>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img src="/easybuy/images/${p.fileName }" /></a></dt>
 				<dt><a href="ProductServlet?ps=detail&id=${p.id}"  target="_self">${p.name}</a></dt>
 				<dt>&nbsp;</dt>
 				<dd>&nbsp;</dd>
@@ -100,7 +94,7 @@
 				<c:forEach items="${page.pageList }" var="product">
 				<li>
 					<dl>
-						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="images/${product.fileName }" /></a></dt>
+						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="/easybuy/images/${product.fileName }" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
 						<dd class="price">${product.price}</dd>
 					</dl>
@@ -136,5 +130,4 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-<c:remove var="page"/>
 </html>

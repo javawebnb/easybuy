@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -51,6 +52,11 @@
 					<th>操作</th>
 				</tr>
 			<c:set var="tag" value="cart" scope="session"></c:set>
+			<c:if test="${fn:length(cart.listItems)==0}">
+			    <tr>
+				    <td colspan="4" style="text-align:center">购物车为空!</td>
+			    </tr>
+			</c:if>
 			<c:forEach items="${cart.listItems}" var="cartItem">
 				<tr id="product_id_0">
 					<td class="thumb"><img src="images/product/0.jpg" /><a href="product-view.jsp">${cartItem.goodsName}</a></td>

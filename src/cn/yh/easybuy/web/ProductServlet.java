@@ -65,7 +65,7 @@ public class ProductServlet extends HttpServlet {
 			if (index != null) {
 				pageIndex = Integer.valueOf(index);
 			}
-			Integer pageSize = 8;
+			Integer pageSize = 16;
 			Page<Product> page = pb.selAllProduct(pageIndex, pageSize);
 			session.setAttribute("page", page);
 			response.sendRedirect("index.jsp");
