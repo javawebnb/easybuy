@@ -87,7 +87,7 @@ public class NewsServlet extends HttpServlet {
 				pageIndex = Integer.valueOf(index);
 			}
 			Page<News> pageObj = nbi.findAllNews(pageIndex, pageSize);
-			session.setAttribute("pageObj", pageObj);
+			session.setAttribute("newsPage", pageObj);
 			if ("manager".equals(role)){
 				response.sendRedirect(request.getContextPath()+"/manage/news.jsp");
 			}else{

@@ -39,7 +39,7 @@ $(".manageDel").click(function(){
 <div id="position" class="wrap">
 	您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 </div>
-<c:if test="${empty pageObj}">
+<c:if test="${empty newsPage}">
 	<jsp:forward page="../NewsServlet">
 	<jsp:param value="page" name="opr"/>
 	<jsp:param value="manager" name="role"/>
@@ -56,7 +56,7 @@ $(".manageDel").click(function(){
 					<th>新闻标题</th>
 					<th>操作</th>
 				</tr>
-				<c:forEach    var="news" items="${pageObj.pageList}">
+				<c:forEach    var="news" items="${newsPage.pageList}">
 				<tr>
 					<td class="first w4 c">${news.id}</td>
 					<td>${news.title}</td>
@@ -69,22 +69,22 @@ $(".manageDel").click(function(){
 	<div class="clear"></div>
     <div class="pager">
 				<ul class="clearfix">
-				<c:if test="${pageObj.pageIndex >1}">
+				<c:if test="${newsPage.pageIndex >1}">
 					<li><a href="../NewsServlet?opr=page&role=manager&i=1">首页</a></li>
-					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageIndex - 1 }">上一页</a></li>
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${newsPage.pageIndex - 1 }">上一页</a></li>
 				</c:if>
 					
-					<li class="current">${pageObj.pageIndex }</li>
+					<li class="current">${newsPage.pageIndex }</li>
 					
-				<c:if test="${pageObj.pageIndex < pageObj.pageTotal}">
-					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageIndex + 1 }">下一页</a></li>
-					<li><a href="../NewsServlet?opr=page&role=manager&i=${pageObj.pageTotal}">尾页</a></li>
+				<c:if test="${newsPage.pageIndex < pageObj.pageTotal}">
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${newsPage.pageIndex + 1 }">下一页</a></li>
+					<li><a href="../NewsServlet?opr=page&role=manager&i=${newsPage.pageTotal}">尾页</a></li>
 				</c:if>	
                     
 				</ul>
   </div>
 </div>
-<c:remove var="pageObj"/>
+<c:remove var="newsPage"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

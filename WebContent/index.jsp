@@ -26,7 +26,7 @@
 </jsp:forward>
 </c:if>
 
-<c:if test="${empty pageObj}">
+<c:if test="${empty newsPage}">
 			<jsp:forward page="NewsServlet">
 				<jsp:param value="page" name="opr"/>
 			</jsp:forward>
@@ -66,12 +66,17 @@
 		<div class="spacer"></div>
 		<div class="last-view">
 			<h2>最近浏览</h2>
-			<dl class="clearfix">
-				<dt><img src="images/product/10_small.jpg" /></dt>
-				<dd><a href="product-view.jsp"  target="_self">利仁2018M福满堂电饼铛 好用实惠</a><a href="product-view.jsp"></a></dd>
+			
+				<c:forEach items="${plist}" var="p">
+				<dl class="clearfix">
+				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img src="${p.fileName }" /></a></dt>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id}"  target="_self">${p.name}</a></dt>
 				<dt>&nbsp;</dt>
 				<dd>&nbsp;</dd>
-		  </dl>
+				</dl>
+				</c:forEach>	
+				
+		  
 	  </div>
 	</div>
 	<div class="main">
@@ -114,7 +119,7 @@
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-				<c:forEach items="${pageObj.pageList}" var="news">
+				<c:forEach items="${newsPage.pageList}" var="news">
 				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
