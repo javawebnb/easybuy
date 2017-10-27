@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,9 +26,9 @@
 </c:if>
 
 <c:if test="${newsPage == null}">
-			<jsp:forward page="NewsServlet">
-				<jsp:param value="page" name="opr"/>
-			</jsp:forward>
+	<jsp:forward page="NewsServlet">
+		<jsp:param value="page" name="opr"/>
+	</jsp:forward>
 </c:if>	
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
@@ -62,12 +58,8 @@
 </div>
 
 
-<<<<<<< HEAD
-<div id="main" class="wrap">
-=======
 
 <div id="main" class="wrap">
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="lefter">
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
@@ -134,6 +126,10 @@
 		<div class="spacer clear"></div>
     </div>
 </div>
+<c:if test="${listbg != null && page != null && newsPage != null }">
+	<c:remove var="page"/>
+	<c:remove var="newsPage"/>
+</c:if>
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

@@ -89,7 +89,7 @@
 				</c:if>
 					
 					
-					<li class="current">${commentPage.pageIndex}</li>
+					<li class="current">当前页数：[${commentPage.pageIndex}/${commentPage.pageTotal }]</li>
                     
                     
                  <c:if test="${commentPage.pageIndex < commentPage.pageTotal }">
@@ -118,15 +118,8 @@
 				</form>
 			</div>
 		</div>
-<<<<<<< HEAD
 	</div>
-	
 	<c:remove var="commentPage"/>
-=======
-	</div>
-	<c:remove var="pageObj"/>
-	<c:remove var="commentPage"/>
->>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

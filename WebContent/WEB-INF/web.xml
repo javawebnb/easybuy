@@ -51,7 +51,7 @@
     <display-name>NewsServlet</display-name>
     <servlet-name>NewsServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.NewsServlet</servlet-class>
-  </servlet>  
+  </servlet>
   <servlet-mapping>
     <servlet-name>NewsServlet</servlet-name>
     <url-pattern>/NewsServlet</url-pattern>
@@ -83,10 +83,8 @@
   <servlet-mapping>
     <servlet-name>AddressServlet</servlet-name>
     <url-pattern>/AddressServlet</url-pattern>
-    </servlet-mapping>
-    
-    
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <display-name>ProductCategoryServlet</display-name>
     <servlet-name>ProductCategoryServlet</servlet-name>
     <servlet-class>cn.yh.easybuy.web.ProductCategoryServlet</servlet-class>
@@ -95,4 +93,13 @@
     <servlet-name>ProductCategoryServlet</servlet-name>
     <url-pattern>/ProductCategoryServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>PageFilter</display-name>
+    <filter-name>PageFilter</filter-name>
+    <filter-class>cn.yh.easybuy.filter.PageFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PageFilter</filter-name>
+    <url-pattern>/address.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

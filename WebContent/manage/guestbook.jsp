@@ -82,7 +82,7 @@
 						<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex - 1 }">上一页</a></li>
 					</c:if>
 					
-					<li class="current">${commentPage.pageIndex }</li>
+					<li class="current">当前页数：[${commentPage.pageIndex}/${commentPage.pageTotal }]</li>
                     
                     <c:if test="${commentPage.pageIndex < commentPage.pageTotal }">
                     	<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex + 1 }">下一页</a></li>
