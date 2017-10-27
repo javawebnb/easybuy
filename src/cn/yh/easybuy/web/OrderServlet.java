@@ -48,12 +48,15 @@ public class OrderServlet extends HttpServlet {
 		
 		//获取input输入对象
 		String opr = request.getParameter("opr");
+		String id = request.getParameter("entityId");
+		String username = request.getParameter("userName");
 		
 //		OrderDetailBiz biz = new OrderDetailBizImpl();	
 		OrderBiz biz = new OrderBizImpl();
 		
 		//对获取到的订单号和用户名进行判断获取数据
 		if("showAll".equals(opr)){
+
 				List<Order> list = biz.findOrder();
 				session.setAttribute("order", list);
 				response.sendRedirect("/easybuy/manage/order.jsp");

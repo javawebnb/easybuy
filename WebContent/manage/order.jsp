@@ -56,8 +56,8 @@
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
             
-            
 				<table class="list">
+
 				<c:forEach var="order" items="${sessionScope.order}">
 					<tr>
 						<th colspan="2">单号：${order.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${order.createTime}</th>					
@@ -85,6 +85,7 @@
 					
 			</c:forEach>			
 			</table>
+			
 			<div class="pager">
 				<ul class="clearfix">
 					<li><a >首页</a></li>
