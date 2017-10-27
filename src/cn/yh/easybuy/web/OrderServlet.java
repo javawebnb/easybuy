@@ -72,6 +72,9 @@ public class OrderServlet extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			}
 		}
+		if("saveOrder".equals(opr)){
+			saveOrder(request,response,session);
+		}
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
