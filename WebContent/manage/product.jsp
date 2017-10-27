@@ -50,9 +50,7 @@
 					<td class="thumb"><img src="/easybuy/${product.fileName}" /><a href="../product-view.jsp" target="_self">${product.name}</a></td>
 					<td class="w1 c"><a href="../ProductServlet?ps=updateProduct&id=${product.id }&cid=${product.cid}">修改</a> <a class="manageDel" href="../ProductServlet?ps=delProduct&id=${product.id }">删除</a></td>
 				</tr>
-				
 			</c:forEach>
-				
 			</table>
 		</div>
 	</div>

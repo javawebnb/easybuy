@@ -89,7 +89,7 @@
 				<c:forEach items="${page.pageList }" var="product">
 				<li>
 					<dl>
-						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
+						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="images/${product.fileName }" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
 						<dd class="price">${product.price}</dd>
 					</dl>
