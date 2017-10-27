@@ -113,8 +113,9 @@ public class OrderServlet extends HttpServlet {
 			order.setUserName(userName);
 			for(CartItem c : listItems){
 				OrderDetail od = new OrderDetail();
+				Integer pid = pd.findIdByPname(c.getGoodsName());
 				od.setId(orderId);
-				od.setP_id(pd.findIdByPname(c.getGoodsName()));
+				od.setP_id(pid);
 				od.setQuantity(c.getQuantity());
 				od.setCost(c.getPrice()*c.getQuantity());
 				orderDetails.add(od);

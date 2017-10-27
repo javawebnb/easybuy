@@ -59,6 +59,7 @@ public class UserServlet extends HttpServlet {
 					return;
 				}else{
 					session.setAttribute("error","用户名密码不符");
+					response.sendRedirect("/easybuy/login.jsp");
 					return;
 				}
 			}else{

@@ -141,12 +141,8 @@
 			</div>
 		</div>
 	</div>
-	
 	<c:remove var="pageObj"/>
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'hzh' of https://github.com/javawebnb/easybuy.git
+	<c:remove var="commentPage"/>
 	<div class="clear"></div>
 </div>
 <div id="footer">
