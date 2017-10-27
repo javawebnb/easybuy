@@ -102,7 +102,9 @@ public class ProductCategoryServlet extends HttpServlet {
 			i = pci.saveProductCategory(pcy);
 		}
 		if (i > 0) {
-			out.print("<script>alert('Ìí¼Ó³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+			response.sendRedirect("manage/manage-result.jsp");
+		}else{
+			out.print("<script>alert('Ìí¼ÓÊ§°Ü£¡');location.href='/easybuy/manage/productClass-add.jsp'</script>");
 		}
 	}
 
@@ -141,8 +143,10 @@ public class ProductCategoryServlet extends HttpServlet {
 			i = pci.delProductCategory(Integer.valueOf(epcid));
 			j = pdi.delProductByCid(Integer.valueOf(epcid));
 		}
-		if (i > 0&j>0) {
-			out.print("<script>alert('É¾³ý³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+		if (i > 0) {
+			response.sendRedirect("manage/manage-result.jsp");
+		}else{
+			out.print("<script>alert('É¾³ýÊ§°Ü£¡');location.href='/easybuy/manage/productClass-modify.jsp'</script>");
 		}
 	}
 
@@ -178,7 +182,9 @@ public class ProductCategoryServlet extends HttpServlet {
 			i = pci.updateProductCategory(pcy);
 		}
 		if (i > 0) {
-			out.print("<script>alert('ÐÞ¸Ä³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+			response.sendRedirect("manage/manage-result.jsp");
+			}else{
+			out.print("<script>alert('ÐÞ¸ÄÊ§°Ü£¡');location.href='/easybuy/manage/productClass-modify.jsp'</script>");
 		}
 	}
 

@@ -44,10 +44,14 @@
 						<em><a href="user-add.jsp">新增</a></em><a href="user.jsp">用户管理</a>
 					</dd>
 					<dt>商品信息</dt>
-					<dd>
-						<em><a href="productClass-add.jsp">新增</a></em><a
-							href="productClass.jsp">分类管理</a>
-					</dd>
+					 <c:url var="url1" value="/ProductCategoryServlet">
+			  	   <c:param name="opr" value="tosave"></c:param>
+			   </c:url> 
+				<dd><em><a href="${url1 }">新增</a></em>
+				 <c:url var="url" value="/ProductCategoryServlet">
+				<c:param name="opr" value="pagelist"></c:param>
+				</c:url> 
+				<a href="${url }">分类管理</a></dd>
 					<dd>
 						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
 					</dd>

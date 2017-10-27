@@ -45,10 +45,14 @@
 						<a href="user.jsp">用户管理</a>
 					</dd>
 					<dt>商品信息</dt>
-					<dd>
-						<em><a href="productClass-add.jsp">新增</a></em><a
-							href="productClass.jsp">分类管理</a>
-					</dd>
+					 <c:url var="url1" value="/ProductCategoryServlet">
+			  	   <c:param name="opr" value="tosave"></c:param>
+			   </c:url> 
+				<dd><em><a href="${url1 }">新增</a></em>
+				 <c:url var="url" value="/ProductCategoryServlet">
+				<c:param name="opr" value="pagelist"></c:param>
+				</c:url> 
+				<a href="${url }">分类管理</a></dd>
 					<dd>
 						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
 					</dd>
@@ -98,7 +102,7 @@
 								<c:param name="opr" value="del"></c:param>
 								<c:param name="epcid" value="${item.id }"></c:param>
 								<c:param name="parentId" value="${item.parentId }"></c:param>
-							</c:url> --%> <a class="manageDel" href="javascript:void(0);"
+							</c:url> --%> <a href="javascript:void(0);"
 								onclick="del(${item.id },${item.parentId});">删除</a></td>
 						</tr>
 					</c:forEach>
