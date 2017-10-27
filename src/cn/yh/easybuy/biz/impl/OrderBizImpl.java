@@ -6,6 +6,7 @@ import cn.yh.easybuy.biz.OrderBiz;
 import cn.yh.easybuy.dao.OrderDao;
 import cn.yh.easybuy.dao.impl.OrderDaoImpl;
 import cn.yh.easybuy.entity.Order;
+import cn.yh.easybuy.entity.Page;
 
 public class OrderBizImpl implements OrderBiz{
 	OrderDao od=new OrderDaoImpl();
@@ -45,5 +46,25 @@ public class OrderBizImpl implements OrderBiz{
 		// TODO Auto-generated method stub
 		return od.findOrder();
 	}
+
+	@Override
+	public Page<Order> findAllOrders(Integer pageIndex, Integer pageSize) {
+		// TODO Auto-generated method stub
+		Page<Order> page = new Page<Order>();
+		Integer count = od.getCount();
+		
+		page.setPageIndex(pageIndex);
+		page.setPageSize(pageSize);
+		page.setCount(count);
+		
+		List<Order> list = od.findAllOrders(page);
+		page.setPageList(list);
+		
+		return page;
+	}
+	
+	
+	
+	
 
 }
