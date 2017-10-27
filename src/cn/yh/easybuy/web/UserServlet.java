@@ -114,8 +114,8 @@ public class UserServlet extends HttpServlet {
 			if(index!=null){
 				pageIndex = Integer.valueOf(index);
 			}
-			Page<User> pageObj = ub.findAllUser(pageIndex,pageSize);
-			session.setAttribute("pageObj",pageObj);
+			Page<User> pageUser = ub.findAllUser(pageIndex,pageSize);
+			session.setAttribute("pageUser",pageUser);
 			response.sendRedirect("/easybuy/manage/user.jsp");
 		}
 		//É¾³ýÓÃ»§

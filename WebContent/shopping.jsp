@@ -50,6 +50,7 @@
 					<th>购买数量</th>
 					<th>操作</th>
 				</tr>
+			<c:set var="tag" value="cart" scope="session"></c:set>
 			<c:forEach items="${cart.listItems}" var="cartItem">
 				<tr id="product_id_0">
 					<td class="thumb"><img src="images/product/0.jpg" /><a href="product-view.jsp">${cartItem.goodsName}</a></td>

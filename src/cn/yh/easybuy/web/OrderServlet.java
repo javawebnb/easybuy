@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import cn.yh.easybuy.biz.OrderBiz;
 import cn.yh.easybuy.biz.impl.OrderBizImpl;
+import cn.yh.easybuy.dao.ProductDao;
 import cn.yh.easybuy.dao.impl.ProductDaoImpl;
 import cn.yh.easybuy.entity.Cart;
 import cn.yh.easybuy.entity.CartItem;
@@ -74,39 +75,60 @@ public class OrderServlet extends HttpServlet {
      * @throws IOException 
      */
 	private void saveOrder(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException{
+		String tag = (String)session.getAttribute("tag");
+		ProductDao pd = new ProductDaoImpl();
 		//获取订单信息 订单号 用户名 地址 时间 金额 状态
 		Cart cart = (Cart)session.getAttribute("cart");
 		Order order = new Order();
-		String address = request.getParameter("address");//地址
 		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());//时间
 		Integer orderId = Integer.valueOf((int)date.getTime());//订单号
 		Double totalPrice = cart.getTotalPrice();//总价
 		Integer status = 1;//订单状态
 		String userName = ((User)session.getAttribute("login")).getUserName();//用户名
-		List<OrderDetail> orderDetails = new LinkedList<OrderDetail>();
-		//获取订单详情 订单号 商品id 数量 金额
-		
-		List<CartItem> listItems = cart.getListItems();
-		//封装数据
-		order.setCost(totalPrice);
-		order.setId(orderId);
-		order.setCreateTime(date);
-		order.setStatus(status);
-		order.setUserAddress(address);
-		order.setUserName(userName);
-		for(CartItem c : listItems){
+		String address = request.getParameter("address");//地址
+		OrderBiz ob = new OrderBizImpl();
+		if("cart".equals(tag)){
+			List<OrderDetail> orderDetails = new LinkedList<OrderDetail>();
+			//获取订单详情 订单号 商品id 数量 金额
+			List<CartItem> listItems = cart.getListItems();
+			//封装数据
+			order.setCost(totalPrice);
+			order.setId(orderId);
+			order.setCreateTime(date);
+			order.setStatus(status);
+			order.setUserAddress(address);
+			order.setUserName(userName);
+			for(CartItem c : listItems){
+				OrderDetail od = new OrderDetail();
+				od.setId(orderId);
+				od.setP_id(pd.findIdByPname(c.getGoodsName()));
+				od.setQuantity(c.getQuantity());
+				od.setCost(c.getPrice()*c.getQuantity());
+				orderDetails.add(od);
+			}
+			order.setListDetail(orderDetails);
+		}
+		if("single".equals(tag)){
+			Integer pid = (Integer)session.getAttribute("pid");
+			Product p = pd.selProductById(pid);
+			order.setCost(p.getPrice());
+			order.setId(orderId);
+			order.setCreateTime(date);
+			order.setStatus(status);
+			order.setUserAddress(address);
+			order.setUserName(userName);
 			OrderDetail od = new OrderDetail();
 			od.setId(orderId);
-			od.setP_id(new ProductDaoImpl().findIdByPname(c.getGoodsName()));
-			od.setQuantity(c.getQuantity());
-			od.setCost(c.getPrice()*c.getQuantity());
-			orderDetails.add(od);
+			od.setP_id(p.getId());
+			od.setQuantity(1);
+			od.setCost(p.getPrice());
+			order.getListDetail().add(od);
 		}
-		order.setListDetail(orderDetails);
-		OrderBiz ob = new OrderBizImpl();
 		int res = ob.savenewOrders(order);
 		if(res>0){
-			cart.getListItems().clear();
+			if("cart".equals(tag)){
+				cart.getListItems().clear();
+			}
 			response.sendRedirect("/easybuy/shopping-result.jsp");
 		}
 		

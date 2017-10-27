@@ -84,7 +84,7 @@ public class ProductServlet extends HttpServlet {
 			product.setName(productName);
 			product.setDescription(productDetail);
 			product.setStock(Integer.valueOf(productNumber));;
-			product.setPrice(Float.valueOf(productPrice));
+			product.setPrice(Double.valueOf(productPrice));
 			product.setCid(Integer.valueOf(cid));
 			product.setFileName(photo);
 			Integer num = pb.saveProduct(product);
@@ -124,7 +124,7 @@ public class ProductServlet extends HttpServlet {
 			product.setName(name);
 			product.setDescription(description);
 			product.setCid(Integer.valueOf(cid));
-			product.setPrice(Float.valueOf(price));
+			product.setPrice(Double.valueOf(price));
 			product.setStock(Integer.valueOf(stock));
 			product.setFileName(fileName);
 			

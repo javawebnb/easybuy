@@ -51,7 +51,7 @@
 <div id="news" class="right-main">
 		<h1>&nbsp;</h1>
 		<div class="content">
-            <form action="/easybuy/OrderServlet?opr=saveOrder" method="post">
+            <form action="/easybuy/OrderServlet?opr=saveOrder&tag=${param.tag}&pid=${param.pid}" method="post">
                 收货地址:<input name="addr" id="addr" type="button"  value="添加新地址" />
                 <span id="span"></span> <br />
                 <c:forEach items="${addrList}" var="address" varStatus="varS">
