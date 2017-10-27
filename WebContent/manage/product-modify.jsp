@@ -55,7 +55,7 @@
 	<div class="main">
 		<h2>修改商品</h2>
 		<div class="manage">
-			<form action="../ProductServlet?ps=updateProductTwo&id=${product.id}" method="post">
+			<form action="../ProductServlet?ps=updateProductTwo&id=${product.id}" method="post" enctype="multipart/form-data">
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>
@@ -68,8 +68,6 @@
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-						<%-- <input type="text" name="cid" value="${product.cid }"> --%>
-						
 						<select name="parentId">
 								<c:forEach items="${sessionScope.listbg}" var="item">
 									<option value="${item.id}">${item.name}</option>
@@ -82,16 +80,6 @@
 									</c:forEach>
 								</c:forEach>
 							</select>
-						
-						
-							<!-- <select name="parentId">
-								<option value="1">电器</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
-								<option value="2">衣服</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
-							</select> -->
 						</td>
 					</tr>					
 					<tr>

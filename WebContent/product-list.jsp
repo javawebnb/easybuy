@@ -107,7 +107,7 @@
 							<dl>
 								<dt>
 									<a href="ProductServlet?ps=detail&id=${listone.id }"
-										target="_self"><img src="${listone.fileName }" /></a>
+										target="_self"><img src="images/${listone.fileName }" /></a>
 								</dt>
 								<dd class="title">
 									<a href="ProductServlet?ps=detail&id=${listone.id }"
