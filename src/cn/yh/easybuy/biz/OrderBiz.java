@@ -3,7 +3,7 @@ package cn.yh.easybuy.biz;
 import java.util.List;
 
 import cn.yh.easybuy.entity.Order;
-import cn.yh.easybuy.entity.OrderDetail;
+import cn.yh.easybuy.entity.Page;
 
 public interface OrderBiz {
 		//查找所有订单
@@ -23,4 +23,7 @@ public interface OrderBiz {
 	 
 	    //清除商品信息 
 		Integer delOrders(Integer id);
+		
+		//分页查询订单信息
+		Page<Order> findAllOrders(Integer pageIndex,Integer pageSize);
 }

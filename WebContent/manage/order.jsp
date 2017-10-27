@@ -44,9 +44,10 @@
 			</div>
 			<div class="spacer"></div>
 			
-			<c:if test="${order== null}">
+			<c:if test="${OrderPage	== null}">
 				<jsp:forward page="../OrderServlet">
 					<jsp:param value="showAll" name="opr"/>
+					<jsp:param value="manager" name="role"/>
 				</jsp:forward>
 			</c:if>
 			
@@ -58,7 +59,7 @@
             
 				<table class="list">
 
-				<c:forEach var="order" items="${sessionScope.order}">
+				<c:forEach var="order" items="${sessionScope.OrderPage.pageList}">
 					<tr>
 						<th colspan="2">单号：${order.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${order.createTime}</th>					
 						<th class="hiddenSta">${order.status}</th>
@@ -85,22 +86,27 @@
 					
 			</c:forEach>			
 			</table>
-			
-			<div class="pager">
-				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 	<div class="clear"></div>
+	<div class="pager">
+			<ul class="clearfix">
+				<c:if test="${OrderPage.pageIndex >1}"> 
+					<li><a href="../OrderServlet?opr=showAll&role=manager&i=1">首页</a></li>
+					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageIndex - 1 }">上一页</a></li>
+				</c:if>
+					
+					<li class="current">${OrderPage.pageIndex }</li>
+					
+				<c:if test="${OrderPage.pageIndex < OrderPage.pageTotal}">
+					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageIndex + 1 }">下一页</a></li>
+					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageTotal}">尾页</a></li>
+				</c:if>	
+                    
+			</ul>
+  		</div>
 </div>
+<c:remove var="OrderPage"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
