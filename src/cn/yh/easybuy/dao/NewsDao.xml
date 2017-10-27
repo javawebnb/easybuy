@@ -14,13 +14,17 @@
 	select * from easybuy_news  order by en_create_time desc limit ${(pageIndex-1)*pageSize},#{pageSize}
 	</select>
 	<!-- 查询新闻的总记录数 -->
+	
 	<select id="getCount" resultType="int">
 		select count(1) from easybuy_news
 	</select>
+	
 	<!-- 通过id获得对应新闻 -->
+	
 	<select id="findNewsById" resultMap="newsMap">
 		select * from easybuy_news where en_id=#{id} order by en_create_time desc
 	</select>
+	
 	<!-- 添加新闻 -->
 	<insert id="saveNews" parameterType="News">
 		insert into easybuy_news(en_title,en_content,en_create_time) values(#{title},#{content},#{createTime})

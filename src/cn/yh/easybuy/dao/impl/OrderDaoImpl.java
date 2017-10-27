@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import cn.yh.easybuy.dao.OrderDao;
 import cn.yh.easybuy.entity.Order;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class OrderDaoImpl implements OrderDao{
@@ -84,5 +85,38 @@ public class OrderDaoImpl implements OrderDao{
 		for(Order o : list){
 			System.out.println(o);
 		}
+	}
+
+	@Override
+	public List<Order> findAllOrders(Page<Order> page) {
+		// TODO Auto-generated method stub
+		
+		List<Order> list = null;
+		
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		OrderDao dao = session.getMapper(OrderDao.class);
+		
+		list = dao.findAllOrders(page);
+		
+		session.commit();
+		session.close();
+		
+		return list;
+	}
+
+	@Override
+	public Integer getCount() {
+		// TODO Auto-generated method stub
+		Integer count = 0;
+		
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		OrderDao dao = session.getMapper(OrderDao.class);
+		
+		count = dao.getCount();
+		
+		session.commit();
+		session.close();
+		
+		return count;
 	}
 }
