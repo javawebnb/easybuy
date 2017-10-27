@@ -44,8 +44,10 @@
 	<div id="product" class="main">
 		<h1>${product.name}</h1>
 		<div class="infos">
+			<c:set var="tag" value="single" scope="session"></c:set>
+			<c:set var="pid" value="${product.id}" scope="session"></c:set>
 			<div class="pid" style="display:none">${product.id}</div>
-			<div class="thumb"><img src="images/product/10.jpg" width="110" height="106" /></div>
+			<div class="thumb"><img src="images/${product.fileName }" width="110" height="106" /></div>
 			<div class="buy">
 				商城价：<span class="price">${product.price}</span><br />
 				库　存：${product.stock}

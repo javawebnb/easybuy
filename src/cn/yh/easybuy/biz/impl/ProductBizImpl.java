@@ -94,5 +94,5 @@ public class ProductBizImpl implements ProductBiz {
 		// TODO Auto-generated method stub
 		return productDao.delProductByChildId(childId);
 	}
-
+	
 }

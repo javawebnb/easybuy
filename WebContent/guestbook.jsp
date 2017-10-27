@@ -118,9 +118,15 @@
 				</form>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 	
 	<c:remove var="commentPage"/>
+=======
+	</div>
+	<c:remove var="pageObj"/>
+	<c:remove var="commentPage"/>
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

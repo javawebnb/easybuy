@@ -7,6 +7,8 @@ import cn.yh.easybuy.dao.OrderDao;
 import cn.yh.easybuy.dao.impl.OrderDaoImpl;
 import cn.yh.easybuy.entity.Order;
 
+import cn.yh.easybuy.entity.Page;
+
 public class OrderBizImpl implements OrderBiz{
 	OrderDao od=new OrderDaoImpl();
 	@Override
@@ -24,6 +26,8 @@ public class OrderBizImpl implements OrderBiz{
 
 	@Override
 	public Integer savenewOrders(Order order) {
+		//插入订单以及订单详情
+		//订单详情包括订单id 商品id 数量 金额 在此处理
 		// TODO Auto-generated method stub
 		return od.savenewOrders(order);
 	}
@@ -45,5 +49,25 @@ public class OrderBizImpl implements OrderBiz{
 		// TODO Auto-generated method stub
 		return od.findOrder();
 	}
+
+	@Override
+	public Page<Order> findAllOrders(Integer pageIndex, Integer pageSize) {
+		// TODO Auto-generated method stub
+		Page<Order> page = new Page<Order>();
+		Integer count = od.getCount();
+		
+		page.setPageIndex(pageIndex);
+		page.setPageSize(pageSize);
+		page.setCount(count);
+		
+		List<Order> list = od.findAllOrders(page);
+		page.setPageList(list);
+		
+		return page;
+	}
+	
+	
+	
+	
 
 }

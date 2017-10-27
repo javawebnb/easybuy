@@ -14,6 +14,15 @@
 		<collection property="listDetail" javaType="list" ofType="OrderDetail" column="eo_id" select="cn.yh.easybuy.dao.OrderDetailDao.findOrderDetail">
 		</collection>
 	</resultMap>
+	
+	<select id="findAllOrders" resultMap="ordermap" parameterType="Page">
+		select * from easybuy_Order limit ${(pageIndex-1)*pageSize},#{pageSize}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(1) from easybuy_order
+	</select>
+	
 	<select id="findOrdersByuserId" resultMap="ordermap">
 		select * from easybuy_order where eu_id = #{id}
 	</select>
@@ -25,7 +34,7 @@
 	</select>
 	
 	<insert id="savenewOrders" parameterType="Order">
-		insert into easybuy_order(userName,userAddress,createTime,cost,status) values(#{userName},#{userAddress},#{createTime},#{cost},#{status})
+		insert into easybuy_order values(#{id},#{userName},#{userAddress},#{createTime},#{cost},#{status})
 	</insert>
 	
 	<update id="updateOrders" parameterType="Order">

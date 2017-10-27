@@ -38,7 +38,7 @@
 	<div class="main">
 		<h2>添加商品</h2>
 		<div class="manage">
-			<form id="productAdd" action="../ProductServlet?ps=addProduct" method="post">
+			<form id="productAdd" action="../ProductServlet?ps=addProduct" method="post" enctype="multipart/form-data" >
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>
@@ -51,15 +51,6 @@
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-						 <!-- <input type="text" name="cid"> -->
-							<!-- <select name="parentId">
-								<option value="1">电器</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
-								<option value="2">衣服</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
-							</select> -->
 							<select name="parentId">
 								<c:forEach items="${sessionScope.listbg}" var="item">
 									<option value="${item.id}">${item.name}</option>

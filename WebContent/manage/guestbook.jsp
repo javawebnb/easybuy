@@ -38,6 +38,7 @@
 		<jsp:include page="left.jsp"></jsp:include>
 	</div>
 	<c:if test="${empty commentPage}">
+
 		<jsp:forward page="../CommentServlet">
 			<jsp:param value="page" name="opr"/>
 			<jsp:param value="manage" name="role"/>
@@ -107,5 +108,4 @@ function delComment(id){
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-<c:remove var="pageObj"/>
 </html>

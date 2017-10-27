@@ -49,6 +49,7 @@ public class CommentServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if("page".equals(opr)){//前段留言页面(分页查询)
 			String role = request.getParameter("role");
+
 			int pageIndex = 1;
 			int pageSize = 7;//页面大小
 			String index = request.getParameter("i");

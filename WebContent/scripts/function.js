@@ -330,6 +330,13 @@ $(function(){
             return false;
         }
     })
+    //用户删除
+    $(".userDel").click(function(){
+    	var id = $("#userId").html();
+        if(confirm("确定要删除吗？")) {
+            location.href='/easybuy/UserServlet?action=delUser&userId='+id;
+        }
+    })
     function changeNum(obj){
     	var $thumb = $($(obj).parent().parent().children("td")[0]);
     	var $number = $($(obj).parent().parent().children("td")[2]);
@@ -425,13 +432,9 @@ $(function(){
 //    $("#shopping").find("#total").text("总计：￥"+totalPrice());
     //注销
     $("#logout").click(function(){
-        if(confirm("购物车中尚有未结算的商品，是否结账？")) {
-            location.href="shopping.jsp";
-        }else{
         	if(confirm("确定退出？")){
         		location.href="/easybuy/UserServlet?action=logout";
         	}
-        }
     });
     //轮换广告
     var index=0;

@@ -68,13 +68,10 @@ public interface ProductDao {
 	 */
 	public List<Product> selProductByChildId(Integer childId);
 
-
-
-
-
-
-
-
-
-
+	/**
+	 * 按照商品名查找id
+	 * @param name
+	 * @return
+	 */
+	Integer findIdByPname(String name);
 }

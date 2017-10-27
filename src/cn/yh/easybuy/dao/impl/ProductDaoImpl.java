@@ -176,4 +176,13 @@ public class ProductDaoImpl implements ProductDao {
 		return num;
 	}
 
+	@Override
+	public Integer findIdByPname(String name) {
+		// TODO Auto-generated method stub
+		session = SqlSessionFactoryUtil.getSqlSession();
+		ProductDao productDao = session.getMapper(ProductDao.class);
+		Integer res = productDao.findIdByPname(name);
+		return res;
+	}
+
 }

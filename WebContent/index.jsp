@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,11 +29,11 @@
 </jsp:forward>
 </c:if>
 
-<c:if test="${empty pageObj}">
+<c:if test="${newsPage == null}">
 			<jsp:forward page="NewsServlet">
 				<jsp:param value="page" name="opr"/>
 			</jsp:forward>
-		</c:if>	
+</c:if>	
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -58,18 +62,28 @@
 </div>
 
 
+<<<<<<< HEAD
 <div id="main" class="wrap">
+=======
+
+<div id="main" class="wrap">
+>>>>>>> branch 'master' of https://github.com/javawebnb/easybuy.git
 	<div class="lefter">
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
 		<div class="last-view">
 			<h2>最近浏览</h2>
-			<dl class="clearfix">
-				<dt><img src="images/product/10_small.jpg" /></dt>
-				<dd><a href="product-view.jsp"  target="_self">利仁2018M福满堂电饼铛 好用实惠</a><a href="product-view.jsp"></a></dd>
+			
+				<c:forEach items="${plist}" var="p">
+				<dl class="clearfix">
+				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img src="/easybuy/images/${p.fileName }" /></a></dt>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id}"  target="_self">${p.name}</a></dt>
 				<dt>&nbsp;</dt>
 				<dd>&nbsp;</dd>
-		  </dl>
+				</dl>
+				</c:forEach>	
+				
+		  
 	  </div>
 	</div>
 	<div class="main">
@@ -87,7 +101,7 @@
 				<c:forEach items="${page.pageList }" var="product">
 				<li>
 					<dl>
-						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="${product.fileName}" /></a></dt>
+						<dt><a href="ProductServlet?ps=detail&id=${product.id }"  target="_self"><img src="/easybuy/images/${product.fileName }" /></a></dt>
 						<dd class="title"><a href="ProductServlet?ps=detail&id=${product.id }" target="_self">${product.name}</a></dd>
 						<dd class="price">${product.price}</dd>
 					</dl>
@@ -112,7 +126,7 @@
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-				<c:forEach items="${pageObj.pageList}" var="news">
+				<c:forEach items="${newsPage.pageList}" var="news">
 				<li><a href="NewsServlet?id=${news.id}&&opr=read"  target="_self">${news.title}</a></li></c:forEach>
 				</ul>
 			</div>
@@ -123,5 +137,4 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-
 </html>

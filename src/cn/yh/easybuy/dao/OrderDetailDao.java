@@ -11,4 +11,7 @@ public interface OrderDetailDao {
 	
 	//通过订单Id查询订单详细信息
 	List<OrderDetail> findDetailByid(Integer id);
+	
+	//插入订单详情
+	Integer savaOrderDetail(OrderDetail orderDetail);
 }

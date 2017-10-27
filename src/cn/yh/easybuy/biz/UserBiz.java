@@ -1,5 +1,9 @@
 package cn.yh.easybuy.biz;
 
+import java.util.List;
+
+import cn.yh.easybuy.entity.News;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.User;
 
 /**
@@ -28,4 +32,14 @@ public interface UserBiz {
 	 * 删除用户信息
 	 */
 	Integer delete(Integer id);
+	
+	/**
+	 * page获取所有用户
+	 */
+	public Page<User> findAllUser(Integer pageIndex, Integer pageSize);
+	
+	/**
+	 * 通过id获取对象
+	 */
+	User findUser(int id);
 }
