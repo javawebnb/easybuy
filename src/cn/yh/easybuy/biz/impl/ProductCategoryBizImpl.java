@@ -17,9 +17,15 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 	}
 
 	@Override
-	public int delProductCategory(Integer id) {
+	public int delProductCategorybig(Integer id) {
 		// TODO Auto-generated method stub
-		return pc.delProductCategory(id);
+		return pc.delProductCategorybig(id);
+	}
+
+	@Override
+	public int delProductCategoryson(Integer id) {
+		// TODO Auto-generated method stub
+		return pc.delProductCategoryson(id);
 	}
 
 	@Override

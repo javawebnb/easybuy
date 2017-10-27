@@ -38,7 +38,44 @@
 		您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 	</div>
 	<div id="main" class="wrap">
+<<<<<<< HEAD
 		<jsp:include page="left.jsp"></jsp:include>
+=======
+		<div id="menu-mng" class="lefter">
+			<div class="box">
+				<dl>
+					<dt>用户管理</dt>
+					<dd>
+						<a href="user.jsp">用户管理</a>
+					</dd>
+					<dt>商品信息</dt>
+					 <c:url var="url1" value="/ProductCategoryServlet">
+			  	   <c:param name="opr" value="tosave"></c:param>
+			   </c:url> 
+				<dd><em><a href="${url1 }">新增</a></em>
+				 <c:url var="url" value="/ProductCategoryServlet">
+				<c:param name="opr" value="pagelist"></c:param>
+				</c:url> 
+				<a href="${url }">分类管理</a></dd>>
+					<dd>
+						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
+					</dd>
+					<dt>订单管理</dt>
+					<dd>
+						<a href="order.jsp">订单管理</a>
+					</dd>
+					<dt>留言管理</dt>
+					<dd>
+						<a href="guestbook.jsp">留言管理</a>
+					</dd>
+					<dt>新闻管理</dt>
+					<dd>
+						<em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+>>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 		<div class="main">
 			<h2>添加分类</h2>
 			<div class="manage">

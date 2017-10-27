@@ -56,11 +56,8 @@ public class ProductServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String ps = request.getParameter("ps");
 		ProductBiz pb = new ProductBizImpl();
-		
-		
-		if ("showKind".equals(ps)) {
+		if("showKind".equals(ps)){
 			String index = request.getParameter("index");
-			/* ProductBiz pb = new ProductBizImpl(); */
 			Integer pageIndex = 1;
 			if (index != null) {
 				pageIndex = Integer.valueOf(index);

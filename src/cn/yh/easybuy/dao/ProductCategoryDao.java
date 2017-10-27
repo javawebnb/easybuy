@@ -13,11 +13,16 @@ public interface ProductCategoryDao {
 	 * @return
 	 */
 	public int saveProductCategory(ProductCategory productcategory);
-
 	/**
-	 * 删除产品分类
+	 * 删除产品大分类
+	 * @param id
+	 * @return
 	 */
-	public int delProductCategory(Integer id);
+	public int delProductCategorybig(Integer id);
+	/**
+	 * 删除产品小分类
+	 */
+	public int delProductCategoryson(Integer id);
 
 	/**
 	 * 修改产品分类
@@ -31,8 +36,6 @@ public interface ProductCategoryDao {
 
 	/**
 	 * 查找子分类
-	 * 
-<<<<<<< HEAD
 	 * @return
 	 */
 
@@ -41,6 +44,7 @@ public interface ProductCategoryDao {
 	 * 按照父分类查询
 	 */
 	public List<ProductCategory> getProductCategoryByParentId(Integer parentId);
+
 	/**
 	 * 查找得到父分类
 	 */

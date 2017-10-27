@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import cn.yh.easybuy.dao.ProductCategoryDao;
 import cn.yh.easybuy.dao.impl.ProductCategoryDaoImpl;
+import cn.yh.easybuy.dao.impl.ProductDaoImpl;
 import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.ProductCategory;
 
@@ -22,7 +23,7 @@ import cn.yh.easybuy.entity.ProductCategory;
 public class ProductCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProductCategoryDaoImpl pci = new ProductCategoryDaoImpl();
-
+	ProductDaoImpl pdi = new ProductDaoImpl();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -99,7 +100,9 @@ public class ProductCategoryServlet extends HttpServlet {
 			i = pci.saveProductCategory(pcy);
 		}
 		if (i > 0) {
-			out.print("<script>alert('Ìí¼Ó³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+			response.sendRedirect("manage/manage-result.jsp");
+		}else{
+			out.print("<script>alert('Ìí¼ÓÊ§°Ü£¡');location.href='/easybuy/manage/productClass-add.jsp'</script>");
 		}
 	}
 
@@ -123,20 +126,24 @@ public class ProductCategoryServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void del(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		int i = 0;
+		int j = 0;
 		String epcid = request.getParameter("epcid");
 		String parentId = request.getParameter("parentId");
-
 		if (Integer.valueOf(parentId) == 0) {
-			i = pci.delProductCategory(Integer.valueOf(epcid));
+			i = pci.delProductCategorybig(Integer.valueOf(epcid));
+			j = pdi.delProductByChildId(Integer.valueOf(epcid));
 		} else {
-			i = pci.delProductCategory(Integer.valueOf(epcid));
+			i = pci.delProductCategoryson(Integer.valueOf(epcid));
+			j = pdi.delProductByCid(Integer.valueOf(epcid));
 		}
 		if (i > 0) {
-			out.print("<script>alert('É¾³ý³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+			response.sendRedirect("manage/manage-result.jsp");
+		}else{
+			out.print("<script>alert('É¾³ýÊ§°Ü£¡');location.href='/easybuy/manage/productClass-modify.jsp'</script>");
 		}
 	}
 
@@ -153,10 +160,9 @@ public class ProductCategoryServlet extends HttpServlet {
 		int i = 0;
 		String epcid = request.getParameter("epcid");
 		String name = request.getParameter("className");
-
+		ProductCategory pcy = new ProductCategory();
 		String parentId = request.getParameter("parentid");
 		String optionId = request.getParameter("parentId");
-		ProductCategory pcy = new ProductCategory();
 		pcy.setId(Integer.valueOf(epcid));
 		pcy.setName(name);
 
@@ -171,7 +177,9 @@ public class ProductCategoryServlet extends HttpServlet {
 			i = pci.updateProductCategory(pcy);
 		}
 		if (i > 0) {
-			out.print("<script>alert('ÐÞ¸Ä³É¹¦£¡');location.href='/easybuy/manage/manage-result.jsp'</script>");
+			response.sendRedirect("manage/manage-result.jsp");
+			}else{
+			out.print("<script>alert('ÐÞ¸ÄÊ§°Ü£¡');location.href='/easybuy/manage/productClass-modify.jsp'</script>");
 		}
 	}
 
@@ -231,7 +239,6 @@ public class ProductCategoryServlet extends HttpServlet {
 		List<ProductCategory> list = pci.getProductCategoryBypage(page);
 		page.setPageList(list);
 		HttpSession session = request.getSession();
-		session.setAttribute("pagelist", list);
 		session.setAttribute("page", page);
 		request.getRequestDispatcher("/manage/productClass.jsp").forward(request, response);
 	}

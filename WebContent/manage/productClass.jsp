@@ -37,7 +37,44 @@
 		您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 	</div>
 	<div id="main" class="wrap">
+<<<<<<< HEAD
 		<jsp:include page="left.jsp"></jsp:include>
+=======
+		<div id="menu-mng" class="lefter">
+			<div class="box">
+				<dl>
+					<dt>用户管理</dt>
+					<dd>
+						<a href="user.jsp">用户管理</a>
+					</dd>
+					<dt>商品信息</dt>
+					 <c:url var="url1" value="/ProductCategoryServlet">
+			  	   <c:param name="opr" value="tosave"></c:param>
+			   </c:url> 
+				<dd><em><a href="${url1 }">新增</a></em>
+				 <c:url var="url" value="/ProductCategoryServlet">
+				<c:param name="opr" value="pagelist"></c:param>
+				</c:url> 
+				<a href="${url }">分类管理</a></dd>
+					<dd>
+						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
+					</dd>
+					<dt>订单管理</dt>
+					<dd>
+						<a href="order.jsp">订单管理</a>
+					</dd>
+					<dt>留言管理</dt>
+					<dd>
+						<a href="guestbook.jsp">留言管理</a>
+					</dd>
+					<dt>新闻管理</dt>
+					<dd>
+						<em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+>>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 		<div class="main">
 			<h2>分类管理</h2>
 			<div class="manage">
@@ -48,7 +85,7 @@
 						<th>类别</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="item" items="${sessionScope.pagelist }">
+					<c:forEach var="item" items="${page.pageList}">
 						<tr>
 							<td class="first w4 c">${item.id }</td>
 							<td>${item.name }</td>
@@ -69,7 +106,7 @@
 								<c:param name="opr" value="del"></c:param>
 								<c:param name="epcid" value="${item.id }"></c:param>
 								<c:param name="parentId" value="${item.parentId }"></c:param>
-							</c:url> --%> <a class="manageDel" href="javascript:void(0);"
+							</c:url> --%> <a href="javascript:void(0);"
 								onclick="del(${item.id },${item.parentId});">删除</a></td>
 						</tr>
 					</c:forEach>
@@ -87,11 +124,9 @@
 		<div class="clear"></div>
 		<div class="pager">
 			<ul class="clearfix">
-				<%
-					Object obj = session.getAttribute("page");
-					Page<ProductCategory> page1 = (Page<ProductCategory>) obj;
-					if (page1.getPageIndex() > 1) {
-				%>
+				<c:if test="${page.pageIndex >1}">
+					
+				
 				<c:url var="url" value="ProductCategoryServlet">
 					<c:param name="opr" value="pagelist"></c:param>
 					<c:param name="i" value="1"></c:param>
@@ -102,25 +137,27 @@
 				<c:param name="i" value="${page.pageIndex }"></c:param>
 				</c:url>  --%>
 				<a
-					href="ProductCategoryServlet?opr=pagelist&i=<%=page1.getPageIndex() - 1%>">上一页</a>
+					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex -1}">上一页</a>
 				<%-- <c:url var="url3" value="ProductCategoryServlet">
 				<c:param name="opr" value="pagelist"></c:param>
 				<c:param name="i" value="${page.pageIndex }"></c:param>
 				</c:url> --%>
-				<%
-					}
-					if (page1.getPageIndex() < page1.getPageTotal()) {
-				%>
+				
+				</c:if>
+				
+				<c:if test="${page.pageIndex < page.pageTotal }">
+					
+			
 				<a
-					href="ProductCategoryServlet?opr=pagelist&i=<%=page1.getPageIndex() + 1%>">下一页</a>
+					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex +1}">下一页</a>
 				<c:url var="url1" value="ProductCategoryServlet">
 					<c:param name="opr" value="pagelist"></c:param>
 					<c:param name="i" value="${page.pageTotal }"></c:param>
 				</c:url>
 				<li><a href="${url1 }">尾页</a></li>
-				<%
-					}
-				%>
+			
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
@@ -128,6 +165,9 @@
 		京ICP证1000001号</div>
 </body>
 </html>
+<<<<<<< HEAD
 <c:remove var="page1" />
 <c:remove var="pagelist"/>
+=======
+>>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 <c:remove var="page"/>

@@ -1,15 +1,11 @@
 package cn.yh.easybuy.dao.impl;
 
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import cn.yh.easybuy.dao.ProductDao;
 import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.Product;

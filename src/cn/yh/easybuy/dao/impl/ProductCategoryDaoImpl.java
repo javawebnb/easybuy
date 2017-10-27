@@ -15,21 +15,34 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+
 	    int i = pc.saveProductCategory(productcategory);
 		session.commit();
 		if(session != null){
 			session.close();
 		}
-		
 		return i;
 	}
 
 	@Override
-	public int delProductCategory(Integer id) {
+	public int delProductCategorybig(Integer id) {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
-		int i=pc.delProductCategory(id);
+		int i=pc.delProductCategorybig(id);
+		session.commit();
+		if(session != null){
+			session.close();
+		}
+		return i;
+	}
+
+	@Override
+	public int delProductCategoryson(Integer id) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		int i=pc.delProductCategoryson(id);
 		session.commit();
 		if(session != null){
 			session.close();
@@ -84,6 +97,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getAllProductCategorybig();
+		session.commit();
 		if(session != null){
 			session.close();
 		}

@@ -34,7 +34,6 @@ public interface UserDao {
 	 * @param condition 查询条件
 	 * @return 查询结果集
 	 */
-
 	List<User> findUser(Map<String,Object> condition);
 	
 	/**
@@ -51,5 +50,4 @@ public interface UserDao {
 	 * 通过id查找对象
 	 */
 	User checkUser(int id);
-
 }

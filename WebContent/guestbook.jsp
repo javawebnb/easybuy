@@ -140,9 +140,16 @@
 				</form>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 	<c:remove var="pageObj"/>
 	<c:remove var="commentPage"/>
+=======
+	</div>
+	
+	<c:remove var="pageObj"/>
+	
+>>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 	<div class="clear"></div>
 </div>
 <div id="footer">

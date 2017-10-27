@@ -32,7 +32,10 @@
 		update easybuy_product_category set
 		epc_name=#{name},epc_parent_id=#{parentId} where epc_id=#{id}
 	</update>
-	<delete id="delProductCategory" parameterType="int">
+	<delete id="delProductCategoryson" parameterType="int">
 		delete from easybuy_product_category where epc_id=#{id}
+	</delete>
+	<delete id="delProductCategorybig" parameterType="int">
+	delete from easybuy_product_category where epc_id=#{id} or epc_parent_id=#{id}
 	</delete>
 </mapper>
