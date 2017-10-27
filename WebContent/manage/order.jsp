@@ -75,7 +75,7 @@
 					</tr>
 					<c:forEach var="orderDetail" items="${order.listDetail}" varStatus="varS">
 					    <tr>
-							<td class="first w4 c"><img src="/easybuy/${orderDetail.product.fileName}" />${orderDetail.product.name}</td>
+							<td class="first w4 c"><img src="/easybuy/images/${orderDetail.product.fileName}" />${orderDetail.product.name}</td>
 							<td></td>
 							<td>${orderDetail.quantity}</td>
 							<c:if test="${varS.count==1}">
