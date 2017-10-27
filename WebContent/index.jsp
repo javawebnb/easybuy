@@ -13,8 +13,7 @@
  
 <body>
 
-<c:set var="isempty" value="${sessionScope.listbg == null}"/>
-<c:if test="${isempty}">
+<c:if test="${listbg == null}">
 <jsp:forward page="ProductCategoryServlet">
 <jsp:param value="pclist" name="opr"/>
 </jsp:forward> 
@@ -30,7 +29,7 @@
 			<jsp:forward page="NewsServlet">
 				<jsp:param value="page" name="opr"/>
 			</jsp:forward>
-</c:if>	
+</c:if>
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -69,14 +68,12 @@
 			
 				<c:forEach items="${plist}" var="p">
 				<dl class="clearfix">
-				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img src="/easybuy/images/${p.fileName }" /></a></dt>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img width="80px" height="100px"  src="/easybuy/images/${p.fileName }" /></a></dt>
 				<dt><a href="ProductServlet?ps=detail&id=${p.id}"  target="_self">${p.name}</a></dt>
 				<dt>&nbsp;</dt>
 				<dd>&nbsp;</dd>
 				</dl>
 				</c:forEach>	
-				
-		  
 	  </div>
 	</div>
 	<div class="main">
@@ -130,4 +127,10 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+
+<c:if test="${listbg!=null && page!=null && newsPage!=null}">
+	<c:remove var="listbg"/>
+	<c:remove var="page"/>
+	<c:remove var="newsPage"/>
+</c:if>	
 </html>

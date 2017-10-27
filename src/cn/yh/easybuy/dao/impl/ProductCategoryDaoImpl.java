@@ -70,7 +70,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.findProductCategoryson();
-		session.commit();
 		if(session != null){
 
 	session.close();
@@ -85,7 +84,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getAllProductCategorybig();
-		session.commit();
 		if(session != null){
 			session.close();
 		}
@@ -99,7 +97,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		int count=pc.getCount();
-		session.commit();
 		if(session != null){
 			session.close();
 		}
@@ -112,7 +109,6 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getProductCategoryBypage(page);
-		session.commit();
 		if(session != null){
 			session.close();
 		}
@@ -125,12 +121,9 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
 		List<ProductCategory> list= pc.getProductCategoryByParentId(parentId);
-
-		session.commit();
 		if(session != null){
 			session.close();
 		}
-		
 		return list;
 	}
 

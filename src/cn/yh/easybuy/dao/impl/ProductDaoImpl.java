@@ -94,7 +94,6 @@ public class ProductDaoImpl implements ProductDao {
 		if(session!=null){
 			session.close();
 		}
-		
 		return num;
 	}
 

@@ -56,9 +56,7 @@
                  	订货人：<input type="text" class="text" name="userName" id="userName" />
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
-            
 				<table class="list">
-
 				<c:forEach var="order" items="${sessionScope.OrderPage.pageList}">
 					<tr>
 						<th colspan="2">单号：${order.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${order.createTime}</th>					
@@ -75,7 +73,7 @@
 					</tr>
 					<c:forEach var="orderDetail" items="${order.listDetail}" varStatus="varS">
 					    <tr>
-							<td class="first w4 c"><img src="/easybuy/images/${orderDetail.product.fileName}" />${orderDetail.product.name}</td>
+							<td class="first w4 c"><img width="90px" height="70px" src="/easybuy/images/${orderDetail.product.fileName}" />${orderDetail.product.name}</td>
 							<td></td>
 							<td>${orderDetail.quantity}</td>
 							<c:if test="${varS.count==1}">

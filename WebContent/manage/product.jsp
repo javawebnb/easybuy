@@ -48,7 +48,7 @@
 				<tr>
 					<td class="first w4 c">${product.id }</td>
 					<td class="thumb"><img width="80px" height="100px" src="/easybuy/images/${product.fileName}" /><a href="../product-view.jsp" target="_self">${product.name}</a></td>
-					<td class="w1 c"><a href="../ProductServlet?ps=updateProduct&id=${product.id }&cid=${product.cid}">修改</a> <a class="manageDel" href="../ProductServlet?ps=delProduct&id=${product.id }">删除</a></td>
+					<td class="w1 c"><a href="../ProductServlet?ps=updateProduct&id=${product.id}&cid=${product.cid}">修改</a> <a class="manageDel" href="../ProductServlet?ps=delProduct&id=${product.id }">删除</a></td>
 				</tr>
 			</c:forEach>
 			</table>

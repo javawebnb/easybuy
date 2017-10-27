@@ -177,6 +177,10 @@ public class ProductServlet extends HttpServlet {
 		} else if ("updateProduct".equals(ps)) {
 
 			String id = request.getParameter("id");
+			List<ProductCategory> listbig = pci.getAllProductCategorybig();
+			List<ProductCategory> listson = pci.findProductCategoryson();
+			session.setAttribute("listbg", listbig);
+			session.setAttribute("listsn", listson);
 			Product product = pb.selProductById(Integer.valueOf(id));
 			session.setAttribute("product", product);
 			response.sendRedirect("manage/product-modify.jsp");

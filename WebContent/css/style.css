@@ -1,6 +1,6 @@
 body { font:12px/22px Verdana, Geneva, sans-serif; background:#fff; color:#333; }
 body,p,ul,ol,li,dl,dt,dd,input,h1,h2,h3,h4,form,hr { padding:0; margin:0; }
-img { border:0; width:80px; height:100px}
+img { border:0;}
 table { border-collapse:collapse; }
 input { font-size:12px; }
 label { display:inline-block; padding-top:1px; }
@@ -107,7 +107,7 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #main .lefter .last-view { border:1px solid #c3c3c3; }
 #main .lefter .last-view dl { margin:5px; }
 #main .lefter .last-view dl dt { float:left; width:60px; height:60px; text-align:center; }
-#main .lefter .last-view dl dt img { border:1px solid #ccc; }
+#main .lefter .last-view dl dt img { border:1px solid #ccc; width:80px;height:100px}
 #main .lefter .last-view dl dd { height:60px; margin-left:66px; }
 #main .lefter .last-view dl dd a { color:#666; }
 #main .main { float:right; width:770px; }

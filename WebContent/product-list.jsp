@@ -12,28 +12,12 @@
 
 </head>
 <body>
-
-
-	<div id="header" class="wrap">
-		<div id="logo">
-			<img src="images/logo.gif" />
-		</div>
-		<div class="help">
-			<a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a
-				href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a
-				href="manage/index.jsp">后台管理</a>
-		</div>
-		<div class="navbar">
-			<ul class="clearfix">
-				<li class="current"><a href="#">首页</a></li>
-				<li><a href="#">图书</a></li>
-				<li><a href="#">百货</a></li>
-				<li><a href="#">品牌</a></li>
-				<li><a href="#">促销</a></li>
-			</ul>
-		</div>
-	</div>
-
+    <c:if test="${listbg == null}">
+			<jsp:forward page="ProductCategoryServlet">
+			<jsp:param value="pclist" name="opr"/>
+			</jsp:forward> 
+	</c:if>
+	<jsp:include page="top.jsp"></jsp:include>
 	<div id="childNav">
 		<div class="wrap">
 			<ul class="clearfix">
@@ -66,23 +50,17 @@
 
 			<div class="spacer"></div>
 			<div class="last-view">
-				<h2>最近浏览</h2>
+			<h2>最近浏览</h2>
+			
+				<c:forEach items="${plist}" var="p">
 				<dl class="clearfix">
-					<dt>
-						<img src="images/product/10_small.jpg" />
-					</dt>
-					<dd>
-						<a href="product-view.jsp" target="_self">利仁2018M福满堂电饼铛 好用实惠</a><a
-							href="product-view.jsp"></a>
-					</dd>
-					<dt>&nbsp;</dt>
-					<dd>&nbsp;</dd>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id }"  target="_self"><img width="80px" height="100px"  src="/easybuy/images/${p.fileName }" /></a></dt>
+				<dt><a href="ProductServlet?ps=detail&id=${p.id}"  target="_self">${p.name}</a></dt>
+				<dt>&nbsp;</dt>
+				<dd>&nbsp;</dd>
 				</dl>
-				<script type="text/javascript">
-					document.write("Cookie中记录的购物车商品ID：" + getCookie("product")
-							+ "，可以在动态页面中进行读取");
-				</script>
-			</div>
+				</c:forEach>	
+	  </div>
 		</div>
 		<div class="main">
 			<div class="product-list">
@@ -119,9 +97,6 @@
 						<a href="ProductServlet?index=${page.pageIndex+1}&ps=showProduct&cid=${cids}">下一页</a>
 						<a href="ProductServlet?index=${page.pageTotal}&ps=showProduct&cid=${cids}">末页</a>
 					</c:if>
-				
-				
-				
 				</div>
 			</div>
 		</div>

@@ -57,11 +57,11 @@ $(".manageDel").click(function(){
 					<th>操作</th>
 				</tr>
 				<c:forEach    var="news" items="${newsPage.pageList}">
-				<tr>
-					<td class="first w4 c">${news.id}</td>
-					<td>${news.title}</td>
-					<td class="w1 c"><a href="../NewsServlet?opr=toupdate&&id=${news.id}">修改</a> <a class="manageDel" href="../NewsServlet?opr=delNews&&id=${news.id}">删除</a></td>
-				</tr>
+					<tr>
+						<td class="first w4 c">${news.id}</td>
+						<td>${news.title}</td>
+						<td class="w1 c"><a href="../NewsServlet?opr=toupdate&&id=${news.id}">修改</a> <a class="manageDel" href="../NewsServlet?opr=delNews&&id=${news.id}">删除</a></td>
+					</tr>
 				</c:forEach>
 			</table>
 		</div>
