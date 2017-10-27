@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import cn.yh.easybuy.biz.OrderBiz;
 import cn.yh.easybuy.biz.impl.OrderBizImpl;
+import cn.yh.easybuy.entity.News;
 import cn.yh.easybuy.entity.Order;
+import cn.yh.easybuy.entity.Page;
 
 
 /**
@@ -48,13 +50,22 @@ public class OrderServlet extends HttpServlet {
 		
 		//对获取到的订单号和用户名进行判断获取数据
 		if("showAll".equals(opr)){
-
-				List<Order> list = biz.findOrder();
-				session.setAttribute("order", list);
-				response.sendRedirect("/easybuy/manage/order.jsp");
+			String role = request.getParameter("role");
+			Integer pageIndex = 1;
+			Integer pageSize = 3;
+			String index = request.getParameter("i");
+			if(index != null){
+				pageIndex = Integer.valueOf(index);
+			}
+			Page<Order> OrderPage = biz.findAllOrders(pageIndex, pageSize);
+			session.setAttribute("OrderPage", OrderPage);
+			if ("manager".equals(role)){
+				response.sendRedirect(request.getContextPath()+"/manage/order.jsp");
+			}else{
+				response.sendRedirect("index.jsp");
+			}
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
