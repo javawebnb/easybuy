@@ -25,7 +25,7 @@
 	</select>
 	
 	<insert id="savenewOrders" parameterType="Order">
-		insert into easybuy_order(userName,userAddress,createTime,cost,status) values(#{userName},#{userAddress},#{createTime},#{cost},#{status})
+		insert into easybuy_order values(#{id},#{userName},#{userAddress},#{createTime},#{cost},#{status})
 	</insert>
 	
 	<update id="updateOrders" parameterType="Order">

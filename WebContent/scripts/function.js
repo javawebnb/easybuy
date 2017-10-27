@@ -330,6 +330,13 @@ $(function(){
             return false;
         }
     })
+    //用户删除
+    $(".userDel").click(function(){
+    	var id = $("#userId").html();
+        if(confirm("确定要删除吗？")) {
+            location.href='/easybuy/UserServlet?action=delUser&userId='+id;
+        }
+    })
     function changeNum(obj){
     	var $thumb = $($(obj).parent().parent().children("td")[0]);
     	var $number = $($(obj).parent().parent().children("td")[2]);

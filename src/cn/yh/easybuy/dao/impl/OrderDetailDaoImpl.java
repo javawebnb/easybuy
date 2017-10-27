@@ -6,9 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import cn.yh.easybuy.dao.OrderDao;
 import cn.yh.easybuy.dao.OrderDetailDao;
-import cn.yh.easybuy.entity.Order;
 import cn.yh.easybuy.entity.OrderDetail;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
@@ -45,6 +43,25 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
 		session.close();
 		
 		return list;
+	}
+
+	@Override
+	public Integer savaOrderDetail(OrderDetail orderDetail) {
+		// TODO Auto-generated method stub
+		SqlSession session = null;
+		Integer res = null;
+		try{
+			session = SqlSessionFactoryUtil.getSqlSession();
+			OrderDetailDao dao = session.getMapper(OrderDetailDao.class);
+			res = dao.savaOrderDetail(orderDetail);
+		}catch(Exception e){
+			session.rollback();
+			throw new RuntimeException();
+		}finally{
+			session.commit();
+			session.close();
+		}
+		return res;
 	}
 
 }

@@ -14,6 +14,7 @@ import cn.yh.easybuy.biz.impl.CartItemBizImpl;
 import cn.yh.easybuy.biz.impl.UserBizImpl;
 import cn.yh.easybuy.entity.Cart;
 import cn.yh.easybuy.entity.CartItem;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.User;
 import cn.yh.easybuy.utils.DateUtil;
 
@@ -41,10 +42,10 @@ public class UserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserBizImpl ub = new UserBizImpl();
 		
-		String userName = request.getParameter("userName");
-		String password = request.getParameter("password");
-		//登陆
+		//用户登陆
 		if("login".equals(action)){
+			String userName = request.getParameter("userName");
+			String password = request.getParameter("password");
 			String safeCode = (String)session.getAttribute("rand");
 			String code = request.getParameter("code");
 			User user = new User();
@@ -66,8 +67,10 @@ public class UserServlet extends HttpServlet {
 				return;
 			}
 			
-		//注册
+		//用户注册
 		}else if("register".equals(action)){
+			String userName = request.getParameter("userName");
+			String password = request.getParameter("password");
 			String sex = request.getParameter("sex");
 			String birthday = request.getParameter("birthday");
 			String identityCode = request.getParameter("identityCode");
@@ -92,7 +95,7 @@ public class UserServlet extends HttpServlet {
 			}else{
 				response.sendRedirect("/easybuy/register.jsp");
 			}
-		//注销
+		//用户注销
 		}else if("logout".equals(action)){
 			User user = (User)session.getAttribute("login");
 			session.removeAttribute("login");
@@ -102,6 +105,59 @@ public class UserServlet extends HttpServlet {
 			response.sendRedirect("/easybuy/index.jsp");
 			listItems.clear();
 			return;
+			
+		//后台页面分页
+		}else if("page".equals(action)){
+			int pageIndex = 1;
+			int pageSize = 5;
+			String index = request.getParameter("index");
+			if(index!=null){
+				pageIndex = Integer.valueOf(index);
+			}
+			Page<User> pageObj = ub.findAllUser(pageIndex,pageSize);
+			session.setAttribute("pageObj",pageObj);
+			response.sendRedirect("/easybuy/manage/user.jsp");
+		}
+		//删除用户
+		else if("delUser".equals(action)){
+			int id = Integer.valueOf(request.getParameter("userId"));
+			int re = ub.delete(id);
+			if(re>0){
+				session.setAttribute("delUserState","删除成功");
+			}else{
+				session.setAttribute("delUserState","删除失败");
+			}
+			response.sendRedirect("/easybuy/manage/user.jsp");
+		}
+		//通过id获取对象存入session
+		else if("getUser".equals(action)){
+			int id = Integer.valueOf(request.getParameter("userId"));
+			User user = ub.findUser(id);
+			session.setAttribute("getUser",user);
+			response.sendRedirect("/easybuy/manage/user-modify.jsp");
+		}
+		//修改用户
+		else if("modifyUser".equals(action)){
+			User user = new User();
+			user.setId(Integer.valueOf(request.getParameter("id")));
+			user.setUserName(request.getParameter("userName"));
+			user.setPassword(request.getParameter("passWord"));
+			user.setSex(request.getParameter("sex"));
+			user.setAddress(request.getParameter("address"));
+			user.setMobile(request.getParameter("mobile"));
+			String year = request.getParameter("birthyear");
+			String month = request.getParameter("birthmonth");
+			String birthday = request.getParameter("birthday");
+			String day = year+"-"+month+"-"+birthday;
+			user.setBirthday(new java.sql.Date(DateUtil.string2Date(day).getTime()));
+			int re = ub.update(user);
+			if(re>0){
+				session.setAttribute("modiText","修改成功");
+				response.sendRedirect("/easybuy/manage/manage-result.jsp");
+			}else{
+				session.setAttribute("modiText","修改失败");
+				response.sendRedirect("/easybuy/manage/user.jsp");
+			}
 		}
 	}
 

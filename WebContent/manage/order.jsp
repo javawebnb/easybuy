@@ -103,7 +103,7 @@
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-
+<c:remove var="order"/>
 <script>
 /* function a(obj,status){
 	$(obj).parent().find("select").children().each(function(){

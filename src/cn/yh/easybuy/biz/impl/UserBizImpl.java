@@ -1,5 +1,6 @@
 package cn.yh.easybuy.biz.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import cn.yh.easybuy.biz.UserBiz;
 import cn.yh.easybuy.dao.UserDao;
 import cn.yh.easybuy.dao.impl.UserDaoImpl;
+import cn.yh.easybuy.entity.Page;
 import cn.yh.easybuy.entity.User;
 
 public class UserBizImpl implements UserBiz{
@@ -41,6 +43,29 @@ public class UserBizImpl implements UserBiz{
 	public Integer delete(Integer id) {
 		// TODO Auto-generated method stub
 		return userDao.delUser(id);
+	}
+
+	@Override
+	public Page<User> findAllUser(Integer pageIndex, Integer pageSize) {
+		// TODO Auto-generated method stub
+		UserDao ud = new UserDaoImpl();
+		List<User> list = new ArrayList<User>();
+		Page<User> page = new Page<User>();
+		page.setPageIndex(pageIndex);
+		page.setPageSize(pageSize);
+		int count = ud.getCount();
+		page.setCount(count);
+		list = ud.findAllUser(page);
+		page.setPageList(list);
+		return page;
+	}
+
+	@Override
+	public User findUser(int id) {
+		// TODO Auto-generated method stub
+		UserDao ud = new UserDaoImpl();
+		User user = ud.checkUser(id);
+		return user;
 	}
 	
 }

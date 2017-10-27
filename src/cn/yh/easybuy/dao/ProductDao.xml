@@ -59,6 +59,8 @@
 	 	update easybuy_product set ep_id=#{id},ep_name=#{name},ep_description=#{description},ep_price=#{price},ep_stock=#{stock},epc_id=#{cid},epc_child_id=#{childId},ep_file_name=#{fileName} where ep_id=#{id}
 	 </update>
 	 
-	 
+	 <select id="findIdByPname" resultType="int">
+	 	select ep_id from easybuy_product where ep_name = #{name}
+	 </select>
 	 
 </mapper>

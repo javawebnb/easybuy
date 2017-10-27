@@ -89,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	<c:remove var="pageObj"/>
+	<c:remove var="commentPage"/>
 	<div class="clear"></div>
 </div>
 <script type="text/javascript">
@@ -105,5 +105,4 @@ function delComment(id){
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
-<c:remove var="pageObj"/>
 </html>

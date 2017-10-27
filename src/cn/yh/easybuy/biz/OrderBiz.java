@@ -3,6 +3,7 @@ package cn.yh.easybuy.biz;
 import java.util.List;
 
 import cn.yh.easybuy.entity.Order;
+import cn.yh.easybuy.entity.OrderDetail;
 
 public interface OrderBiz {
 		//查找所有订单

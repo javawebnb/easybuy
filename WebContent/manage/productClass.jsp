@@ -128,4 +128,6 @@
 		京ICP证1000001号</div>
 </body>
 </html>
-<c:remove var="pagelist" />
+<c:remove var="page1" />
+<c:remove var="pagelist"/>
+<c:remove var="page"/>

@@ -5,11 +5,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import cn.yh.easybuy.dao.OrderDao;
+import cn.yh.easybuy.dao.OrderDetailDao;
 import cn.yh.easybuy.entity.Order;
+import cn.yh.easybuy.entity.OrderDetail;
 import cn.yh.easybuy.utils.SqlSessionFactoryUtil;
 
 public class OrderDaoImpl implements OrderDao{
-
+	private OrderDetailDao odd = new OrderDetailDaoImpl();
 	@Override
 	public List<Order> findOrdersByuserId(Integer id) {
 		// TODO Auto-generated method stub
@@ -33,11 +35,22 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public Integer savenewOrders(Order order) {
 		// TODO Auto-generated method stub
-		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
-		OrderDao od = session.getMapper(OrderDao.class);
-		int i = od.savenewOrders(order);
-		session.commit();
-		session.close();
+		SqlSession session = null;
+		int i = 0;
+		try{
+		    session = SqlSessionFactoryUtil.getSqlSession();
+			OrderDao od = session.getMapper(OrderDao.class);
+			i = od.savenewOrders(order);
+			for(OrderDetail ode : order.getListDetail()){
+				int r = odd.savaOrderDetail(ode);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			session.rollback();
+		}finally{
+			session.commit();
+			session.close();
+		}
 		return i;
 	}
 

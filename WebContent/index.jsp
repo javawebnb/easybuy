@@ -21,17 +21,17 @@
 </jsp:forward> 
 </c:if>
 
-<c:if test="${page == null }">
-<jsp:forward page="ProductServlet">
-	<jsp:param value="showKind" name="ps"/>
-</jsp:forward>
-</c:if>
-
 <c:if test="${empty pageObj}">
 	<jsp:forward page="NewsServlet">
 		<jsp:param value="page" name="opr"/>
 	</jsp:forward>
 </c:if>	
+
+<c:if test="${page == null }">
+<jsp:forward page="ProductServlet">
+	<jsp:param value="showKind" name="ps"/>
+</jsp:forward>
+</c:if>
 <div id="welcomeImage">
     <img width="100%" height="150" src="images/banner.jpg" alt="welcome">
 </div>
@@ -125,4 +125,5 @@
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>
+<c:remove var="page"/>
 </html>

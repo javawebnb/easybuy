@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -37,27 +38,24 @@
 	<div class="main">
 		<h2>修改用户</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="/easybuy/UserServlet?action=modifyUser" method="post">
 				<table class="form">
 					<tr>
+						<input type="hidden" name="id" value="${getUser.id}" />
 						<td class="field">用户名(*)：</td>
-						<td><input type="text" class="text" name="userName" value="zhangsan" readonly="readonly" /></td>
-					</tr>
-					<tr>
-						<td class="field">真实姓名(*)：</td>
-						<td><input type="text" class="text" name="name" value="张三" /></td>
+						<td><input type="text" class="text" name="userName" value="${getUser.userName}" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">登录密码(*)：</td>
-						<td><input type="text" class="text" name="passWord" value="zhangsan" /></td>
+						<td><input type="text" class="text" name="passWord"/></td>
 					</tr>
                     <tr>
 						<td class="field">确认密码(*)：</td>
-						<td><input type="text" class="text" name="passWord" value="zhangsan" /></td>
+						<td><input type="text" class="text" name="passWord2"  /></td>
 					</tr>
 					<tr>
 						<td class="field">性别(*)：</td>
-						<td><input type="radio" name="sex" value="1" checked="checked" />男 <input type="radio" name="sex" value="1" />女</td>
+						<td><input type="radio" name="sex" value="1" checked="checked" />男 <input type="radio" name="sex" value="0" />女</td>
 					</tr>
 					<tr>
 						<td class="field">出生日期：</td>
@@ -78,11 +76,11 @@
 					</tr>
 					<tr>
 						<td class="field">手机(*)：</td>
-						<td><input type="text" class="text" name="mobile" value="13800000000" /></td>
+						<td><input type="text" class="text" name="mobile" value="${getUser.mobile }" /></td>
 					</tr>
 					<tr>
 						<td class="field">地址(*)：</td>
-						<td><input type="text" class="text" name="address" value="高老庄" /></td>
+						<td><input type="text" class="text" name="address" value="${getUser.address }" /></td>
 					</tr>					
 					<tr>
 						<td></td>
@@ -94,6 +92,7 @@
 	</div>
 	<div class="clear"></div>
 </div>
+<c:remove var="getUser"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

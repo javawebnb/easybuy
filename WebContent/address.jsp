@@ -51,11 +51,11 @@
 <div id="news" class="right-main">
 		<h1>&nbsp;</h1>
 		<div class="content">
-            <form action="shopping-result.jsp" method="post">
+            <form action="/easybuy/OrderServlet?opr=saveOrder" method="post">
                 收货地址:<input name="addr" id="addr" type="button"  value="添加新地址" />
                 <span id="span"></span> <br />
                 <c:forEach items="${addrList}" var="address" varStatus="varS">
-                	<input name="address" id="address1" type="radio" ${varS.count==1?"checked":""}/><span>${address.address}</span><br />
+                	<input name="address" id="address1" type="radio" ${varS.count==1?"checked":""} value="${address.address}"/><span>${address.address}</span><br />
                 </c:forEach>
                 <div class="button">  <input type="submit" value="结账" />    </div>
             </form>
