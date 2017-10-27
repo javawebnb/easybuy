@@ -36,44 +36,7 @@
 		您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 	</div>
 	<div id="main" class="wrap">
-<<<<<<< HEAD
 		<jsp:include page="left.jsp"></jsp:include>
-=======
-		<div id="menu-mng" class="lefter">
-			<div class="box">
-				<dl>
-					<dt>用户管理</dt>
-					<dd>
-						<em><a href="user-add.jsp">新增</a></em><a href="user.jsp">用户管理</a>
-					</dd>
-					<dt>商品信息</dt>
-					 <c:url var="url1" value="/ProductCategoryServlet">
-			  	   <c:param name="opr" value="tosave"></c:param>
-			   </c:url> 
-				<dd><em><a href="${url1 }">新增</a></em>
-				 <c:url var="url" value="/ProductCategoryServlet">
-				<c:param name="opr" value="pagelist"></c:param>
-				</c:url> 
-				<a href="${url }">分类管理</a></dd>
-					<dd>
-						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
-					</dd>
-					<dt>订单管理</dt>
-					<dd>
-						<a href="order.jsp">订单管理</a>
-					</dd>
-					<dt>留言管理</dt>
-					<dd>
-						<a href="guestbook.jsp">留言管理</a>
-					</dd>
-					<dt>新闻管理</dt>
-					<dd>
-						<em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a>
-					</dd>
-				</dl>
-			</div>
-		</div>
->>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 		<div class="main">
 			<h2>修改分类</h2>
 			<div class="manage">
@@ -82,23 +45,13 @@
 						<tr>
 							<td class="field">父分类：</td>
 							<td><select name="parentId">
-									<%-- <c:choose>
-									<c:when test="${pc.id eq pc.parentId }"> --%>
 									<option value="0" selected="selected">根栏目</option>
-									<%-- </c:when>
-									<c:otherwise> --%>
+									
 									<c:forEach var="item" items="${sessionScope.biglist }">
-									<%-- <c:choose>
-									<c:when test="${item.id eq pc.parentId }">
-									<option value="${item.id }" selected="selected">${item.name }</option>
-									</c:when>
-									<c:otherwise> --%>
+									
 										<option value="${item.id }">${item.name }</option>
-										<%-- </c:otherwise>
-										</c:choose> --%>
+									
 									</c:forEach>
-									<%-- </c:otherwise>
-									</c:choose> --%>
 							</select></td>
 						</tr>
 						<tr>

@@ -98,13 +98,14 @@ public class UserServlet extends HttpServlet {
 			}
 		//用户注销
 		}else if("logout".equals(action)){
-			User user = (User)session.getAttribute("login");
 			session.removeAttribute("login");
+			User user = (User)session.getAttribute("login");
 			CartItemBiz cib = new CartItemBizImpl();
 			List<CartItem> listItems = ((Cart)session.getAttribute("cart")).getListItems();
 			cib.saveCartItems(listItems,user.getId());
-			response.sendRedirect("/easybuy/index.jsp");
 			listItems.clear();
+			response.sendRedirect("/easybuy/index.jsp");
+			
 			return;
 			
 		//后台页面分页

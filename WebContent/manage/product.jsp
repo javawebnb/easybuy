@@ -52,21 +52,22 @@
 				</tr>
 			</c:forEach>
 			</table>
-		</div>
-	</div>
 	<div class="clear"></div>
     <div class="pager">
-				当前页数:[${pages.pageIndex}/${pages.pageTotal}]&nbsp;
-
-					<c:if test="${pages.pageIndex>1 }">
-						<a href="../ProductServlet?index=1&ps=showAllProduct">首页</a>
-						<a href="../ProductServlet?index=${pages.pageIndex-1}&ps=showAllProduct">上一页</a>
-					</c:if>
-					<c:if test="${pages.pageIndex<pages.pageTotal }">
-						<a href="../ProductServlet?index=${pages.pageIndex+1}&ps=showAllProduct">下一页</a>
-						<a href="../ProductServlet?index=${pages.pageTotal}&ps=showAllProduct">末页</a>
-					</c:if>
+  		<ul class="clearfix">
+		     <li class="current">当前页数:[${pages.pageIndex}/${pages.pageTotal}]&nbsp;</li>
+			<c:if test="${pages.pageIndex>1 }">
+				<li><a href="../ProductServlet?index=1&ps=showAllProduct">首页</a></li>
+				<li><a href="../ProductServlet?index=${pages.pageIndex-1}&ps=showAllProduct">上一页</a></li>
+			</c:if>
+			<c:if test="${pages.pageIndex<pages.pageTotal }">
+				<li><a href="../ProductServlet?index=${pages.pageIndex+1}&ps=showAllProduct">下一页</a></li>
+				<li><a href="../ProductServlet?index=${pages.pageTotal}&ps=showAllProduct">末页</a></li>
+			</c:if>
+		</ul>
   </div>
+</div>
+</div>
 </div>
 <div id="footer">
 	Copyright &copy; 2013云和学院 All Rights Reserved. 京ICP证1000001号</div>

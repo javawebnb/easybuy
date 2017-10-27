@@ -37,44 +37,9 @@
 		您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
 	</div>
 	<div id="main" class="wrap">
-<<<<<<< HEAD
-		<jsp:include page="left.jsp"></jsp:include>
-=======
 		<div id="menu-mng" class="lefter">
-			<div class="box">
-				<dl>
-					<dt>用户管理</dt>
-					<dd>
-						<a href="user.jsp">用户管理</a>
-					</dd>
-					<dt>商品信息</dt>
-					 <c:url var="url1" value="/ProductCategoryServlet">
-			  	   <c:param name="opr" value="tosave"></c:param>
-			   </c:url> 
-				<dd><em><a href="${url1 }">新增</a></em>
-				 <c:url var="url" value="/ProductCategoryServlet">
-				<c:param name="opr" value="pagelist"></c:param>
-				</c:url> 
-				<a href="${url }">分类管理</a></dd>
-					<dd>
-						<em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a>
-					</dd>
-					<dt>订单管理</dt>
-					<dd>
-						<a href="order.jsp">订单管理</a>
-					</dd>
-					<dt>留言管理</dt>
-					<dd>
-						<a href="guestbook.jsp">留言管理</a>
-					</dd>
-					<dt>新闻管理</dt>
-					<dd>
-						<em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a>
-					</dd>
-				</dl>
-			</div>
+			<jsp:include page="left.jsp"></jsp:include>
 		</div>
->>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 		<div class="main">
 			<h2>分类管理</h2>
 			<div class="manage">
@@ -119,55 +84,35 @@
 					</script>
 
 				</table>
-			</div>
-		</div>
 		<div class="clear"></div>
+		<c:url var="url1" value="ProductCategoryServlet">
+			<c:param name="opr" value="pagelist"></c:param>
+			<c:param name="i" value="${page.pageTotal }"></c:param>
+		</c:url><c:url var="url" value="ProductCategoryServlet">
+			<c:param name="opr" value="pagelist"></c:param>
+			<c:param name="i" value="1"></c:param>
+		</c:url>
 		<div class="pager">
 			<ul class="clearfix">
+				<li class="current">当前页数:[${page.pageIndex}/${page.pageTotal}]</li>
+				
 				<c:if test="${page.pageIndex >1}">
-					
-				
-				<c:url var="url" value="ProductCategoryServlet">
-					<c:param name="opr" value="pagelist"></c:param>
-					<c:param name="i" value="1"></c:param>
-				</c:url>
-				<li><a href="${url }">首页</a></li>
-				<%-- <c:url var="url2" value="ProductCategoryServlet">
-				<c:param name="opr" value="pagelist"></c:param>
-				<c:param name="i" value="${page.pageIndex }"></c:param>
-				</c:url>  --%>
-				<a
-					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex -1}">上一页</a>
-				<%-- <c:url var="url3" value="ProductCategoryServlet">
-				<c:param name="opr" value="pagelist"></c:param>
-				<c:param name="i" value="${page.pageIndex }"></c:param>
-				</c:url> --%>
-				
+					<li><a href="${url }">首页</a></li>
+					<li><a href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex -1}">上一页</a></li>
 				</c:if>
-				
 				<c:if test="${page.pageIndex < page.pageTotal }">
-					
-			
-				<a
-					href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex +1}">下一页</a>
-				<c:url var="url1" value="ProductCategoryServlet">
-					<c:param name="opr" value="pagelist"></c:param>
-					<c:param name="i" value="${page.pageTotal }"></c:param>
-				</c:url>
-				<li><a href="${url1 }">尾页</a></li>
-			
+					<li><a href="ProductCategoryServlet?opr=pagelist&i=${page.pageIndex +1}">下一页</a></li>
+					<li><a href="${url1 }">尾页</a></li>
 				</c:if>
-				
 			</ul>
 		</div>
 	</div>
+</div>
+</div>
 	<div id="footer">Copyright &copy; 2013云和学院 All Rights Reserved.
 		京ICP证1000001号</div>
 </body>
 </html>
-<<<<<<< HEAD
 <c:remove var="page1" />
 <c:remove var="pagelist"/>
-=======
->>>>>>> branch 'LZM' of https://github.com/javawebnb/easybuy.git
 <c:remove var="page"/>

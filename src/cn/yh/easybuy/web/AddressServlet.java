@@ -59,8 +59,13 @@ public class AddressServlet extends HttpServlet {
 	 */
 	private void listAddr(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException{
 		String userId = request.getParameter("userId");
+		String tag = (String)session.getAttribute("tag");
 		if(userId==null || "".equals(userId.trim())){
 			response.sendRedirect("/easybuy/login.jsp");
+			return;
+		}
+		if(tag==null){
+			response.sendRedirect("/easybuy/index.jsp");
 			return;
 		}
 		List<Address> list = ab.findAddressByUid(Integer.valueOf(userId));

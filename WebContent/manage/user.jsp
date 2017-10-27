@@ -73,25 +73,24 @@
 				</c:forEach>
 				
 			</table>
-		</div>
-	</div>
 	<div class="clear"></div>
      <div class="pager">
-				<ul class="clearfix">
-					<li><a href="../UserServlet?action=page&index=1">首页</a></li>
-					
-					<c:if test="${pageUser.pageIndex>1}">
-						<li><a href="../UserServlet?action=page&index=${pageUser.pageIndex-1}">上一页</a></li>
-					</c:if>
-					<li><a href="../UserServlet?action=page&index=${pageUser.pageIndex}"><c:out value="${pageUser.pageIndex}"></c:out></a></li>
-					<c:if test="${pageUser.pageIndex<pageUser.pageTotal }">
-						<li><a href="../UserServlet?action=page&index=${pageUser.pageIndex+1}">下一页</a></li>
-					</c:if>
-				
-					<li><a href="../UserServlet?action=page&index=${pageUser.pageTotal }">尾页</a></li>
-				</ul>
+		<ul class="clearfix">
+			<li>当前页数:[${pageUser.pageIndex}/${pageUser.pageTotal}]</li>
+			<c:if test="${pageUser.pageIndex>1}">
+			    <li><a href="../UserServlet?action=page&index=1">首页</a></li>
+				<li><a href="../UserServlet?action=page&index=${pageUser.pageIndex-1}">上一页</a></li>
+			</c:if>
+			
+			<c:if test="${pageUser.pageIndex<pageUser.pageTotal }">
+				<li><a href="../UserServlet?action=page&index=${pageUser.pageIndex+1}">下一页</a></li>
+			    <li><a href="../UserServlet?action=page&index=${pageUser.pageTotal }">尾页</a></li>
+			</c:if>
+		</ul>
   </div>
 </div>
+		</div>
+	</div>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
 </body>

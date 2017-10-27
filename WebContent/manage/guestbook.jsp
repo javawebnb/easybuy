@@ -70,17 +70,15 @@
 						<td class="w1 c"><a href="../CommentServlet?opr=replyPage&id=${comment.id }">回复</a> <a href="javascript:void(0)" onclick="delComment(${comment.id})">删除</a></td>
 					</tr>
 				</c:forEach>
-				
 			</table>
 			<div class="pager">
 				<ul class="clearfix">
+				    <li class="current"> 当前页数:[${commentPage.pageIndex}/${commentPage.pageTotal}]</li>
+                    
 					<c:if test="${commentPage.pageIndex > 1 }">
 						<li><a href="../CommentServlet?opr=page&role=manager&i=1">首页</a></li>
 						<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex - 1 }">上一页</a></li>
 					</c:if>
-					
-					<li class="current">${commentPage.pageIndex }</li>
-                    
                     <c:if test="${commentPage.pageIndex < commentPage.pageTotal }">
                     	<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageIndex + 1 }">下一页</a></li>
 						<li><a href="../CommentServlet?opr=page&role=manager&i=${commentPage.pageTotal }">尾页</a></li>

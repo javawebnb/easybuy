@@ -141,7 +141,7 @@ public class ProductServlet extends HttpServlet {
 							
 							photo = cn.yh.easybuy.utils.DateUtil.date2String(new java.util.Date(), "yyyyMMddhhmmss")+"."+ext;
 							
-							item.write(new File(request.getServletContext().getRealPath("/images"),photo));//把文件的内容写到指定的目录下
+							item.write(new File("F:\\project01\\easybuy\\WebContent\\manage",photo));//把文件的内容写到指定的目录下
 						}
 					}
 				} catch (Exception e) {
@@ -219,7 +219,7 @@ public class ProductServlet extends HttpServlet {
 							
 							fileName = cn.yh.easybuy.utils.DateUtil.date2String(new java.util.Date(), "yyyyMMddhhmmss")+"."+ext;
 							
-							item.write(new File(request.getServletContext().getRealPath("/images"),fileName));//把文件的内容写到指定的目录下
+							item.write(new File("F:\\project01\\easybuy\\WebContent\\manage",fileName));//把文件的内容写到指定的目录下
 						}
 					}
 				} catch (Exception e) {

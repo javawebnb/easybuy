@@ -84,18 +84,14 @@
 					
 			</c:forEach>			
 			</table>
-		</div>
-	</div>
 	<div class="clear"></div>
 	<div class="pager">
 			<ul class="clearfix">
+			    <li class="current">当前页数:[${OrderPage.pageIndex}/${OrderPage.pageTotal}]</li>
 				<c:if test="${OrderPage.pageIndex >1}"> 
 					<li><a href="../OrderServlet?opr=showAll&role=manager&i=1">首页</a></li>
 					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageIndex - 1 }">上一页</a></li>
 				</c:if>
-					
-					<li class="current">${OrderPage.pageIndex }</li>
-					
 				<c:if test="${OrderPage.pageIndex < OrderPage.pageTotal}">
 					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageIndex + 1 }">下一页</a></li>
 					<li><a href="../OrderServlet?opr=showAll&role=manager&i=${OrderPage.pageTotal}">尾页</a></li>
@@ -104,6 +100,8 @@
 			</ul>
   		</div>
 </div>
+		</div>
+	</div>
 <c:remove var="OrderPage"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>

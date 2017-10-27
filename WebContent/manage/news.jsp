@@ -64,17 +64,15 @@ $(".manageDel").click(function(){
 					</tr>
 				</c:forEach>
 			</table>
-		</div>
-	</div>
 	<div class="clear"></div>
     <div class="pager">
 				<ul class="clearfix">
+				<li class="current">当前页数:[${newsPage.pageIndex}/${newsPage.pageTotal}]</li>
+					
 				<c:if test="${newsPage.pageIndex >1}">
 					<li><a href="../NewsServlet?opr=page&role=manager&i=1">首页</a></li>
 					<li><a href="../NewsServlet?opr=page&role=manager&i=${newsPage.pageIndex - 1 }">上一页</a></li>
 				</c:if>
-					
-					<li class="current">${newsPage.pageIndex }</li>
 					
 				<c:if test="${newsPage.pageIndex < pageObj.pageTotal}">
 					<li><a href="../NewsServlet?opr=page&role=manager&i=${newsPage.pageIndex + 1 }">下一页</a></li>
@@ -84,6 +82,8 @@ $(".manageDel").click(function(){
 				</ul>
   </div>
 </div>
+		</div>
+	</div>
 <c:remove var="newsPage"/>
 <div id="footer">
 	Copyright &copy; 2013 云和学院 All Rights Reserved. 京ICP证1000001号</div>
