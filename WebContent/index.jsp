@@ -59,12 +59,8 @@
 </div>
 
 
-<<<<<<< HEAD
-<div id="main" class="wrap">
-=======
-<div id="main" class="wrap">
 
->>>>>>> branch 'xsj' of https://github.com/javawebnb/easybuy.git
+<div id="main" class="wrap">
 	<div class="lefter">
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="spacer"></div>
