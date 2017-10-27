@@ -27,11 +27,24 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 	}
 
 	@Override
-	public int delProductCategory(Integer id) {
+	public int delProductCategorybig(Integer id) {
 		// TODO Auto-generated method stub
 		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
 		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
-		int i=pc.delProductCategory(id);
+		int i=pc.delProductCategorybig(id);
+		session.commit();
+		if(session != null){
+			session.close();
+		}
+		return i;
+	}
+
+	@Override
+	public int delProductCategoryson(Integer id) {
+		// TODO Auto-generated method stub
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ProductCategoryDao pc=session.getMapper(ProductCategoryDao.class);
+		int i=pc.delProductCategoryson(id);
 		session.commit();
 		if(session != null){
 			session.close();

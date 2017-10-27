@@ -13,9 +13,15 @@ public interface ProductCategoryBiz {
 	 */
 	public int saveProductCategory(ProductCategory productcategory);
 	/**
-	 * 删除产品分类
+	 * 删除产品大类
+	 * @param productcategory
+	 * @return
 	 */
-	public int delProductCategory(Integer id);
+	public int delProductCategorybig(Integer id);
+	/**
+	 * 删除产品小类
+	 */
+	public int delProductCategoryson(Integer id);
 	/**
 	 * 修改产品分类
 	 */

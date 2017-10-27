@@ -24,7 +24,6 @@ public class ProductCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProductCategoryDaoImpl pci = new ProductCategoryDaoImpl();
 	ProductDaoImpl pdi = new ProductDaoImpl();
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -135,12 +134,11 @@ public class ProductCategoryServlet extends HttpServlet {
 		int j = 0;
 		String epcid = request.getParameter("epcid");
 		String parentId = request.getParameter("parentId");
-
 		if (Integer.valueOf(parentId) == 0) {
-			i = pci.delProductCategory(Integer.valueOf(epcid));
+			i = pci.delProductCategorybig(Integer.valueOf(epcid));
 			j = pdi.delProductByChildId(Integer.valueOf(epcid));
 		} else {
-			i = pci.delProductCategory(Integer.valueOf(epcid));
+			i = pci.delProductCategoryson(Integer.valueOf(epcid));
 			j = pdi.delProductByCid(Integer.valueOf(epcid));
 		}
 		if (i > 0) {
@@ -164,10 +162,9 @@ public class ProductCategoryServlet extends HttpServlet {
 		String epcid = request.getParameter("epcid");
 		String name = request.getParameter("className");
 		name = new String(name.getBytes("ISO8859-1"), "UTF-8");
-
+		ProductCategory pcy = new ProductCategory();
 		String parentId = request.getParameter("parentid");
 		String optionId = request.getParameter("parentId");
-		ProductCategory pcy = new ProductCategory();
 		pcy.setId(Integer.valueOf(epcid));
 		pcy.setName(name);
 
